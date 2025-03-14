@@ -32,6 +32,8 @@
             label2 = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
+            checkBox1 = new CheckBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // label1
@@ -70,11 +72,30 @@
             textBox2.TabIndex = 3;
             textBox2.Text = "younes";
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(372, 167);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(121, 29);
+            checkBox1.TabIndex = 4;
+            checkBox1.Text = "checkBox1";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(141, 311);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(300, 150);
+            flowLayoutPanel1.TabIndex = 5;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(checkBox1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(label2);
@@ -91,5 +112,7 @@
         private Label label2;
         private TextBox textBox1;
         private TextBox textBox2;
+        private CheckBox checkBox1;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
