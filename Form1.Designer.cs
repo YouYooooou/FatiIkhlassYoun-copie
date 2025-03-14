@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -40,11 +41,22 @@
             label1.TabIndex = 0;
             label1.Text = "FATIBENDOUKALI";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(76, 88);
+            label2.Name = "label2";
+            label2.Size = new Size(59, 25);
+            label2.TabIndex = 1;
+            label2.Text = "label2";
+            label2.Click += label2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
@@ -55,5 +67,6 @@
         #endregion
 
         private Label label1;
+        private Label label2;
     }
 }
