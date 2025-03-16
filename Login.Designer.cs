@@ -29,15 +29,14 @@
         private void InitializeComponent()
         {
             labelTitre = new Label();
-            cuiFormRounder1 = new CuoreUI.Components.cuiFormRounder();
             tabPage2 = new TabPage();
             txtPassword = new Label();
             cuiBorder1 = new CuoreUI.Controls.cuiBorder();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            button1 = new Button();
             showPassbtn = new CuoreUI.Controls.cuiCheckbox();
             btnForgotPassword = new CuoreUI.Controls.cuiButton();
-            cuiButton1 = new CuoreUI.Controls.cuiButton();
-            passwordTxtBox = new CuoreUI.Controls.cuiTextBox2();
-            userNameTxtBox = new CuoreUI.Controls.cuiTextBox2();
             txtUsername = new Label();
             cuiButton2 = new CuoreUI.Controls.cuiButton();
             cuiBorder1.SuspendLayout();
@@ -54,13 +53,6 @@
             labelTitre.Size = new Size(291, 70);
             labelTitre.TabIndex = 0;
             labelTitre.Text = "Connexion";
-            // 
-            // cuiFormRounder1
-            // 
-            cuiFormRounder1.EnhanceCorners = true;
-            cuiFormRounder1.OutlineColor = Color.FromArgb(30, 255, 255, 255);
-            cuiFormRounder1.Rounding = 5;
-            cuiFormRounder1.TargetForm = this;
             // 
             // tabPage2
             // 
@@ -87,11 +79,11 @@
             // 
             // cuiBorder1
             // 
+            cuiBorder1.Controls.Add(textBox2);
+            cuiBorder1.Controls.Add(textBox1);
+            cuiBorder1.Controls.Add(button1);
             cuiBorder1.Controls.Add(showPassbtn);
             cuiBorder1.Controls.Add(btnForgotPassword);
-            cuiBorder1.Controls.Add(cuiButton1);
-            cuiBorder1.Controls.Add(passwordTxtBox);
-            cuiBorder1.Controls.Add(userNameTxtBox);
             cuiBorder1.Controls.Add(txtUsername);
             cuiBorder1.Controls.Add(txtPassword);
             cuiBorder1.Controls.Add(labelTitre);
@@ -103,6 +95,40 @@
             cuiBorder1.Rounding = new Padding(8);
             cuiBorder1.Size = new Size(576, 474);
             cuiBorder1.TabIndex = 3;
+            // 
+            // textBox2
+            // 
+            textBox2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox2.Location = new Point(255, 241);
+            textBox2.Margin = new Padding(8);
+            textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '●';
+            textBox2.Size = new Size(283, 34);
+            textBox2.TabIndex = 11;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(255, 154);
+            textBox1.Margin = new Padding(8);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(283, 34);
+            textBox1.TabIndex = 10;
+            textBox1.TextChanged += textBox1_TextChanged_1;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.FromArgb(30, 42, 56);
+            button1.Location = new Point(305, 346);
+            button1.Name = "button1";
+            button1.Size = new Size(161, 57);
+            button1.TabIndex = 9;
+            button1.Text = "Login";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // showPassbtn
             // 
@@ -168,90 +194,6 @@
             btnForgotPassword.TabIndex = 7;
             btnForgotPassword.TextOffset = new Point(0, 0);
             // 
-            // cuiButton1
-            // 
-            cuiButton1.CheckButton = false;
-            cuiButton1.Checked = false;
-            cuiButton1.CheckedBackground = Color.Gray;
-            cuiButton1.CheckedForeColor = Color.DimGray;
-            cuiButton1.CheckedImageTint = Color.Gainsboro;
-            cuiButton1.CheckedOutline = Color.Silver;
-            cuiButton1.Content = "Login";
-            cuiButton1.Cursor = Cursors.Hand;
-            cuiButton1.DialogResult = DialogResult.None;
-            cuiButton1.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cuiButton1.ForeColor = Color.FromArgb(30, 42, 56);
-            cuiButton1.HoverBackground = Color.FromArgb(30, 42, 56);
-            cuiButton1.HoveredImageTint = Color.DarkGray;
-            cuiButton1.HoverForeColor = Color.LightGray;
-            cuiButton1.HoverOutline = Color.Empty;
-            cuiButton1.Image = null;
-            cuiButton1.ImageAutoCenter = true;
-            cuiButton1.ImageExpand = new Point(0, 0);
-            cuiButton1.ImageOffset = new Point(0, 0);
-            cuiButton1.ImageTint = Color.FromArgb(30, 42, 56);
-            cuiButton1.Location = new Point(290, 349);
-            cuiButton1.Name = "cuiButton1";
-            cuiButton1.NormalBackground = Color.White;
-            cuiButton1.NormalOutline = Color.Empty;
-            cuiButton1.OutlineThickness = 1.6F;
-            cuiButton1.PressedBackground = Color.FromArgb(30, 42, 56);
-            cuiButton1.PressedForeColor = Color.White;
-            cuiButton1.PressedImageTint = Color.FromArgb(30, 42, 56);
-            cuiButton1.PressedOutline = Color.Empty;
-            cuiButton1.Rounding = new Padding(8);
-            cuiButton1.Size = new Size(205, 61);
-            cuiButton1.TabIndex = 6;
-            cuiButton1.TextOffset = new Point(0, 0);
-            // 
-            // passwordTxtBox
-            // 
-            passwordTxtBox.BackColor = Color.White;
-            passwordTxtBox.BorderColor = Color.FromArgb(64, 64, 64);
-            passwordTxtBox.BorderFocusColor = Color.FromArgb(255, 106, 0);
-            passwordTxtBox.BorderSize = 1;
-            passwordTxtBox.Content = "";
-            passwordTxtBox.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            passwordTxtBox.ForeColor = Color.Gray;
-            passwordTxtBox.Location = new Point(228, 237);
-            passwordTxtBox.Margin = new Padding(4);
-            passwordTxtBox.Multiline = false;
-            passwordTxtBox.Name = "passwordTxtBox";
-            passwordTxtBox.Padding = new Padding(22, 8, 22, 0);
-            passwordTxtBox.PasswordChar = true;
-            passwordTxtBox.PlaceholderColor = Color.DimGray;
-            passwordTxtBox.PlaceholderText = "";
-            passwordTxtBox.Rounding = 8;
-            passwordTxtBox.Size = new Size(310, 38);
-            passwordTxtBox.TabIndex = 5;
-            passwordTxtBox.TextOffset = new Size(0, 0);
-            passwordTxtBox.UnderlinedStyle = false;
-            passwordTxtBox.ContentChanged += passwordTxtBox_ContentChanged;
-            // 
-            // userNameTxtBox
-            // 
-            userNameTxtBox.BackColor = Color.White;
-            userNameTxtBox.BorderColor = Color.FromArgb(64, 64, 64);
-            userNameTxtBox.BorderFocusColor = Color.FromArgb(255, 106, 0);
-            userNameTxtBox.BorderSize = 1;
-            userNameTxtBox.Content = "";
-            userNameTxtBox.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            userNameTxtBox.ForeColor = Color.Gray;
-            userNameTxtBox.Location = new Point(228, 150);
-            userNameTxtBox.Margin = new Padding(4);
-            userNameTxtBox.Multiline = false;
-            userNameTxtBox.Name = "userNameTxtBox";
-            userNameTxtBox.Padding = new Padding(22, 8, 22, 0);
-            userNameTxtBox.PasswordChar = false;
-            userNameTxtBox.PlaceholderColor = Color.DimGray;
-            userNameTxtBox.PlaceholderText = "";
-            userNameTxtBox.Rounding = 8;
-            userNameTxtBox.Size = new Size(310, 38);
-            userNameTxtBox.TabIndex = 4;
-            userNameTxtBox.TextOffset = new Size(0, 0);
-            userNameTxtBox.UnderlinedStyle = false;
-            userNameTxtBox.ContentChanged += userNameTxtBox_ContentChanged;
-            // 
             // txtUsername
             // 
             txtUsername.AutoSize = true;
@@ -299,7 +241,7 @@
             cuiButton2.Size = new Size(36, 32);
             cuiButton2.TabIndex = 9;
             cuiButton2.TextOffset = new Point(0, 0);
-            cuiButton2.Click += this.cuiButton2_Click;
+            cuiButton2.Click += cuiButton2_Click;
             // 
             // Form1
             // 
@@ -313,23 +255,23 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ikhlasse";
+            Load += Form1_Load;
             cuiBorder1.ResumeLayout(false);
             cuiBorder1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private CuoreUI.Components.cuiFormRounder cuiFormRounder1;
         private Label labelTitre;
         private TabPage tabPage2;
         private Label txtPassword;
         private CuoreUI.Controls.cuiBorder cuiBorder1;
         private Label txtUsername;
-        private CuoreUI.Controls.cuiTextBox2 userNameTxtBox;
-        private CuoreUI.Controls.cuiButton cuiButton1;
-        private CuoreUI.Controls.cuiTextBox2 passwordTxtBox;
         private CuoreUI.Controls.cuiButton btnForgotPassword;
         private CuoreUI.Controls.cuiCheckbox showPassbtn;
         private CuoreUI.Controls.cuiButton cuiButton2;
+        private Button button1;
+        private TextBox textBox1;
+        private TextBox textBox2;
     }
 }

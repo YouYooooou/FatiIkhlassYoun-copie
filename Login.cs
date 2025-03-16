@@ -1,4 +1,4 @@
-namespace FatiIkhlassYoun
+﻿namespace FatiIkhlassYoun
 {
     public partial class Form1 : Form
     {
@@ -38,10 +38,53 @@ namespace FatiIkhlassYoun
         }
         private void cuiButton2_Click(object sender, EventArgs e)
         {
-            Application.Exit(); 
+            Application.Exit();
         }
 
         private void showPassbtn_Click(object sender, EventArgs e)
+        {
+            // Vérifier si le mot de passe est actuellement masqué
+            if (textBox2.PasswordChar == '●') // Remplace par '*' si besoin
+            {
+                textBox2.PasswordChar = '\0'; // Afficher le texte
+            }
+            else
+            {
+                textBox2.PasswordChar = '●'; // Remettre le masque
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Vérification des identifiants (remplace par ta vraie logique)
+            bool isAuthenticated = true; // Exemple : vérifie les credentials
+
+            if (isAuthenticated)
+            {
+                // Ouvre le Menu
+                MenuDeApp menu = new MenuDeApp();
+                menu.Show();
+
+                // Cacher la fenêtre de login
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect !");
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
