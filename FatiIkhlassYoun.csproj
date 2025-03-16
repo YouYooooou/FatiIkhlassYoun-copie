@@ -8,4 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CuoreUI.Winforms" Version="2025.3.3" />
+  </ItemGroup>
+
 </Project>
