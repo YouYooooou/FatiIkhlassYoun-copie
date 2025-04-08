@@ -88,5 +88,11 @@
         {
 
         }
+
+        private void btnForgotPassword_Click(object sender, EventArgs e)
+        {
+            FormMotDePasseOublie formMdp = new FormMotDePasseOublie();
+            formMdp.ShowDialog(); 
+        }
     }
 }

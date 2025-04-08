@@ -193,6 +193,7 @@
             btnForgotPassword.Size = new Size(154, 28);
             btnForgotPassword.TabIndex = 7;
             btnForgotPassword.TextOffset = new Point(0, 0);
+            btnForgotPassword.Click += btnForgotPassword_Click;
             // 
             // txtUsername
             // 

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace FatiIkhlassYoun
 {
-    public partial class formGestionDesProjets: Form
+    public partial class formGestionDesProjets : Form
     {
         public formGestionDesProjets()
         {
             InitializeComponent();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

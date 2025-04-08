@@ -34,13 +34,14 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Corbel", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Corbel", 22F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(298, 294);
+            label2.Location = new Point(255, 34);
             label2.Name = "label2";
-            label2.Size = new Size(805, 117);
+            label2.Size = new Size(371, 54);
             label2.TabIndex = 2;
             label2.Text = "Gestion de projets";
+            label2.Click += label2_Click;
             // 
             // formGestionDesProjets
             // 
