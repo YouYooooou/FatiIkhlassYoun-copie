@@ -53,8 +53,8 @@
             cuiBorder1.Location = new Point(182, 31);
             cuiBorder1.Name = "cuiBorder1";
             cuiBorder1.OutlineThickness = 1F;
-            cuiBorder1.PanelColor = Color.FromArgb(44, 62, 80);
-            cuiBorder1.PanelOutlineColor = Color.FromArgb(44, 62, 80);
+            cuiBorder1.PanelColor = Color.WhiteSmoke;
+            cuiBorder1.PanelOutlineColor = Color.WhiteSmoke;
             cuiBorder1.Rounding = new Padding(8);
             cuiBorder1.Size = new Size(594, 443);
             cuiBorder1.TabIndex = 0;
@@ -66,8 +66,8 @@
             btnShowP.CheckedOutlineColor = Color.White;
             btnShowP.CheckedSymbolColor = Color.White;
             btnShowP.Content = "Show Password";
-            btnShowP.ForeColor = Color.White;
-            btnShowP.Location = new Point(390, 266);
+            btnShowP.ForeColor = Color.Black;
+            btnShowP.Location = new Point(390, 271);
             btnShowP.MinimumSize = new Size(16, 16);
             btnShowP.Name = "btnShowP";
             btnShowP.OutlineStyle = true;
@@ -85,8 +85,9 @@
             // txtPassword
             // 
             txtPassword.AutoSize = true;
+            txtPassword.BackColor = Color.WhiteSmoke;
             txtPassword.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtPassword.ForeColor = Color.Transparent;
+            txtPassword.ForeColor = Color.Black;
             txtPassword.Location = new Point(35, 213);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(139, 38);
@@ -96,8 +97,9 @@
             // txtUsername
             // 
             txtUsername.AutoSize = true;
+            txtUsername.BackColor = Color.WhiteSmoke;
             txtUsername.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtUsername.ForeColor = Color.Transparent;
+            txtUsername.ForeColor = Color.Black;
             txtUsername.Location = new Point(35, 135);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(148, 38);
@@ -107,8 +109,9 @@
             // lblMessage
             // 
             lblMessage.AutoSize = true;
+            lblMessage.BackColor = Color.WhiteSmoke;
             lblMessage.ForeColor = Color.Red;
-            lblMessage.Location = new Point(25, 370);
+            lblMessage.Location = new Point(35, 373);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(101, 25);
             lblMessage.TabIndex = 5;
@@ -116,19 +119,22 @@
             // 
             // btnValider
             // 
+            btnValider.BackColor = Color.ForestGreen;
+            btnValider.ForeColor = Color.White;
             btnValider.Location = new Point(400, 355);
             btnValider.Name = "btnValider";
-            btnValider.Size = new Size(140, 55);
+            btnValider.Size = new Size(137, 60);
             btnValider.TabIndex = 4;
             btnValider.Text = "Valider";
-            btnValider.UseVisualStyleBackColor = true;
+            btnValider.UseVisualStyleBackColor = false;
             btnValider.Click += btnValider_Click;
             // 
             // Authentification
             // 
             Authentification.AutoSize = true;
+            Authentification.BackColor = Color.WhiteSmoke;
             Authentification.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Authentification.ForeColor = Color.Transparent;
+            Authentification.ForeColor = Color.Black;
             Authentification.Location = new Point(119, 27);
             Authentification.Name = "Authentification";
             Authentification.Size = new Size(330, 54);
@@ -158,7 +164,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 42, 56);
+            BackColor = Color.White;
             ClientSize = new Size(944, 514);
             Controls.Add(cuiBorder1);
             Name = "formAuthentification";

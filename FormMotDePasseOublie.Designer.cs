@@ -45,8 +45,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.WhiteSmoke;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
+            label1.ForeColor = Color.Black;
             label1.Location = new Point(172, 31);
             label1.Name = "label1";
             label1.Size = new Size(434, 48);
@@ -57,8 +58,8 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.MistyRose;
-            label2.Location = new Point(42, 155);
+            label2.ForeColor = Color.Brown;
+            label2.Location = new Point(46, 144);
             label2.Name = "label2";
             label2.Size = new Size(704, 25);
             label2.TabIndex = 2;
@@ -67,11 +68,11 @@
             // 
             // btnEnvoyer
             // 
-            btnEnvoyer.BackColor = Color.White;
-            btnEnvoyer.ForeColor = Color.FromArgb(30, 42, 56);
+            btnEnvoyer.BackColor = Color.Brown;
+            btnEnvoyer.ForeColor = Color.White;
             btnEnvoyer.Location = new Point(251, 265);
             btnEnvoyer.Name = "btnEnvoyer";
-            btnEnvoyer.Size = new Size(307, 34);
+            btnEnvoyer.Size = new Size(307, 54);
             btnEnvoyer.TabIndex = 3;
             btnEnvoyer.Text = "Envoyez un lien de connexion";
             btnEnvoyer.UseVisualStyleBackColor = false;
@@ -81,13 +82,14 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 42, 56);
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(800, 450);
             Controls.Add(btnEnvoyer);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtEmail);
             Name = "FormMotDePasseOublie";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormMotDePasseOublie";
             ResumeLayout(false);
             PerformLayout();
