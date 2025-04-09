@@ -1,5 +1,8 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace FatiIkhlassYoun
 {
     public partial class Form1 : Form
@@ -38,6 +41,7 @@ namespace FatiIkhlassYoun
         {
 
         }
+
         private void cuiButton2_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -45,32 +49,23 @@ namespace FatiIkhlassYoun
 
         private void showPassbtn_Click(object sender, EventArgs e)
         {
-            // Vérifier si le mot de passe est actuellement masqué
-            if (textBox2.PasswordChar == '●') // Remplace par '*' si besoin
+            if (textBox2.PasswordChar == '●')
             {
-                textBox2.PasswordChar = '\0'; // Afficher le texte
+                textBox2.PasswordChar = '\0';
             }
             else
             {
-                textBox2.PasswordChar = '●'; // Remettre le masque
+                textBox2.PasswordChar = '●';
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {   
+        {
             string username = textBox1.Text.Trim();
-            string password = textBox2.Text.Trim();
-            //---------------------------                                  ---------------------------
-            //---------------------------                                  ---------------------------
-            //---------------------------                                  ---------------------------
-            //---------------------------                                  ---------------------------
-            //---------------------------                                  ---------------------------
-            string connectionString = @"Data Source=YOUNES\SQLEXPRESS;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
-            //---------------------------                                  ---------------------------
-            //---------------------------                                  ---------------------------
-            //---------------------------                                  ---------------------------
-            //---------------------------                                  ---------------------------
-            //---------------------------                                  ---------------------------
+            string password = HashPassword(textBox2.Text.Trim());
+
+
+            string connectionString = @"Data Source=DESKTOP-78OLGDN;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -85,20 +80,19 @@ namespace FatiIkhlassYoun
                             AND PasswordHash COLLATE SQL_Latin1_General_CP1_CS_AS = @password 
                             AND IsActive = 1";
 
-
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password); // à sécuriser plus tard
+                    cmd.Parameters.AddWithValue("@password", password);
+                    // à sécuriser plus tard
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    if (reader.Read()) // ⚠️ ici on consomme le reader correctement
+                    if (reader.Read())
                     {
                         string role = reader["Role"].ToString();
 
-                        reader.Close(); // très important de fermer le reader avant d’ouvrir une nouvelle form
+                        reader.Close();
 
-                        // Authentification réussie
                         MenuDeApp menu = new MenuDeApp();
                         menu.Show();
                         this.Hide();
@@ -116,6 +110,19 @@ namespace FatiIkhlassYoun
             }
         }
 
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2")); // Conversion en hexa
+                }
+                return builder.ToString();
+            }
+        }
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -143,5 +150,8 @@ namespace FatiIkhlassYoun
         {
 
         }
+
+       
+        
     }
 }
