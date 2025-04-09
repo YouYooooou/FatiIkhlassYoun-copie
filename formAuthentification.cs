@@ -51,7 +51,7 @@ namespace FatiIkhlassYoun
         {
             string username = textBox1.Text.Trim();
             string password = textPass.Text.Trim();
-            if (username == "admin" && password == "1234")
+            if (username == "admin" && password == "123")
             {
                 MessageBox.Show("Authentification réussie !");
                 this.DialogResult = DialogResult.OK; // Ferme le formulaire avec succès
@@ -66,7 +66,7 @@ namespace FatiIkhlassYoun
         private void cuiCheckbox2_Click(object sender, EventArgs e)
         {
 
-            if(textPass.PasswordChar == '●') // Remplace par '*' si besoin
+            if (textPass.PasswordChar == '●') // Remplace par '*' si besoin
             {
                 textPass.PasswordChar = '\0'; // Afficher le texte
             }
@@ -83,6 +83,11 @@ namespace FatiIkhlassYoun
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cuiBorder1_Paint_1(object sender, PaintEventArgs e)
         {
 
         }

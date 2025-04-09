@@ -58,6 +58,7 @@
             cuiBorder1.Rounding = new Padding(8);
             cuiBorder1.Size = new Size(594, 443);
             cuiBorder1.TabIndex = 0;
+            cuiBorder1.Paint += cuiBorder1_Paint_1;
             // 
             // btnShowP
             // 

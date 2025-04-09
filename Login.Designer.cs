@@ -98,6 +98,7 @@
             cuiBorder1.Rounding = new Padding(10);
             cuiBorder1.Size = new Size(603, 505);
             cuiBorder1.TabIndex = 3;
+            cuiBorder1.Paint += cuiBorder1_Paint;
             // 
             // label1
             // 

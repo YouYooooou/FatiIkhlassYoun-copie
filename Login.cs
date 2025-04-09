@@ -1,4 +1,6 @@
-﻿namespace FatiIkhlassYoun
+﻿using System.Data.SqlClient;
+using System.Data;
+namespace FatiIkhlassYoun
 {
     public partial class Form1 : Form
     {
@@ -55,24 +57,66 @@
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            // Vérification des identifiants (remplace par ta vraie logique)
-            bool isAuthenticated = true; // Exemple : vérifie les credentials
+        {   
+            string username = textBox1.Text.Trim();
+            string password = textBox2.Text.Trim();
+            //---------------------------                                  ---------------------------
+            //---------------------------                                  ---------------------------
+            //---------------------------                                  ---------------------------
+            //---------------------------                                  ---------------------------
+            //---------------------------                                  ---------------------------
+            string connectionString = @"Data Source=YOUNES\SQLEXPRESS;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
+            //---------------------------                                  ---------------------------
+            //---------------------------                                  ---------------------------
+            //---------------------------                                  ---------------------------
+            //---------------------------                                  ---------------------------
+            //---------------------------                                  ---------------------------
 
-            if (isAuthenticated)
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                // Ouvre le Menu
-                MenuDeApp menu = new MenuDeApp();
-                menu.Show();
+                try
+                {
+                    conn.Open();
 
-                // Cacher la fenêtre de login
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect !");
+                    string query = @"
+                            SELECT * 
+                            FROM Users 
+                            WHERE Username COLLATE SQL_Latin1_General_CP1_CS_AS = @username 
+                            AND PasswordHash COLLATE SQL_Latin1_General_CP1_CS_AS = @password 
+                            AND IsActive = 1";
+
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password); // à sécuriser plus tard
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read()) // ⚠️ ici on consomme le reader correctement
+                    {
+                        string role = reader["Role"].ToString();
+
+                        reader.Close(); // très important de fermer le reader avant d’ouvrir une nouvelle form
+
+                        // Authentification réussie
+                        MenuDeApp menu = new MenuDeApp();
+                        menu.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        reader.Close();
+                        MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect !");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de la connexion : " + ex.Message);
+                }
             }
         }
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -92,7 +136,12 @@
         private void btnForgotPassword_Click(object sender, EventArgs e)
         {
             FormMotDePasseOublie formMdp = new FormMotDePasseOublie();
-            formMdp.ShowDialog(); 
+            formMdp.ShowDialog();
+        }
+
+        private void cuiBorder1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
