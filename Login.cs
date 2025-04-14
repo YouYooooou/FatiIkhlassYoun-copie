@@ -2,6 +2,7 @@
 using System.Data;
 using System.Security.Cryptography;
 using System.Text;
+using FatiIkhlassYoun.NewFolder;
 
 namespace FatiIkhlassYoun
 {
@@ -64,8 +65,7 @@ namespace FatiIkhlassYoun
             string username = textBox1.Text.Trim();
             string password = HashPassword(textBox2.Text.Trim());
 
-
-            string connectionString = @"Data Source=DESKTOP-78OLGDN;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
+            string connectionString = @"Data Source=YOUNES\SQLEXPRESS;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -74,28 +74,38 @@ namespace FatiIkhlassYoun
                     conn.Open();
 
                     string query = @"
-                            SELECT * 
-                            FROM Users 
-                            WHERE Username COLLATE SQL_Latin1_General_CP1_CS_AS = @username 
-                            AND PasswordHash COLLATE SQL_Latin1_General_CP1_CS_AS = @password 
-                            AND IsActive = 1";
+            SELECT UserID, Username, Role 
+            FROM Users 
+            WHERE Username COLLATE SQL_Latin1_General_CP1_CS_AS = @username 
+            AND PasswordHash COLLATE SQL_Latin1_General_CP1_CS_AS = @password 
+            AND IsActive = 1";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
-                    // à sécuriser plus tard
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        string role = reader["Role"].ToString();
+                        // 🧠 On remplit la session avec les données du user connecté
+                        SessionUtilisateur.UserID = Convert.ToInt32(reader["UserID"]);
+                        SessionUtilisateur.Username = reader["Username"].ToString();
+                        SessionUtilisateur.Role = reader["Role"].ToString();
 
                         reader.Close();
 
-                        MenuDeApp menu = new MenuDeApp();
-                        menu.Show();
-                        this.Hide();
+                        // 👨‍💼 On ouvre le menu correspondant au rôle
+                        if (SessionUtilisateur.Role == "chef_equipe")
+                        {
+                            MenuDeChefEquipe menu = new MenuDeChefEquipe();
+                            menu.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Votre rôle n'est pas autorisé à accéder à cette interface.");
+                        }
                     }
                     else
                     {
@@ -108,6 +118,7 @@ namespace FatiIkhlassYoun
                     MessageBox.Show("Erreur lors de la connexion : " + ex.Message);
                 }
             }
+
         }
 
         private string HashPassword(string password)
@@ -146,12 +157,11 @@ namespace FatiIkhlassYoun
             formMdp.ShowDialog();
         }
 
-        private void cuiBorder1_Paint(object sender, PaintEventArgs e)
+        
+
+        private void labelTitre_Click(object sender, EventArgs e)
         {
 
         }
-
-       
-        
     }
 }
