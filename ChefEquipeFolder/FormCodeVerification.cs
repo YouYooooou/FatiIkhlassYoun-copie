@@ -33,23 +33,16 @@ namespace FatiIkhlassYoun.NewFolder
 
         private void btnVerifier_Click(object sender, EventArgs e)
         {
-            int codeUtilisateur;
-            if (int.TryParse(txtCode.Text.Trim(), out codeUtilisateur))
+            if (txtCode.Text.Trim() == codeEnvoye.ToString())
             {
-                if (codeUtilisateur == codeEnvoye)
-                {
-                    IsCodeValid = true;
-                    MessageBox.Show("Code vérifié avec succès !");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Code incorrect. Veuillez réessayer.");
-                }
+                IsCodeValid = true;
+                MessageBox.Show("Code vérifié avec succès !");
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Veuillez entrer un code numérique valide.");
+                MessageBox.Show("Code incorrect. Veuillez réessayer.");
+                IsCodeValid = false;
             }
         }
 

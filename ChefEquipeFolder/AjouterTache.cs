@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FatiIkhlassYoun.NewFolder;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,78 +55,37 @@ namespace FatiIkhlassYoun
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            // 🔢 Générer un ID aléatoire (exemple : TSK-4573)
             string codeTache = "TSK-" + new Random().Next(1000, 9999);
-            textBox1.Text = codeTache; // Affiche dans le TextBox en lecture seule
+            textBox1.Text = codeTache;
 
-            if (comboProjet.SelectedValue == null)
-            {
-                MessageBox.Show("Veuillez sélectionner un projet.");
-                return;
-            }
-            int projectId = (int)comboProjet.SelectedValue;
-            string titre = txtTitre.Text.Trim();
-            string description = txtDescription.Text.Trim();
-            DateTime dateDebut = dtpDebut.Value.Date;
-            DateTime dateFin = dtpFin.Value.Date;
-            string statut = comboStatus.SelectedItem?.ToString();
-            int tempsEstime = (int)numTemps.Value;
-
-            if (string.IsNullOrEmpty(titre) || string.IsNullOrEmpty(statut))
+            if (comboProjet.SelectedValue == null || comboStatus.SelectedItem == null || string.IsNullOrEmpty(txtTitre.Text.Trim()))
             {
                 MessageBox.Show("Veuillez remplir tous les champs obligatoires.");
                 return;
             }
 
-            // 🔍 Récupérer automatiquement l'ID du chef de projet à partir du projet sélectionné
-            int managerId = GetManagerIdByProject(projectId);
+            int projectId = (int)comboProjet.SelectedValue;
+            string titre = txtTitre.Text.Trim();
+            string description = txtDescription.Text.Trim();
+            DateTime dateDebut = dtpDebut.Value.Date;
+            DateTime dateFin = dtpFin.Value.Date;
+            string statut = comboStatus.SelectedItem.ToString();
+            int tempsEstime = (int)numTemps.Value;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            // ➕ Appel de l'authentification AVANT d’ajouter
+            FormAuthConfirmation authForm = new FormAuthConfirmation(userIdChefEquipe, "add", 0); // 0 car pas de TaskID pour ajout
+            authForm.ShowDialog();
+
+            if (authForm.DialogResult == DialogResult.OK)
             {
-                string query = @"
-                    INSERT INTO Tasks (ProjectID, Title, Description, StartDate, DueDate, Status, EstimatedTime, TeamLeadID, CodeTache)
-                    VALUES (@ProjectID, @Title, @Description, @StartDate, @DueDate, @Status, @EstimatedTime, @TeamLeadID, @CodeTache);";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@ProjectID", projectId);
-                    cmd.Parameters.AddWithValue("@Title", titre);
-                    cmd.Parameters.AddWithValue("@Description", description);
-                    cmd.Parameters.AddWithValue("@StartDate", dateDebut);
-                    cmd.Parameters.AddWithValue("@DueDate", dateFin);
-                    cmd.Parameters.AddWithValue("@Status", statut);
-                    cmd.Parameters.AddWithValue("@EstimatedTime", tempsEstime);
-                    cmd.Parameters.AddWithValue("@TeamLeadID", userIdChefEquipe);
-                    cmd.Parameters.AddWithValue("@CodeTache", codeTache);
-
-                    try
-                    {
-                        conn.Open();
-                        int rows = cmd.ExecuteNonQuery();
-                        conn.Close();
-
-                        if (rows > 0)
-                        {
-                            textBox1.Text = codeTache; // ✅ Affiche le code généré seulement si succès
-                            MessageBox.Show("Tâche ajoutée avec succès !");
-                            this.Close(); // Ferme le formulaire
-                        }
-                        else
-                        {
-                            MessageBox.Show("⚠️ La tâche n'a pas été ajoutée !");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("❌ Erreur SQL : " + ex.Message);
-                    }
-
-                }
-
-                MessageBox.Show("Tâche ajoutée avec succès !");
-                this.Close(); // Ferme le formulaire
+                AjouterTacheDansLaBase(codeTache, projectId, titre, description, dateDebut, dateFin, statut, tempsEstime);
+            }
+            else
+            {
+                MessageBox.Show("❌ Vérification annulée. L’ajout de la tâche a été annulé.");
             }
         }
+
         // 🔍 Méthode pour obtenir le ManagerID (chef de projet) à partir du projet
         private int GetManagerIdByProject(int projectId)
         {
@@ -150,6 +110,52 @@ namespace FatiIkhlassYoun
             this.Close();
         }
 
-        
+        public void AjouterTacheDansLaBase(string codeTache, int projectId, string titre, string description, DateTime dateDebut, DateTime dateFin, string statut, int tempsEstime)
+        {
+            int managerId = GetManagerIdByProject(projectId);
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+            INSERT INTO Tasks (ProjectID, Title, Description, StartDate, DueDate, Status, EstimatedTime, TeamLeadID, CodeTache)
+            VALUES (@ProjectID, @Title, @Description, @StartDate, @DueDate, @Status, @EstimatedTime, @TeamLeadID, @CodeTache);";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ProjectID", projectId);
+                    cmd.Parameters.AddWithValue("@Title", titre);
+                    cmd.Parameters.AddWithValue("@Description", description);
+                    cmd.Parameters.AddWithValue("@StartDate", dateDebut);
+                    cmd.Parameters.AddWithValue("@DueDate", dateFin);
+                    cmd.Parameters.AddWithValue("@Status", statut);
+                    cmd.Parameters.AddWithValue("@EstimatedTime", tempsEstime);
+                    cmd.Parameters.AddWithValue("@TeamLeadID", userIdChefEquipe);
+                    cmd.Parameters.AddWithValue("@CodeTache", codeTache);
+
+                    try
+                    {
+                        conn.Open();
+                        int rows = cmd.ExecuteNonQuery();
+                        conn.Close();
+
+                        if (rows > 0)
+                        {
+                            MessageBox.Show("✅ Tâche ajoutée avec succès !");
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("⚠️ La tâche n'a pas pu être ajoutée !");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("❌ Erreur SQL : " + ex.Message);
+                    }
+                }
+            }
+        }
+
+
     }
 }

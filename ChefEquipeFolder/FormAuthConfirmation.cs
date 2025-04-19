@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FatiIkhlassYoun.NewFolder
 {
@@ -27,14 +29,29 @@ namespace FatiIkhlassYoun.NewFolder
 
 
 
-      
-        
+
+        public static string HashPassword(string password)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // Convertir le mot de passe en tableau de bytes
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+                // Convertir le tableau de bytes en une chaîne hexadécimale
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
 
         private void btnConfirmer_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
-
+            string hashedPassword = HashPassword(password);
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Veuillez entrer votre nom d'utilisateur et mot de passe.");
@@ -43,10 +60,11 @@ namespace FatiIkhlassYoun.NewFolder
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Users WHERE Username = @Username AND PasswordHash = @Password";
+                string query = "SELECT * FROM Users WHERE UserID = @UserID AND PasswordHash = @PasswordHash";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@PasswordHash", password); // Assure-toi de hasher le mot de passe en production
+                cmd.Parameters.AddWithValue("@UserID", userIdChefEquipe); // On utilise directement l'ID de l'utilisateur connecté
+                cmd.Parameters.AddWithValue("@PasswordHash", hashedPassword);
+
 
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -68,7 +86,7 @@ namespace FatiIkhlassYoun.NewFolder
                         string email = reader["Email"].ToString(); // Assure-toi que le champ "Email" existe
 
                         // 4. Envoyer le mail
-                        EnvoyerEmailVerification(email, codeVerification);
+                        EnvoyerEmailVerification(email, codeVerification.ToString());
 
                         // 5. Ouvrir le formulaire de vérification du code
                         FormCodeVerification codeForm = new FormCodeVerification(codeVerification, action, taskId);
@@ -81,10 +99,21 @@ namespace FatiIkhlassYoun.NewFolder
                                 SupprimerTacheDeLaBase(taskId);
                             }
                             // Tu peux ajouter ici d'autres actions si besoin ("add", "update", etc.)
+                            else if (action == "add")
+                            {
+                                // ✅ Retourne au formulaire parent avec succès
+                                this.DialogResult = DialogResult.OK;
+                            }
+                            else if (action == "update")
+                            {
+                                this.DialogResult = DialogResult.OK;
+                            }
+                            this.Close();
                         }
                         else
                         {
                             MessageBox.Show("Action annulée : code incorrect.");
+                            this.DialogResult = DialogResult.Cancel;
                         }
 
                         this.Close(); // Ferme le formulaire d'authentification
@@ -103,16 +132,16 @@ namespace FatiIkhlassYoun.NewFolder
             }
         }
 
-        private void EnvoyerEmailVerification(string email, int code)
+        private void EnvoyerEmailVerification(string email, string code)
         {
             try
             {
                 System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
                 client.EnableSsl = true;
-                client.Credentials = new System.Net.NetworkCredential("tonemail@gmail.com", "tonmotdepasse"); // ⚠️ Crée un mot de passe d'application
+                client.Credentials = new System.Net.NetworkCredential("extrosyounes2018@gmail.com", "frsurxsftwoyuuzh");
 
                 System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();
-                mailMessage.From = new System.Net.Mail.MailAddress("tonemail@gmail.com");
+                mailMessage.From = new System.Net.Mail.MailAddress("extrosyounes2018@gmail.com");
                 mailMessage.To.Add(email);
                 mailMessage.Subject = "Code de vérification";
                 mailMessage.Body = $"Votre code de vérification est : {code}";
@@ -124,6 +153,7 @@ namespace FatiIkhlassYoun.NewFolder
                 MessageBox.Show("Erreur lors de l'envoi de l'e-mail : " + ex.Message);
             }
         }
+
 
         private void SupprimerTacheDeLaBase(int taskId)
         {

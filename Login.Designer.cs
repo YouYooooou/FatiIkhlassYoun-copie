@@ -33,7 +33,6 @@ namespace FatiIkhlassYoun
             tabPage2 = new TabPage();
             txtPassword = new Label();
             cuiBorder1 = new CuoreUI.Controls.cuiBorder();
-            label2 = new Label();
             label1 = new Label();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
@@ -84,7 +83,6 @@ namespace FatiIkhlassYoun
             // cuiBorder1
             // 
             cuiBorder1.BackColor = Color.WhiteSmoke;
-            cuiBorder1.Controls.Add(label2);
             cuiBorder1.Controls.Add(label1);
             cuiBorder1.Controls.Add(textBox2);
             cuiBorder1.Controls.Add(textBox1);
@@ -100,21 +98,9 @@ namespace FatiIkhlassYoun
             cuiBorder1.PanelColor = Color.WhiteSmoke;
             cuiBorder1.PanelOutlineColor = Color.Black;
             cuiBorder1.Rounding = new Padding(10);
-            cuiBorder1.Size = new Size(603, 505);
+            cuiBorder1.Size = new Size(713, 505);
             cuiBorder1.TabIndex = 3;
             cuiBorder1.Paint += cuiBorder1_Paint;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Black;
-            label2.Location = new Point(404, 123);
-            label2.Name = "label2";
-            label2.Size = new Size(133, 40);
-            label2.TabIndex = 13;
-            label2.Text = "LOGIN";
             // 
             // label1
             // 
@@ -133,7 +119,7 @@ namespace FatiIkhlassYoun
             textBox2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox2.ForeColor = Color.Black;
             textBox2.Location = new Point(255, 273);
-            textBox2.Margin = new Padding(8, 8, 8, 8);
+            textBox2.Margin = new Padding(8);
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '●';
             textBox2.Size = new Size(283, 34);
@@ -145,7 +131,7 @@ namespace FatiIkhlassYoun
             textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(255, 206);
-            textBox1.Margin = new Padding(8, 8, 8, 8);
+            textBox1.Margin = new Padding(8);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(283, 34);
             textBox1.TabIndex = 10;
@@ -176,7 +162,7 @@ namespace FatiIkhlassYoun
             showPassbtn.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             showPassbtn.ForeColor = SystemColors.ActiveCaptionText;
             showPassbtn.Location = new Point(377, 323);
-            showPassbtn.Margin = new Padding(8, 8, 8, 8);
+            showPassbtn.Margin = new Padding(8);
             showPassbtn.MinimumSize = new Size(16, 16);
             showPassbtn.Name = "showPassbtn";
             showPassbtn.OutlineStyle = true;
@@ -215,7 +201,7 @@ namespace FatiIkhlassYoun
             btnForgotPassword.ImageExpand = new Point(0, 0);
             btnForgotPassword.ImageOffset = new Point(0, 0);
             btnForgotPassword.ImageTint = Color.WhiteSmoke;
-            btnForgotPassword.Location = new Point(23, 396);
+            btnForgotPassword.Location = new Point(23, 366);
             btnForgotPassword.Name = "btnForgotPassword";
             btnForgotPassword.NormalBackground = Color.WhiteSmoke;
             btnForgotPassword.NormalOutline = Color.Empty;
@@ -225,7 +211,7 @@ namespace FatiIkhlassYoun
             btnForgotPassword.PressedImageTint = Color.WhiteSmoke;
             btnForgotPassword.PressedOutline = Color.WhiteSmoke;
             btnForgotPassword.Rounding = new Padding(8);
-            btnForgotPassword.Size = new Size(161, 52);
+            btnForgotPassword.Size = new Size(161, 93);
             btnForgotPassword.TabIndex = 7;
             btnForgotPassword.TextOffset = new Point(0, 0);
             btnForgotPassword.Click += btnForgotPassword_Click;
@@ -264,7 +250,7 @@ namespace FatiIkhlassYoun
             cuiButton2.ImageExpand = new Point(0, 0);
             cuiButton2.ImageOffset = new Point(0, 0);
             cuiButton2.ImageTint = Color.White;
-            cuiButton2.Location = new Point(954, 12);
+            cuiButton2.Location = new Point(1008, 12);
             cuiButton2.Name = "cuiButton2";
             cuiButton2.NormalBackground = Color.White;
             cuiButton2.NormalOutline = Color.Empty;
@@ -284,7 +270,7 @@ namespace FatiIkhlassYoun
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(973, 576);
+            ClientSize = new Size(1062, 648);
             Controls.Add(cuiButton2);
             Controls.Add(cuiBorder1);
             FormBorderStyle = FormBorderStyle.None;
@@ -316,6 +302,5 @@ namespace FatiIkhlassYoun
         private TextBox textBox1;
         private TextBox textBox2;
         private Label label1;
-        private Label label2;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿using FatiIkhlassYoun.NewFolder;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -94,8 +95,28 @@ namespace FatiIkhlassYoun
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
+            if (comboTache.SelectedValue == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une tâche.");
+                return;
+            }
+
             int taskId = (int)comboTache.SelectedValue;
 
+            // Appel du formulaire d'authentification avec vérification
+            FormAuthConfirmation authForm = new FormAuthConfirmation(userIdChefEquipe, "update", taskId);
+            var result = authForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                // L'identité est confirmée et le code vérifié → procéder à la modification
+                ModifierTacheDansLaBase(taskId);
+            }
+
+        }
+
+        private void ModifierTacheDansLaBase(int taskId)
+        {
             string titre = txtTitre.Text.Trim();
             string description = txtDescription.Text.Trim();
             DateTime dateDebut = dtpDebut.Value.Date;
@@ -106,14 +127,14 @@ namespace FatiIkhlassYoun
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"
-        UPDATE Tasks
-        SET Title = @Title,
-            Description = @Description,
-            StartDate = @StartDate,
-            DueDate = @DueDate,
-            Status = @Status,
-            EstimatedTime = @EstimatedTime
-        WHERE TaskID = @TaskID";
+            UPDATE Tasks
+            SET Title = @Title,
+                Description = @Description,
+                StartDate = @StartDate,
+                DueDate = @DueDate,
+                Status = @Status,
+                EstimatedTime = @EstimatedTime
+            WHERE TaskID = @TaskID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Title", titre);
@@ -129,7 +150,7 @@ namespace FatiIkhlassYoun
                 if (rows > 0)
                 {
                     MessageBox.Show("Tâche modifiée avec succès !");
-                    this.Close();  // Ferme le formulaire après le message
+                    this.Close();
                 }
                 else
                 {
@@ -137,6 +158,7 @@ namespace FatiIkhlassYoun
                 }
             }
         }
+
 
         private void cuiButton2_Click(object sender, EventArgs e)
         {
