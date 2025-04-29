@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CuoreUI.Winforms" Version="2025.3.3" />
+    <PackageReference Include="CuoreUI.Winforms" Version="2025.4.18" />
     <PackageReference Include="Jenga.NET" Version="4.0.0" />
   </ItemGroup>
 
@@ -27,5 +27,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
+	<ItemGroup>
+		<Reference Include="System.Windows.Forms.DataVisualization" />
+	</ItemGroup>
 </Project>

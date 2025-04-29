@@ -21,13 +21,18 @@ namespace FatiIkhlassYoun
             base.Dispose(disposing);
         }
 
+        private CuoreUI.Controls.cuiButton GetBtnForgotPassword()
+        {
+            return btnForgotPassword;
+        }
+
         #region Windows Form Designer generated code
 
         /// <summary>
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent(CuoreUI.Controls.cuiButton btnForgotPassword)
         {
             labelTitre = new Label();
             tabPage2 = new TabPage();
@@ -200,7 +205,7 @@ namespace FatiIkhlassYoun
             btnForgotPassword.ImageAutoCenter = true;
             btnForgotPassword.ImageExpand = new Point(0, 0);
             btnForgotPassword.ImageOffset = new Point(0, 0);
-            btnForgotPassword.ImageTint = Color.WhiteSmoke;
+            btnForgotPassword.NormalImageTint = Color.WhiteSmoke;
             btnForgotPassword.Location = new Point(23, 366);
             btnForgotPassword.Name = "btnForgotPassword";
             btnForgotPassword.NormalBackground = Color.WhiteSmoke;
@@ -249,7 +254,7 @@ namespace FatiIkhlassYoun
             cuiButton2.ImageAutoCenter = true;
             cuiButton2.ImageExpand = new Point(0, 0);
             cuiButton2.ImageOffset = new Point(0, 0);
-            cuiButton2.ImageTint = Color.White;
+            cuiButton2.NormalImageTint = Color.White;
             cuiButton2.Location = new Point(1008, 12);
             cuiButton2.Name = "cuiButton2";
             cuiButton2.NormalBackground = Color.White;

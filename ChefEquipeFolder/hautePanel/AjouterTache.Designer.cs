@@ -170,7 +170,6 @@ namespace FatiIkhlassYoun
             // 
             comboStatus.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboStatus.FormattingEnabled = true;
-            comboStatus.Items.AddRange(new object[] { "En attente", "En cours", "Terminée" });
             comboStatus.Location = new Point(315, 575);
             comboStatus.Name = "comboStatus";
             comboStatus.Size = new Size(372, 36);
@@ -213,7 +212,7 @@ namespace FatiIkhlassYoun
             btnAjouter.ImageAutoCenter = true;
             btnAjouter.ImageExpand = new Point(0, 0);
             btnAjouter.ImageOffset = new Point(0, 0);
-            btnAjouter.ImageTint = Color.White;
+            btnAjouter.NormalImageTint = Color.White;
             btnAjouter.Location = new Point(470, 728);
             btnAjouter.Name = "btnAjouter";
             btnAjouter.NormalBackground = Color.FromArgb(40, 167, 69);
@@ -249,7 +248,7 @@ namespace FatiIkhlassYoun
             cuiButton2.ImageAutoCenter = true;
             cuiButton2.ImageExpand = new Point(0, 0);
             cuiButton2.ImageOffset = new Point(0, 0);
-            cuiButton2.ImageTint = Color.White;
+            cuiButton2.NormalImageTint = Color.White;
             cuiButton2.Location = new Point(213, 728);
             cuiButton2.Name = "cuiButton2";
             cuiButton2.NormalBackground = Color.FromArgb(223, 53, 69);

@@ -71,7 +71,7 @@
             btnAnnuler.ImageAutoCenter = true;
             btnAnnuler.ImageExpand = new Point(0, 0);
             btnAnnuler.ImageOffset = new Point(0, 0);
-            btnAnnuler.ImageTint = Color.White;
+            btnAnnuler.NormalImageTint = Color.White;
             btnAnnuler.Location = new Point(93, 166);
             btnAnnuler.Name = "btnAnnuler";
             btnAnnuler.NormalBackground = Color.FromArgb(223, 53, 69);
@@ -107,7 +107,7 @@
             btnVerifier.ImageAutoCenter = true;
             btnVerifier.ImageExpand = new Point(0, 0);
             btnVerifier.ImageOffset = new Point(0, 0);
-            btnVerifier.ImageTint = Color.White;
+            btnVerifier.NormalImageTint = Color.White;
             btnVerifier.Location = new Point(350, 166);
             btnVerifier.Name = "btnVerifier";
             btnVerifier.NormalBackground = Color.FromArgb(40, 167, 69);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FatiIkhlassYoun.NewFolder
+namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
 {
     class CodeVerificationManager
     {

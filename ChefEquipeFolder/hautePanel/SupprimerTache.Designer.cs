@@ -20,6 +20,8 @@
             base.Dispose(disposing);
         }
 
+
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -31,10 +33,8 @@
             label1 = new Label();
             txtDescription = new TextBox();
             txtTitre = new TextBox();
-            comboTache = new ComboBox();
             label4 = new Label();
             label3 = new Label();
-            label2 = new Label();
             btnAnnuler = new CuoreUI.Controls.cuiButton();
             btnSupprimer = new CuoreUI.Controls.cuiButton();
             SuspendLayout();
@@ -55,6 +55,7 @@
             txtDescription.MaxLength = 200;
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
+            txtDescription.ReadOnly = true;
             txtDescription.ScrollBars = ScrollBars.Vertical;
             txtDescription.Size = new Size(352, 141);
             txtDescription.TabIndex = 29;
@@ -64,17 +65,9 @@
             txtTitre.Location = new Point(343, 176);
             txtTitre.MaxLength = 20;
             txtTitre.Name = "txtTitre";
+            txtTitre.ReadOnly = true;
             txtTitre.Size = new Size(352, 31);
             txtTitre.TabIndex = 28;
-            // 
-            // comboTache
-            // 
-            comboTache.FormattingEnabled = true;
-            comboTache.Location = new Point(343, 106);
-            comboTache.Name = "comboTache";
-            comboTache.Size = new Size(352, 33);
-            comboTache.TabIndex = 27;
-            comboTache.SelectedIndexChanged += comboTache_SelectedIndexChanged;
             // 
             // label4
             // 
@@ -96,16 +89,6 @@
             label3.TabIndex = 25;
             label3.Text = "Titre de la tâche";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(27, 106);
-            label2.Name = "label2";
-            label2.Size = new Size(306, 28);
-            label2.TabIndex = 24;
-            label2.Text = "Choisir une tache a supprimer :";
-            // 
             // btnAnnuler
             // 
             btnAnnuler.CheckButton = false;
@@ -126,10 +109,11 @@
             btnAnnuler.ImageAutoCenter = true;
             btnAnnuler.ImageExpand = new Point(0, 0);
             btnAnnuler.ImageOffset = new Point(0, 0);
-            btnAnnuler.ImageTint = Color.White;
             btnAnnuler.Location = new Point(232, 450);
             btnAnnuler.Name = "btnAnnuler";
             btnAnnuler.NormalBackground = Color.FromArgb(223, 53, 69);
+            btnAnnuler.NormalForeColor = Color.White;
+            btnAnnuler.NormalImageTint = Color.White;
             btnAnnuler.NormalOutline = Color.Empty;
             btnAnnuler.OutlineThickness = 1.6F;
             btnAnnuler.PressedBackground = Color.FromArgb(210, 35, 51);
@@ -162,10 +146,11 @@
             btnSupprimer.ImageAutoCenter = true;
             btnSupprimer.ImageExpand = new Point(0, 0);
             btnSupprimer.ImageOffset = new Point(0, 0);
-            btnSupprimer.ImageTint = Color.White;
             btnSupprimer.Location = new Point(489, 450);
             btnSupprimer.Name = "btnSupprimer";
             btnSupprimer.NormalBackground = Color.FromArgb(40, 167, 69);
+            btnSupprimer.NormalForeColor = Color.White;
+            btnSupprimer.NormalImageTint = Color.White;
             btnSupprimer.NormalOutline = Color.Empty;
             btnSupprimer.OutlineThickness = 1.6F;
             btnSupprimer.PressedBackground = Color.FromArgb(43, 168, 75);
@@ -187,10 +172,8 @@
             Controls.Add(btnSupprimer);
             Controls.Add(txtDescription);
             Controls.Add(txtTitre);
-            Controls.Add(comboTache);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SupprimerTache";
@@ -205,10 +188,8 @@
         private Label label1;
         private TextBox txtDescription;
         private TextBox txtTitre;
-        private ComboBox comboTache;
         private Label label4;
         private Label label3;
-        private Label label2;
         private CuoreUI.Controls.cuiButton btnAnnuler;
         private CuoreUI.Controls.cuiButton btnSupprimer;
     }

@@ -30,34 +30,39 @@ namespace FatiIkhlassYoun
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuDeChefEquipe));
-            panel1 = new Panel();
+            panelGauche = new Panel();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
-            cuiButton3 = new CuoreUI.Controls.cuiButton();
-            cuiButton4 = new CuoreUI.Controls.cuiButton();
             cuiButton5 = new CuoreUI.Controls.cuiButton();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            cuiButton2 = new CuoreUI.Controls.cuiButton();
+            panelHaute = new Panel();
+            cuiButton4 = new CuoreUI.Controls.cuiButton();
             cuiButton1 = new CuoreUI.Controls.cuiButton();
-            panel1.SuspendLayout();
-            panel4.SuspendLayout();
+            panelDernieresTaches = new Panel();
+            panel2 = new Panel();
+            labelRole = new Label();
+            labelPrenom = new Label();
+            labelNom = new Label();
+            panelContenu = new Panel();
+            panelGauche.SuspendLayout();
+            panelHaute.SuspendLayout();
+            panelDernieresTaches.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // panelGauche
             // 
-            panel1.BackColor = Color.FromArgb(27, 62, 114);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
-            panel1.Location = new Point(0, 127);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(267, 655);
-            panel1.TabIndex = 0;
+            panelGauche.BackColor = Color.FromArgb(27, 62, 114);
+            panelGauche.Controls.Add(button4);
+            panelGauche.Controls.Add(button3);
+            panelGauche.Controls.Add(button2);
+            panelGauche.Controls.Add(button1);
+            panelGauche.Dock = DockStyle.Left;
+            panelGauche.Location = new Point(0, 127);
+            panelGauche.Name = "panelGauche";
+            panelGauche.Size = new Size(267, 673);
+            panelGauche.TabIndex = 0;
             // 
             // button4
             // 
@@ -76,6 +81,7 @@ namespace FatiIkhlassYoun
             button4.Text = "Calendrier";
             button4.TextAlign = ContentAlignment.MiddleLeft;
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -94,6 +100,7 @@ namespace FatiIkhlassYoun
             button3.Text = "Suivi de l'avancement";
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -112,6 +119,7 @@ namespace FatiIkhlassYoun
             button2.Text = "Mes équipes";
             button2.TextAlign = ContentAlignment.MiddleLeft;
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -130,81 +138,7 @@ namespace FatiIkhlassYoun
             button1.Text = "Membres de l'equipe";
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.UseVisualStyleBackColor = true;
-            // 
-            // cuiButton3
-            // 
-            cuiButton3.CheckButton = false;
-            cuiButton3.Checked = false;
-            cuiButton3.CheckedBackground = Color.FromArgb(27, 62, 114);
-            cuiButton3.CheckedForeColor = Color.White;
-            cuiButton3.CheckedImageTint = Color.White;
-            cuiButton3.CheckedOutline = Color.FromArgb(27, 62, 114);
-            cuiButton3.Content = "Supprimer             Tache";
-            cuiButton3.Cursor = Cursors.Hand;
-            cuiButton3.DialogResult = DialogResult.None;
-            cuiButton3.Dock = DockStyle.Left;
-            cuiButton3.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cuiButton3.ForeColor = Color.White;
-            cuiButton3.HoverBackground = Color.SteelBlue;
-            cuiButton3.HoveredImageTint = Color.White;
-            cuiButton3.HoverForeColor = Color.White;
-            cuiButton3.HoverOutline = Color.Empty;
-            cuiButton3.Image = (Image)resources.GetObject("cuiButton3.Image");
-            cuiButton3.ImageAutoCenter = true;
-            cuiButton3.ImageExpand = new Point(0, 0);
-            cuiButton3.ImageOffset = new Point(-10, 0);
-            cuiButton3.ImageTint = Color.White;
-            cuiButton3.Location = new Point(348, 0);
-            cuiButton3.Name = "cuiButton3";
-            cuiButton3.NormalBackground = Color.FromArgb(27, 62, 114);
-            cuiButton3.NormalOutline = Color.Empty;
-            cuiButton3.OutlineThickness = 0F;
-            cuiButton3.PressedBackground = Color.LightSkyBlue;
-            cuiButton3.PressedForeColor = Color.White;
-            cuiButton3.PressedImageTint = Color.White;
-            cuiButton3.PressedOutline = Color.Empty;
-            cuiButton3.Rounding = new Padding(0);
-            cuiButton3.Size = new Size(174, 127);
-            cuiButton3.TabIndex = 4;
-            cuiButton3.TextOffset = new Point(0, -16);
-            cuiButton3.Click += cuiButton3_Click;
-            // 
-            // cuiButton4
-            // 
-            cuiButton4.CheckButton = false;
-            cuiButton4.Checked = false;
-            cuiButton4.CheckedBackground = Color.FromArgb(27, 62, 114);
-            cuiButton4.CheckedForeColor = Color.White;
-            cuiButton4.CheckedImageTint = Color.White;
-            cuiButton4.CheckedOutline = Color.FromArgb(27, 62, 114);
-            cuiButton4.Content = "Tableau                de bord";
-            cuiButton4.Cursor = Cursors.Hand;
-            cuiButton4.DialogResult = DialogResult.None;
-            cuiButton4.Dock = DockStyle.Left;
-            cuiButton4.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cuiButton4.ForeColor = Color.White;
-            cuiButton4.HoverBackground = Color.SteelBlue;
-            cuiButton4.HoveredImageTint = Color.White;
-            cuiButton4.HoverForeColor = Color.White;
-            cuiButton4.HoverOutline = Color.Empty;
-            cuiButton4.Image = (Image)resources.GetObject("cuiButton4.Image");
-            cuiButton4.ImageAutoCenter = true;
-            cuiButton4.ImageExpand = new Point(0, 0);
-            cuiButton4.ImageOffset = new Point(-20, 0);
-            cuiButton4.ImageTint = Color.White;
-            cuiButton4.Location = new Point(0, 0);
-            cuiButton4.Name = "cuiButton4";
-            cuiButton4.NormalBackground = Color.FromArgb(27, 62, 114);
-            cuiButton4.NormalOutline = Color.Empty;
-            cuiButton4.OutlineThickness = 1.6F;
-            cuiButton4.PressedBackground = Color.LightSkyBlue;
-            cuiButton4.PressedForeColor = Color.White;
-            cuiButton4.PressedImageTint = Color.White;
-            cuiButton4.PressedOutline = Color.Empty;
-            cuiButton4.Rounding = new Padding(0);
-            cuiButton4.Size = new Size(174, 127);
-            cuiButton4.TabIndex = 5;
-            cuiButton4.TextOffset = new Point(0, -16);
+            button1.Click += button1_Click;
             // 
             // cuiButton5
             // 
@@ -214,7 +148,7 @@ namespace FatiIkhlassYoun
             cuiButton5.CheckedForeColor = Color.White;
             cuiButton5.CheckedImageTint = Color.White;
             cuiButton5.CheckedOutline = Color.FromArgb(27, 62, 114);
-            cuiButton5.Content = "WhatsApp";
+            cuiButton5.Content = "Tableau                    de bord";
             cuiButton5.Cursor = Cursors.Hand;
             cuiButton5.DialogResult = DialogResult.None;
             cuiButton5.Dock = DockStyle.Left;
@@ -227,11 +161,12 @@ namespace FatiIkhlassYoun
             cuiButton5.Image = (Image)resources.GetObject("cuiButton5.Image");
             cuiButton5.ImageAutoCenter = true;
             cuiButton5.ImageExpand = new Point(5, 5);
-            cuiButton5.ImageOffset = new Point(-10, 0);
-            cuiButton5.ImageTint = Color.White;
-            cuiButton5.Location = new Point(174, 0);
+            cuiButton5.ImageOffset = new Point(-14, 0);
+            cuiButton5.Location = new Point(0, 0);
             cuiButton5.Name = "cuiButton5";
             cuiButton5.NormalBackground = Color.FromArgb(27, 62, 114);
+            cuiButton5.NormalForeColor = Color.White;
+            cuiButton5.NormalImageTint = Color.White;
             cuiButton5.NormalOutline = Color.Empty;
             cuiButton5.OutlineThickness = 1.6F;
             cuiButton5.PressedBackground = Color.LightSkyBlue;
@@ -241,74 +176,58 @@ namespace FatiIkhlassYoun
             cuiButton5.Rounding = new Padding(0);
             cuiButton5.Size = new Size(174, 127);
             cuiButton5.TabIndex = 6;
-            cuiButton5.TextOffset = new Point(0, -3);
+            cuiButton5.TextOffset = new Point(-6, -13);
+            cuiButton5.Click += cuiButton5_Click;
             // 
-            // panel2
+            // panelHaute
             // 
-            panel2.BackColor = Color.FromArgb(27, 62, 114);
-            panel2.Location = new Point(1010, 127);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(294, 655);
-            panel2.TabIndex = 7;
+            panelHaute.Controls.Add(cuiButton4);
+            panelHaute.Controls.Add(cuiButton1);
+            panelHaute.Controls.Add(cuiButton5);
+            panelHaute.Dock = DockStyle.Top;
+            panelHaute.Location = new Point(0, 0);
+            panelHaute.Name = "panelHaute";
+            panelHaute.Size = new Size(1300, 127);
+            panelHaute.TabIndex = 11;
+            panelHaute.Paint += panel4_Paint;
             // 
-            // panel3
+            // cuiButton4
             // 
-            panel3.BackColor = Color.WhiteSmoke;
-            panel3.Location = new Point(1010, 127);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(300, 246);
-            panel3.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            panel4.Controls.Add(cuiButton2);
-            panel4.Controls.Add(cuiButton1);
-            panel4.Controls.Add(cuiButton3);
-            panel4.Controls.Add(cuiButton5);
-            panel4.Controls.Add(cuiButton4);
-            panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(0, 0);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(1300, 127);
-            panel4.TabIndex = 11;
-            // 
-            // cuiButton2
-            // 
-            cuiButton2.CheckButton = false;
-            cuiButton2.Checked = false;
-            cuiButton2.CheckedBackground = Color.FromArgb(27, 62, 114);
-            cuiButton2.CheckedForeColor = Color.White;
-            cuiButton2.CheckedImageTint = Color.White;
-            cuiButton2.CheckedOutline = Color.FromArgb(27, 62, 114);
-            cuiButton2.Content = "Modifier             Tache";
-            cuiButton2.Cursor = Cursors.Hand;
-            cuiButton2.DialogResult = DialogResult.None;
-            cuiButton2.Dock = DockStyle.Left;
-            cuiButton2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cuiButton2.ForeColor = Color.White;
-            cuiButton2.HoverBackground = Color.SteelBlue;
-            cuiButton2.HoveredImageTint = Color.White;
-            cuiButton2.HoverForeColor = Color.White;
-            cuiButton2.HoverOutline = Color.Empty;
-            cuiButton2.Image = (Image)resources.GetObject("cuiButton2.Image");
-            cuiButton2.ImageAutoCenter = true;
-            cuiButton2.ImageExpand = new Point(0, 0);
-            cuiButton2.ImageOffset = new Point(-20, 0);
-            cuiButton2.ImageTint = Color.White;
-            cuiButton2.Location = new Point(696, 0);
-            cuiButton2.Name = "cuiButton2";
-            cuiButton2.NormalBackground = Color.FromArgb(27, 62, 114);
-            cuiButton2.NormalOutline = Color.Empty;
-            cuiButton2.OutlineThickness = 1.6F;
-            cuiButton2.PressedBackground = Color.LightSkyBlue;
-            cuiButton2.PressedForeColor = Color.White;
-            cuiButton2.PressedImageTint = Color.White;
-            cuiButton2.PressedOutline = Color.Empty;
-            cuiButton2.Rounding = new Padding(0);
-            cuiButton2.Size = new Size(187, 127);
-            cuiButton2.TabIndex = 3;
-            cuiButton2.TextOffset = new Point(0, -16);
-            cuiButton2.Click += cuiButton2_Click;
+            cuiButton4.CheckButton = false;
+            cuiButton4.Checked = false;
+            cuiButton4.CheckedBackground = Color.FromArgb(27, 62, 114);
+            cuiButton4.CheckedForeColor = Color.White;
+            cuiButton4.CheckedImageTint = Color.White;
+            cuiButton4.CheckedOutline = Color.FromArgb(27, 62, 114);
+            cuiButton4.Content = "WhatsApp";
+            cuiButton4.Cursor = Cursors.Hand;
+            cuiButton4.DialogResult = DialogResult.None;
+            cuiButton4.Dock = DockStyle.Left;
+            cuiButton4.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cuiButton4.ForeColor = Color.White;
+            cuiButton4.HoverBackground = Color.SteelBlue;
+            cuiButton4.HoveredImageTint = Color.White;
+            cuiButton4.HoverForeColor = Color.White;
+            cuiButton4.HoverOutline = Color.Empty;
+            cuiButton4.Image = (Image)resources.GetObject("cuiButton4.Image");
+            cuiButton4.ImageAutoCenter = true;
+            cuiButton4.ImageExpand = new Point(5, 5);
+            cuiButton4.ImageOffset = new Point(-10, 0);
+            cuiButton4.Location = new Point(348, 0);
+            cuiButton4.Name = "cuiButton4";
+            cuiButton4.NormalBackground = Color.FromArgb(27, 62, 114);
+            cuiButton4.NormalForeColor = Color.White;
+            cuiButton4.NormalImageTint = Color.White;
+            cuiButton4.NormalOutline = Color.Empty;
+            cuiButton4.OutlineThickness = 1.6F;
+            cuiButton4.PressedBackground = Color.LightSkyBlue;
+            cuiButton4.PressedForeColor = Color.White;
+            cuiButton4.PressedImageTint = Color.White;
+            cuiButton4.PressedOutline = Color.Empty;
+            cuiButton4.Rounding = new Padding(0);
+            cuiButton4.Size = new Size(174, 127);
+            cuiButton4.TabIndex = 7;
+            cuiButton4.TextOffset = new Point(0, -3);
             // 
             // cuiButton1
             // 
@@ -332,10 +251,11 @@ namespace FatiIkhlassYoun
             cuiButton1.ImageAutoCenter = true;
             cuiButton1.ImageExpand = new Point(0, 0);
             cuiButton1.ImageOffset = new Point(-20, 0);
-            cuiButton1.ImageTint = Color.White;
-            cuiButton1.Location = new Point(522, 0);
+            cuiButton1.Location = new Point(174, 0);
             cuiButton1.Name = "cuiButton1";
             cuiButton1.NormalBackground = Color.FromArgb(27, 62, 114);
+            cuiButton1.NormalForeColor = Color.White;
+            cuiButton1.NormalImageTint = Color.White;
             cuiButton1.NormalOutline = Color.Empty;
             cuiButton1.OutlineThickness = 0F;
             cuiButton1.PressedBackground = Color.LightSkyBlue;
@@ -348,24 +268,97 @@ namespace FatiIkhlassYoun
             cuiButton1.TextOffset = new Point(0, -16);
             cuiButton1.Click += cuiButton1_Click;
             // 
+            // panelDernieresTaches
+            // 
+            panelDernieresTaches.BackColor = Color.FromArgb(27, 62, 114);
+            panelDernieresTaches.Controls.Add(panel2);
+            panelDernieresTaches.Dock = DockStyle.Right;
+            panelDernieresTaches.Location = new Point(1033, 127);
+            panelDernieresTaches.Name = "panelDernieresTaches";
+            panelDernieresTaches.Size = new Size(267, 673);
+            panelDernieresTaches.TabIndex = 12;
+            panelDernieresTaches.Paint += panelDernieresTaches_Paint;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.White;
+            panel2.Controls.Add(labelRole);
+            panel2.Controls.Add(labelPrenom);
+            panel2.Controls.Add(labelNom);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(267, 189);
+            panel2.TabIndex = 0;
+            panel2.Paint += panel2_Paint_1;
+            // 
+            // labelRole
+            // 
+            labelRole.AutoSize = true;
+            labelRole.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            labelRole.Location = new Point(98, 124);
+            labelRole.Name = "labelRole";
+            labelRole.Size = new Size(92, 25);
+            labelRole.TabIndex = 2;
+            labelRole.Text = "labelRole";
+            // 
+            // labelPrenom
+            // 
+            labelPrenom.AutoSize = true;
+            labelPrenom.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelPrenom.Location = new Point(28, 82);
+            labelPrenom.Name = "labelPrenom";
+            labelPrenom.Size = new Size(162, 29);
+            labelPrenom.TabIndex = 1;
+            labelPrenom.Text = "labelPrenom";
+            // 
+            // labelNom
+            // 
+            labelNom.AutoSize = true;
+            labelNom.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelNom.Location = new Point(6, 36);
+            labelNom.Name = "labelNom";
+            labelNom.Size = new Size(161, 37);
+            labelNom.TabIndex = 0;
+            labelNom.Text = "labelNom";
+            labelNom.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelContenu
+            // 
+            panelContenu.BackColor = Color.WhiteSmoke;
+            panelContenu.Dock = DockStyle.Fill;
+            panelContenu.Location = new Point(267, 127);
+            panelContenu.Name = "panelContenu";
+            panelContenu.Size = new Size(766, 673);
+            panelContenu.TabIndex = 13;
+            panelContenu.Paint += panelContenu_Paint;
+            // 
             // MenuDeChefEquipe
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1300, 800);
-            Controls.Add(panel1);
-            Controls.Add(panel4);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
+            Controls.Add(panelContenu);
+            Controls.Add(panelDernieresTaches);
+            Controls.Add(panelGauche);
+            Controls.Add(panelHaute);
             Margin = new Padding(2);
             Name = "MenuDeChefEquipe";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MenuDeApp";
             Load += MenuDeChefEquipe_Load;
-            panel1.ResumeLayout(false);
-            panel4.ResumeLayout(false);
+            panelGauche.ResumeLayout(false);
+            panelHaute.ResumeLayout(false);
+            panelDernieresTaches.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
+        }
+
+        private void btnTableaudeBord_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void MenuDeChefEquipe_Load(object sender, EventArgs e)
@@ -375,18 +368,20 @@ namespace FatiIkhlassYoun
 
         #endregion
 
-        private Panel panel1;
+        private Panel panelGauche;
         private Button button1;
         private Button button4;
         private Button button3;
         private Button button2;
-        private CuoreUI.Controls.cuiButton cuiButton3;
-        private CuoreUI.Controls.cuiButton cuiButton4;
         private CuoreUI.Controls.cuiButton cuiButton5;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
+        private Panel panelHaute;
         private CuoreUI.Controls.cuiButton cuiButton1;
-        private CuoreUI.Controls.cuiButton cuiButton2;
+        private Panel panelDernieresTaches;
+        private Panel panel2;
+        private Panel panelContenu;
+        private CuoreUI.Controls.cuiButton cuiButton4;
+        private Label labelRole;
+        private Label labelPrenom;
+        private Label labelNom;
     }
 }

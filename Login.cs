@@ -2,7 +2,7 @@
 using System.Data;
 using System.Security.Cryptography;
 using System.Text;
-using FatiIkhlassYoun.NewFolder;
+using FatiIkhlassYoun.ChefEquipeFolder.hautePanel;
 
 namespace FatiIkhlassYoun
 {
@@ -10,7 +10,7 @@ namespace FatiIkhlassYoun
     {
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(GetBtnForgotPassword());
         }
 
         private void label2_Click(object sender, EventArgs e)

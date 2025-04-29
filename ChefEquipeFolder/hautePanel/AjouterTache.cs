@@ -55,9 +55,6 @@ namespace FatiIkhlassYoun
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            string codeTache = "TSK-" + new Random().Next(1000, 9999);
-            textBox1.Text = codeTache;
-
             if (comboProjet.SelectedValue == null || comboStatus.SelectedItem == null || string.IsNullOrEmpty(txtTitre.Text.Trim()))
             {
                 MessageBox.Show("Veuillez remplir tous les champs obligatoires.");
@@ -72,13 +69,18 @@ namespace FatiIkhlassYoun
             string statut = comboStatus.SelectedItem.ToString();
             int tempsEstime = (int)numTemps.Value;
 
-            // ➕ Appel de l'authentification AVANT d’ajouter
-            FormAuthConfirmation authForm = new FormAuthConfirmation(userIdChefEquipe, "add", 0); // 0 car pas de TaskID pour ajout
+            if (dateDebut >= dateFin)
+            {
+                MessageBox.Show("❌ La date de début doit être antérieure à la date limite.");
+                return;
+            }
+
+            FormAuthConfirmation authForm = new FormAuthConfirmation(userIdChefEquipe, "add", 0);
             authForm.ShowDialog();
 
             if (authForm.DialogResult == DialogResult.OK)
             {
-                AjouterTacheDansLaBase(codeTache, projectId, titre, description, dateDebut, dateFin, statut, tempsEstime);
+                AjouterTacheDansLaBase(projectId, titre, description, dateDebut, dateFin, statut, tempsEstime);
             }
             else
             {
@@ -110,15 +112,16 @@ namespace FatiIkhlassYoun
             this.Close();
         }
 
-        public void AjouterTacheDansLaBase(string codeTache, int projectId, string titre, string description, DateTime dateDebut, DateTime dateFin, string statut, int tempsEstime)
+        public void AjouterTacheDansLaBase(int projectId, string titre, string description, DateTime dateDebut, DateTime dateFin, string statut, int tempsEstime)
         {
-            int managerId = GetManagerIdByProject(projectId);
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                conn.Open();
+
                 string query = @"
-            INSERT INTO Tasks (ProjectID, Title, Description, StartDate, DueDate, Status, EstimatedTime, TeamLeadID, CodeTache)
-            VALUES (@ProjectID, @Title, @Description, @StartDate, @DueDate, @Status, @EstimatedTime, @TeamLeadID, @CodeTache);";
+            INSERT INTO Tasks (ProjectID, Title, Description, StartDate, DueDate, Status, EstimatedTime, TeamLeadID)
+            VALUES (@ProjectID, @Title, @Description, @StartDate, @DueDate, @Status, @EstimatedTime, @TeamLeadID);
+            SELECT SCOPE_IDENTITY();";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -130,28 +133,11 @@ namespace FatiIkhlassYoun
                     cmd.Parameters.AddWithValue("@Status", statut);
                     cmd.Parameters.AddWithValue("@EstimatedTime", tempsEstime);
                     cmd.Parameters.AddWithValue("@TeamLeadID", userIdChefEquipe);
-                    cmd.Parameters.AddWithValue("@CodeTache", codeTache);
 
-                    try
-                    {
-                        conn.Open();
-                        int rows = cmd.ExecuteNonQuery();
-                        conn.Close();
+                    // Récupérer l'ID réel généré
+                    int newTaskId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                        if (rows > 0)
-                        {
-                            MessageBox.Show("✅ Tâche ajoutée avec succès !");
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("⚠️ La tâche n'a pas pu être ajoutée !");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("❌ Erreur SQL : " + ex.Message);
-                    }
+                    MessageBox.Show($"✅ Tâche ajoutée avec succès. ID généré : {newTaskId}");
                 }
             }
         }

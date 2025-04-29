@@ -31,7 +31,6 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
@@ -40,7 +39,6 @@
             label8 = new Label();
             cuiButton2 = new CuoreUI.Controls.cuiButton();
             btnModifier = new CuoreUI.Controls.cuiButton();
-            comboTache = new ComboBox();
             txtTitre = new TextBox();
             txtDescription = new TextBox();
             dtpDebut = new DateTimePicker();
@@ -59,16 +57,6 @@
             label1.Size = new Size(341, 45);
             label1.TabIndex = 1;
             label1.Text = "Edite an existing Task";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(12, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(297, 28);
-            label2.TabIndex = 2;
-            label2.Text = "Choisir une tache a modifier : ";
             // 
             // label3
             // 
@@ -151,10 +139,11 @@
             cuiButton2.ImageAutoCenter = true;
             cuiButton2.ImageExpand = new Point(0, 0);
             cuiButton2.ImageOffset = new Point(0, 0);
-            cuiButton2.ImageTint = Color.White;
             cuiButton2.Location = new Point(204, 677);
             cuiButton2.Name = "cuiButton2";
             cuiButton2.NormalBackground = Color.FromArgb(223, 53, 69);
+            cuiButton2.NormalForeColor = Color.White;
+            cuiButton2.NormalImageTint = Color.White;
             cuiButton2.NormalOutline = Color.Empty;
             cuiButton2.OutlineThickness = 1.6F;
             cuiButton2.PressedBackground = Color.FromArgb(210, 35, 51);
@@ -188,10 +177,11 @@
             btnModifier.ImageAutoCenter = true;
             btnModifier.ImageExpand = new Point(0, 0);
             btnModifier.ImageOffset = new Point(0, 0);
-            btnModifier.ImageTint = Color.White;
             btnModifier.Location = new Point(461, 677);
             btnModifier.Name = "btnModifier";
             btnModifier.NormalBackground = Color.FromArgb(40, 167, 69);
+            btnModifier.NormalForeColor = Color.White;
+            btnModifier.NormalImageTint = Color.White;
             btnModifier.NormalOutline = Color.Empty;
             btnModifier.OutlineThickness = 1.6F;
             btnModifier.PressedBackground = Color.FromArgb(43, 168, 75);
@@ -203,15 +193,6 @@
             btnModifier.TabIndex = 19;
             btnModifier.TextOffset = new Point(0, 0);
             btnModifier.Click += btnModifier_Click;
-            // 
-            // comboTache
-            // 
-            comboTache.FormattingEnabled = true;
-            comboTache.Location = new Point(315, 100);
-            comboTache.Name = "comboTache";
-            comboTache.Size = new Size(352, 33);
-            comboTache.TabIndex = 21;
-            comboTache.SelectedIndexChanged += comboTache_SelectedIndexChanged;
             // 
             // txtTitre
             // 
@@ -272,7 +253,6 @@
             Controls.Add(dtpDebut);
             Controls.Add(txtDescription);
             Controls.Add(txtTitre);
-            Controls.Add(comboTache);
             Controls.Add(cuiButton2);
             Controls.Add(btnModifier);
             Controls.Add(label8);
@@ -281,7 +261,6 @@
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ModifierTache";
@@ -296,7 +275,6 @@
         #endregion
 
         private Label label1;
-        private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
@@ -305,7 +283,6 @@
         private Label label8;
         private CuoreUI.Controls.cuiButton cuiButton2;
         private CuoreUI.Controls.cuiButton btnModifier;
-        private ComboBox comboTache;
         private TextBox txtTitre;
         private TextBox txtDescription;
         private DateTimePicker dtpDebut;

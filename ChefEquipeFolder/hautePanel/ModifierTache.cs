@@ -1,4 +1,5 @@
-﻿using FatiIkhlassYoun.NewFolder;
+﻿using FatiIkhlassYoun.ChefEquipeFolder.hautePanel;
+using FatiIkhlassYoun.NewFolder;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
@@ -17,17 +18,20 @@ namespace FatiIkhlassYoun
     {
         private string connectionString = @"Data Source=YOUNES\SQLEXPRESS;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
         private int userIdChefEquipe;
+        private int taskId;
+
 
         // ✅ Constructeur AVEC paramètre userId
-        public ModifierTache(int userId)
+        public ModifierTache(int userId, int selectedTaskId)
         {
             InitializeComponent();
             userIdChefEquipe = userId;
-            this.Load += ModifierTache_Load; // ← Ajoute cette ligne si elle manque
+            taskId = selectedTaskId;
+            this.Load += ModifierTache_Load;
         }
 
         // ✅ Événement Load du formulaire (à associer dans le Designer)
-       
+
 
         private void ModifierTache_Load(object sender, EventArgs e)
         {
@@ -36,84 +40,102 @@ namespace FatiIkhlassYoun
             comboStatus.Items.Add("En attente");
             comboStatus.Items.Add("En cours");
             comboStatus.Items.Add("Terminée");
+            RemplirChampsDepuisTaskId();
             // Charger les tâches
-            ChargerTaches();
+            //  ChargerTaches();
         }
 
-        private void ChargerTaches()
+
+        private void RemplirChampsDepuisTaskId()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"
-                SELECT TaskID, Title 
-                FROM Tasks 
-                WHERE TeamLeadID = @TeamLeadID";
-
+                string query = "SELECT * FROM Tasks WHERE TaskID = @taskId";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@TeamLeadID", userIdChefEquipe);
+                cmd.Parameters.AddWithValue("@taskId", taskId);
 
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-
-                comboTache.DisplayMember = "Title";
-                comboTache.ValueMember = "TaskID";
-                comboTache.DataSource = dt;
-            }
-        }
-        private void comboTache_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboTache.SelectedValue != null)
-            {
-                // Récupérer l'objet sélectionné, qui est une ligne DataRowView
-                DataRowView selectedRow = (DataRowView)comboTache.SelectedItem;
-
-                // Accéder au TaskID de cette ligne
-                int taskId = (int)selectedRow["TaskID"];
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
                 {
-                    string query = "SELECT * FROM Tasks WHERE TaskID = @taskId";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@taskId", taskId);
-
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        txtTitre.Text = reader["Title"].ToString();
-                        txtDescription.Text = reader["Description"].ToString();
-                        dtpDebut.Value = Convert.ToDateTime(reader["StartDate"]);
-                        dtpFin.Value = Convert.ToDateTime(reader["DueDate"]);
-                        comboStatus.SelectedItem = reader["Status"].ToString();
-                        numTemps.Value = Convert.ToInt32(reader["EstimatedTime"]);
-                    }
+                    txtTitre.Text = reader["Title"].ToString();
+                    txtDescription.Text = reader["Description"].ToString();
+                    dtpDebut.Value = Convert.ToDateTime(reader["StartDate"]);
+                    dtpFin.Value = Convert.ToDateTime(reader["DueDate"]);
+                    comboStatus.SelectedItem = reader["Status"].ToString();
+                    numTemps.Value = Convert.ToInt32(reader["EstimatedTime"]);
                 }
             }
-
         }
 
+
+        /** private void ChargerTaches()
+         {
+             using (SqlConnection conn = new SqlConnection(connectionString))
+             {
+                 string query = @"
+                 SELECT TaskID, Title 
+                 FROM Tasks 
+                 WHERE TeamLeadID = @TeamLeadID";
+
+                 SqlCommand cmd = new SqlCommand(query, conn);
+                 cmd.Parameters.AddWithValue("@TeamLeadID", userIdChefEquipe);
+
+                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                 DataTable dt = new DataTable();
+                 adapter.Fill(dt);
+
+                 comboTache.DisplayMember = "Title";
+                 comboTache.ValueMember = "TaskID";
+                 comboTache.DataSource = dt;
+             }
+         }
+        */
+
+        /**  private void comboTache_SelectedIndexChanged(object sender, EventArgs e)
+          {
+              if (comboTache.SelectedValue != null)
+              {
+                  // Récupérer l'objet sélectionné, qui est une ligne DataRowView
+                  DataRowView selectedRow = (DataRowView)comboTache.SelectedItem;
+
+                  // Accéder au TaskID de cette ligne
+                  int taskId = (int)selectedRow["TaskID"];
+
+                  using (SqlConnection conn = new SqlConnection(connectionString))
+                  {
+                      string query = "SELECT * FROM Tasks WHERE TaskID = @taskId";
+                      SqlCommand cmd = new SqlCommand(query, conn);
+                      cmd.Parameters.AddWithValue("@taskId", taskId);
+
+                      conn.Open();
+                      SqlDataReader reader = cmd.ExecuteReader();
+                      if (reader.Read())
+                      {
+                          txtTitre.Text = reader["Title"].ToString();
+                          txtDescription.Text = reader["Description"].ToString();
+                          dtpDebut.Value = Convert.ToDateTime(reader["StartDate"]);
+                          dtpFin.Value = Convert.ToDateTime(reader["DueDate"]);
+                          comboStatus.SelectedItem = reader["Status"].ToString();
+                          numTemps.Value = Convert.ToInt32(reader["EstimatedTime"]);
+                      }
+                  }
+              }
+
+          }
+        */
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            if (comboTache.SelectedValue == null)
-            {
-                MessageBox.Show("Veuillez sélectionner une tâche.");
-                return;
-            }
-
-            int taskId = (int)comboTache.SelectedValue;
-
-            // Appel du formulaire d'authentification avec vérification
+            // Ouvre le formulaire de confirmation d'identité AVANT modification
             FormAuthConfirmation authForm = new FormAuthConfirmation(userIdChefEquipe, "update", taskId);
             var result = authForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                // L'identité est confirmée et le code vérifié → procéder à la modification
                 ModifierTacheDansLaBase(taskId);
             }
-
         }
+
 
         private void ModifierTacheDansLaBase(int taskId)
         {
