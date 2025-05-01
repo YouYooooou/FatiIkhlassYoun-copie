@@ -177,10 +177,10 @@ namespace FatiIkhlassYoun.NewFolder
             }
         }
 
-        private void btnAnnuler_Click(object sender, EventArgs e)
+
+        private void btnAnnuler_Click_1(object sender, EventArgs e)
         {
             this.Close(); // Ferme le formulaire sans rien faire
         }
-
     }
 }

@@ -138,5 +138,10 @@ namespace FatiIkhlassYoun
         {
 
         }
+
+        private void labelDate_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

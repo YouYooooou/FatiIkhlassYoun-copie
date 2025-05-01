@@ -89,9 +89,9 @@ namespace FatiIkhlassYoun
 
         }
 
-       
 
-      
+
+
 
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
@@ -147,5 +147,10 @@ namespace FatiIkhlassYoun
 
         }
 
+        private void btnExporterTaches_Click(object sender, EventArgs e)
+        {
+            ExporterTachesForm form = new ExporterTachesForm();
+            form.ShowDialog();
+        }
     }
 }

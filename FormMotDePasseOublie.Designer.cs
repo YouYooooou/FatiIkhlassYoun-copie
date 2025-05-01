@@ -91,6 +91,7 @@
             Name = "FormMotDePasseOublie";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormMotDePasseOublie";
+            Load += FormMotDePasseOublie_Load;
             ResumeLayout(false);
             PerformLayout();
         }

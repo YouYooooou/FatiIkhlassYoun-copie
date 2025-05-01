@@ -37,6 +37,7 @@ namespace FatiIkhlassYoun
             button1 = new Button();
             cuiButton5 = new CuoreUI.Controls.cuiButton();
             panelHaute = new Panel();
+            btnExporterTaches = new CuoreUI.Controls.cuiButton();
             cuiButton4 = new CuoreUI.Controls.cuiButton();
             cuiButton1 = new CuoreUI.Controls.cuiButton();
             panelDernieresTaches = new Panel();
@@ -181,6 +182,7 @@ namespace FatiIkhlassYoun
             // 
             // panelHaute
             // 
+            panelHaute.Controls.Add(btnExporterTaches);
             panelHaute.Controls.Add(cuiButton4);
             panelHaute.Controls.Add(cuiButton1);
             panelHaute.Controls.Add(cuiButton5);
@@ -190,6 +192,45 @@ namespace FatiIkhlassYoun
             panelHaute.Size = new Size(1300, 127);
             panelHaute.TabIndex = 11;
             panelHaute.Paint += panel4_Paint;
+            // 
+            // btnExporterTaches
+            // 
+            btnExporterTaches.CheckButton = false;
+            btnExporterTaches.Checked = false;
+            btnExporterTaches.CheckedBackground = Color.FromArgb(27, 62, 114);
+            btnExporterTaches.CheckedForeColor = Color.White;
+            btnExporterTaches.CheckedImageTint = Color.White;
+            btnExporterTaches.CheckedOutline = Color.FromArgb(27, 62, 114);
+            btnExporterTaches.Content = "Exporter                Rapport";
+            btnExporterTaches.Cursor = Cursors.Hand;
+            btnExporterTaches.DialogResult = DialogResult.None;
+            btnExporterTaches.Dock = DockStyle.Left;
+            btnExporterTaches.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExporterTaches.ForeColor = Color.White;
+            btnExporterTaches.HoverBackground = Color.SteelBlue;
+            btnExporterTaches.HoveredImageTint = Color.White;
+            btnExporterTaches.HoverForeColor = Color.White;
+            btnExporterTaches.HoverOutline = Color.Empty;
+            btnExporterTaches.Image = (Image)resources.GetObject("btnExporterTaches.Image");
+            btnExporterTaches.ImageAutoCenter = true;
+            btnExporterTaches.ImageExpand = new Point(7, 7);
+            btnExporterTaches.ImageOffset = new Point(-15, 0);
+            btnExporterTaches.Location = new Point(522, 0);
+            btnExporterTaches.Name = "btnExporterTaches";
+            btnExporterTaches.NormalBackground = Color.FromArgb(27, 62, 114);
+            btnExporterTaches.NormalForeColor = Color.White;
+            btnExporterTaches.NormalImageTint = Color.White;
+            btnExporterTaches.NormalOutline = Color.Empty;
+            btnExporterTaches.OutlineThickness = 0F;
+            btnExporterTaches.PressedBackground = Color.LightSkyBlue;
+            btnExporterTaches.PressedForeColor = Color.White;
+            btnExporterTaches.PressedImageTint = Color.White;
+            btnExporterTaches.PressedOutline = Color.Empty;
+            btnExporterTaches.Rounding = new Padding(0);
+            btnExporterTaches.Size = new Size(174, 127);
+            btnExporterTaches.TabIndex = 8;
+            btnExporterTaches.TextOffset = new Point(0, -16);
+            btnExporterTaches.Click += btnExporterTaches_Click;
             // 
             // cuiButton4
             // 
@@ -383,5 +424,6 @@ namespace FatiIkhlassYoun
         private Label labelRole;
         private Label labelPrenom;
         private Label labelNom;
+        private CuoreUI.Controls.cuiButton btnExporterTaches;
     }
 }

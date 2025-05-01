@@ -73,6 +73,7 @@
             labelDate.Size = new Size(368, 32);
             labelDate.TabIndex = 4;
             labelDate.Text = "Tâches pour le [jour sélectionné]";
+            labelDate.Click += labelDate_Click_1;
             // 
             // CalendrierControl
             // 

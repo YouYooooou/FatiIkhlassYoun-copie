@@ -98,10 +98,11 @@
             btnAnnuler.ImageAutoCenter = true;
             btnAnnuler.ImageExpand = new Point(0, 0);
             btnAnnuler.ImageOffset = new Point(0, 0);
-            btnAnnuler.NormalImageTint = Color.White;
             btnAnnuler.Location = new Point(170, 302);
             btnAnnuler.Name = "btnAnnuler";
             btnAnnuler.NormalBackground = Color.FromArgb(223, 53, 69);
+            btnAnnuler.NormalForeColor = Color.White;
+            btnAnnuler.NormalImageTint = Color.White;
             btnAnnuler.NormalOutline = Color.Empty;
             btnAnnuler.OutlineThickness = 1.6F;
             btnAnnuler.PressedBackground = Color.FromArgb(210, 35, 51);
@@ -112,6 +113,7 @@
             btnAnnuler.Size = new Size(206, 73);
             btnAnnuler.TabIndex = 33;
             btnAnnuler.TextOffset = new Point(0, 0);
+            btnAnnuler.Click += btnAnnuler_Click_1;
             // 
             // btnConfirmer
             // 
@@ -133,10 +135,11 @@
             btnConfirmer.ImageAutoCenter = true;
             btnConfirmer.ImageExpand = new Point(0, 0);
             btnConfirmer.ImageOffset = new Point(0, 0);
-            btnConfirmer.NormalImageTint = Color.White;
             btnConfirmer.Location = new Point(427, 302);
             btnConfirmer.Name = "btnConfirmer";
             btnConfirmer.NormalBackground = Color.FromArgb(40, 167, 69);
+            btnConfirmer.NormalForeColor = Color.White;
+            btnConfirmer.NormalImageTint = Color.White;
             btnConfirmer.NormalOutline = Color.Empty;
             btnConfirmer.OutlineThickness = 1.6F;
             btnConfirmer.PressedBackground = Color.FromArgb(43, 168, 75);

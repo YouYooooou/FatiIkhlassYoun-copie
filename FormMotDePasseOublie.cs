@@ -26,7 +26,7 @@ namespace FatiIkhlassYoun
             {
                 // Paramètres de l'envoi d'email
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("fatimazahrabendoukali2@gmail.com"); 
+                mail.From = new MailAddress("fatimazahrabendoukali2@gmail.com");
                 mail.To.Add(email);
                 mail.Subject = "Réinitialisation de votre mot de passe";
                 mail.Body = "Cliquez sur ce lien pour réinitialiser votre mot de passe : ";
@@ -46,15 +46,20 @@ namespace FatiIkhlassYoun
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
 
 
         }
         private void label2_Click(object sender, EventArgs e)
         {
-           
+
+        }
+
+        private void FormMotDePasseOublie_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
-    }
+}
 

@@ -25,12 +25,7 @@ namespace FatiIkhlassYoun.NewFolder
             action = actionType;
             this.taskId = taskId;
         }
-        public FormCodeVerification()
-        {
-            InitializeComponent();
-        }
-
-
+        
         private void btnVerifier_Click(object sender, EventArgs e)
         {
             if (txtCode.Text.Trim() == codeEnvoye.ToString())
