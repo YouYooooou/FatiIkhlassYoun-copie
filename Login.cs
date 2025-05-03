@@ -84,8 +84,8 @@ namespace FatiIkhlassYoun
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-
+                    using (SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
                     if (reader.Read())
                     {
                         // 🧠 On remplit la session avec les données du user connecté
@@ -109,7 +109,6 @@ namespace FatiIkhlassYoun
                     }
                     else
                     {
-                        reader.Close();
                         MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect !");
                     }
                 }
