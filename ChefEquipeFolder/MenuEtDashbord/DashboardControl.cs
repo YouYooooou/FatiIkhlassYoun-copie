@@ -17,17 +17,16 @@ namespace FatiIkhlassYoun
 {
     public partial class DashboardControl : UserControl
     {
-        public int idChefEquipe; // 🟩 À remplir lors du login
+        public int idChefEquipe;
         private Button btnModifier;
         private Button btnSupprimer;
         private int selectedTaskId;
-
-
+        string connectionString = "Data Source=YOUNES\\SQLEXPRESS;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
         public DashboardControl()
         {
             InitializeComponent();
             this.Load += UserControlDashboard_Load;
-            idChefEquipe = SessionUtilisateur.UserID; // ✅ lire depuis la session
+            idChefEquipe = SessionUtilisateur.UserID;
 
             btnModifier = new Button
             {
@@ -42,24 +41,62 @@ namespace FatiIkhlassYoun
                 Visible = false
             };
 
-            // Positionne les boutons (ajuste si nécessaire)
             btnModifier.Location = new Point(50, dataGridViewTaches.Bottom + 10);
             btnSupprimer.Location = new Point(160, dataGridViewTaches.Bottom + 10);
 
-            // Ajoute les événements
             btnModifier.Click += BtnModifier_Click;
             btnSupprimer.Click += BtnSupprimer_Click;
 
-            // Ajoute les boutons au contrôle
             this.Controls.Add(btnModifier);
             this.Controls.Add(btnSupprimer);
-
-            // Ajoute l'événement pour masquer les boutons lors d'un clic sur le DashboardControl
-            this.Click += DashboardControl_Click;  // C'est ici que vous ajoutez l'événement
+            this.Click += DashboardControl_Click;
         }
 
-        string connectionString = "Data Source=YOUNES\\SQLEXPRESS;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
+        private void InitializeProgressBar()
+        {
+            // Création de la ProgressBar
+            progressBarTaches = new ProgressBar
+            {
+                Location = new Point(86, 220), // Position sous le groupBoxStats
+                Size = new Size(578, 23),
+                Minimum = 0,
+                Maximum = 100,
+                Step = 1
+            };
 
+            // Création du label pour afficher le pourcentage
+            labelProgression = new Label
+            {
+                Location = new Point(progressBarTaches.Right + 10, progressBarTaches.Top),
+                Size = new Size(50, 23),
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+
+            // Ajout des contrôles au UserControl
+            this.Controls.Add(progressBarTaches);
+            this.Controls.Add(labelProgression);
+
+            // Ajustez la position du DataGridView
+            dataGridViewTaches.Location = new Point(39, progressBarTaches.Bottom + 20);
+        }
+
+        private void MettreAJourProgressBar()
+        {
+            int totalTaches = GetCountFromQuery("SELECT COUNT(*) FROM Tasks WHERE TeamLeadID = " + idChefEquipe);
+            int tachesTerminees = GetCountFromQuery("SELECT COUNT(*) FROM Tasks WHERE Status = 'Terminée' AND TeamLeadID = " + idChefEquipe);
+
+            if (totalTaches > 0)
+            {
+                int pourcentage = (int)((double)tachesTerminees / totalTaches * 100);
+                progressBarTaches.Value = pourcentage;
+                labelProgression.Text = $"{pourcentage}%";
+            }
+            else
+            {
+                progressBarTaches.Value = 0;
+                labelProgression.Text = "0%";
+            }
+        }
 
         private void dataGridViewTaches_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -193,7 +230,8 @@ namespace FatiIkhlassYoun
             ChargerTachesChefEquipe(idChefEquipe);
             dataGridViewTaches.CellClick += dataGridViewTaches_CellClick;
             dataGridViewTaches.CellMouseClick += DataGridViewTaches_CellMouseClick;
-         }
+            MettreAJourProgressBar();
+        }
 
         private void DataGridViewTaches_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -215,12 +253,14 @@ namespace FatiIkhlassYoun
             // Ouvre le formulaire de modification avec l'ID de la tâche sélectionnée
             ModifierTache modifForm = new ModifierTache(SessionUtilisateur.UserID, selectedTaskId);
             modifForm.ShowDialog();
+            MettreAJourProgressBar();
         }
 
         private void BtnSupprimer_Click(object sender, EventArgs e)
         {
             SupprimerTache suppForm = new SupprimerTache(SessionUtilisateur.UserID, selectedTaskId);
             suppForm.ShowDialog();
+            MettreAJourProgressBar();
         }
 
         // Ajoutez un gestionnaire pour les clics ailleurs dans le contrôle (par exemple dans la forme parent)
@@ -228,6 +268,30 @@ namespace FatiIkhlassYoun
         {
             btnModifier.Visible = false;
             btnSupprimer.Visible = false;
+        }
+        public void SelectTaskInGrid(int taskId)
+        {
+            // Attendre que la DataGridView soit remplie si nécessaire
+            if (dataGridViewTaches.DataSource == null)
+            {
+                ChargerTachesChefEquipe(idChefEquipe);
+            }
+
+            foreach (DataGridViewRow row in dataGridViewTaches.Rows)
+            {
+                if (row.Cells["TaskID"].Value != null &&
+                    Convert.ToInt32(row.Cells["TaskID"].Value) == taskId)
+                {
+                    // Sélectionner la ligne
+                    row.Selected = true;
+                    dataGridViewTaches.CurrentCell = row.Cells[0];
+                    dataGridViewTaches.FirstDisplayedScrollingRowIndex = row.Index;
+
+                    // Simuler un clic sur la cellule pour afficher les boutons
+                    dataGridViewTaches_CellClick(null, new DataGridViewCellEventArgs(0, row.Index));
+                    break;
+                }
+            }
         }
 
 

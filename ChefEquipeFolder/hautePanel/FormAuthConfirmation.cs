@@ -176,11 +176,34 @@ namespace FatiIkhlassYoun.NewFolder
                 }
             }
         }
+        private void txtUsername_Enter(object sender, EventArgs e)
+        {
+            txtUsername.BackColor = Color.White;
+        }
 
+        private void txtUsername_Leave(object sender, EventArgs e)
+        {
+            txtUsername.BackColor = Color.WhiteSmoke;
+        }
+
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            txtPassword.BackColor = Color.White;
+        }
+
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            txtPassword.BackColor = Color.WhiteSmoke;
+        }
 
         private void btnAnnuler_Click_1(object sender, EventArgs e)
         {
             this.Close(); // Ferme le formulaire sans rien faire
+        }
+
+        private void panelForm_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

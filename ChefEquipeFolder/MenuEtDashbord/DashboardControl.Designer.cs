@@ -34,6 +34,9 @@
             labelMembresActifs = new Label();
             labelTachesEnCours = new Label();
             labelTachesTerminees = new Label();
+            progressBarTaches = new ProgressBar();
+            labelProgression = new Label();
+            labelTitreProgression = new Label();
             dataGridViewTaches = new DataGridView();
             groupBoxStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTaches).BeginInit();
@@ -59,7 +62,7 @@
             groupBoxStats.Controls.Add(labelTachesTerminees);
             groupBoxStats.Enabled = false;
             groupBoxStats.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBoxStats.Location = new Point(78, 152);
+            groupBoxStats.Location = new Point(86, 69);
             groupBoxStats.Name = "groupBoxStats";
             groupBoxStats.Size = new Size(578, 143);
             groupBoxStats.TabIndex = 1;
@@ -108,11 +111,40 @@
             labelTachesTerminees.TabIndex = 0;
             labelTachesTerminees.Text = "Tâches terminées : 0";
             // 
+            // progressBarTaches
+            // 
+            progressBarTaches.ForeColor = Color.FromArgb(0, 192, 0);
+            progressBarTaches.Location = new Point(68, 558);
+            progressBarTaches.Name = "progressBarTaches";
+            progressBarTaches.Size = new Size(578, 23);
+            progressBarTaches.Style = ProgressBarStyle.Continuous;
+            progressBarTaches.TabIndex = 3;
+            // 
+            // labelProgression
+            // 
+            labelProgression.AutoSize = true;
+            labelProgression.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelProgression.Location = new Point(652, 558);
+            labelProgression.Name = "labelProgression";
+            labelProgression.Size = new Size(41, 28);
+            labelProgression.TabIndex = 4;
+            labelProgression.Text = "0%";
+            // 
+            // labelTitreProgression
+            // 
+            labelTitreProgression.AutoSize = true;
+            labelTitreProgression.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelTitreProgression.Location = new Point(68, 528);
+            labelTitreProgression.Name = "labelTitreProgression";
+            labelTitreProgression.Size = new Size(315, 28);
+            labelTitreProgression.TabIndex = 5;
+            labelTitreProgression.Text = "Progression globale des tâches :";
+            // 
             // dataGridViewTaches
             // 
             dataGridViewTaches.AllowUserToAddRows = false;
             dataGridViewTaches.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewTaches.Location = new Point(38, 322);
+            dataGridViewTaches.Location = new Point(39, 260);
             dataGridViewTaches.Name = "dataGridViewTaches";
             dataGridViewTaches.ReadOnly = true;
             dataGridViewTaches.RowHeadersWidth = 62;
@@ -124,6 +156,9 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(labelTitreProgression);
+            Controls.Add(labelProgression);
+            Controls.Add(progressBarTaches);
             Controls.Add(dataGridViewTaches);
             Controls.Add(groupBoxStats);
             Controls.Add(labelTitre);
@@ -145,6 +180,9 @@
         private Label labelMembresActifs;
         private Label labelTachesEnCours;
         private Label labelTachesTerminees;
+        private ProgressBar progressBarTaches;
+        private Label labelProgression;
+        private Label labelTitreProgression;
         private DataGridView dataGridViewTaches;
     }
 }

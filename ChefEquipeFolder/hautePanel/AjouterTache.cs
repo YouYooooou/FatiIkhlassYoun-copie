@@ -25,7 +25,7 @@ namespace FatiIkhlassYoun
             InitializeComponent();
             userIdChefEquipe = userId;
         }
-
+        public event EventHandler TaskAdded;
         private void ChargerProjets()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -80,11 +80,17 @@ namespace FatiIkhlassYoun
 
             if (authForm.DialogResult == DialogResult.OK)
             {
-                AjouterTacheDansLaBase(projectId, titre, description, dateDebut, dateFin, statut, tempsEstime);
+                if (AjouterTacheDansLaBase(projectId, titre, description, dateDebut, dateFin, statut, tempsEstime))
+                {
+                    // Déclencher l'événement seulement si l'ajout a réussi
+                    TaskAdded?.Invoke(this, EventArgs.Empty);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
             else
             {
-                MessageBox.Show("❌ Vérification annulée. L’ajout de la tâche a été annulé.");
+                MessageBox.Show("❌ Vérification annulée. L'ajout de la tâche a été annulé.");
             }
         }
 
@@ -112,33 +118,47 @@ namespace FatiIkhlassYoun
             this.Close();
         }
 
-        public void AjouterTacheDansLaBase(int projectId, string titre, string description, DateTime dateDebut, DateTime dateFin, string statut, int tempsEstime)
+        public bool AjouterTacheDansLaBase(int projectId, string titre, string description,
+                                  DateTime dateDebut, DateTime dateFin,
+                                  string statut, int tempsEstime)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-
-                string query = @"
-            INSERT INTO Tasks (ProjectID, Title, Description, StartDate, DueDate, Status, EstimatedTime, TeamLeadID)
-            VALUES (@ProjectID, @Title, @Description, @StartDate, @DueDate, @Status, @EstimatedTime, @TeamLeadID);
-            SELECT SCOPE_IDENTITY();";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@ProjectID", projectId);
-                    cmd.Parameters.AddWithValue("@Title", titre);
-                    cmd.Parameters.AddWithValue("@Description", description);
-                    cmd.Parameters.AddWithValue("@StartDate", dateDebut);
-                    cmd.Parameters.AddWithValue("@DueDate", dateFin);
-                    cmd.Parameters.AddWithValue("@Status", statut);
-                    cmd.Parameters.AddWithValue("@EstimatedTime", tempsEstime);
-                    cmd.Parameters.AddWithValue("@TeamLeadID", userIdChefEquipe);
+                    conn.Open();
 
-                    // Récupérer l'ID réel généré
-                    int newTaskId = Convert.ToInt32(cmd.ExecuteScalar());
+                    string query = @"
+                INSERT INTO Tasks (ProjectID, Title, Description, StartDate, DueDate, Status, EstimatedTime, TeamLeadID)
+                VALUES (@ProjectID, @Title, @Description, @StartDate, @DueDate, @Status, @EstimatedTime, @TeamLeadID);
+                SELECT SCOPE_IDENTITY();";
 
-                    MessageBox.Show($"✅ Tâche ajoutée avec succès. ID généré : {newTaskId}");
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProjectID", projectId);
+                        cmd.Parameters.AddWithValue("@Title", titre);
+                        cmd.Parameters.AddWithValue("@Description", description);
+                        cmd.Parameters.AddWithValue("@StartDate", dateDebut);
+                        cmd.Parameters.AddWithValue("@DueDate", dateFin);
+                        cmd.Parameters.AddWithValue("@Status", statut);
+                        cmd.Parameters.AddWithValue("@EstimatedTime", tempsEstime);
+                        cmd.Parameters.AddWithValue("@TeamLeadID", userIdChefEquipe);
+
+                        // Exécuter la commande et récupérer l'ID
+                        int newTaskId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // Optionnel: Afficher un message de succès
+                        MessageBox.Show($"✅ Tâche ajoutée avec succès. ID généré : {newTaskId}");
+
+                        return true; // Retourne true si l'insertion a réussi
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                // Afficher l'erreur (optionnel)
+                MessageBox.Show($"❌ Erreur lors de l'ajout de la tâche: {ex.Message}");
+                return false; // Retourne false en cas d'erreur
             }
         }
 

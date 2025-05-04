@@ -57,9 +57,9 @@
             CalendarTasksList.DrawMode = DrawMode.OwnerDrawFixed;
             CalendarTasksList.FormattingEnabled = true;
             CalendarTasksList.ItemHeight = 25;
-            CalendarTasksList.Location = new Point(70, 431);
+            CalendarTasksList.Location = new Point(70, 402);
             CalendarTasksList.Name = "CalendarTasksList";
-            CalendarTasksList.Size = new Size(627, 204);
+            CalendarTasksList.Size = new Size(627, 179);
             CalendarTasksList.TabIndex = 3;
             CalendarTasksList.DrawItem += CalendarTasksList_DrawItem;
             CalendarTasksList.SelectedIndexChanged += CalendarTasksList_SelectedIndexChanged;
@@ -68,7 +68,7 @@
             // 
             labelDate.AutoSize = true;
             labelDate.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelDate.Location = new Point(227, 387);
+            labelDate.Location = new Point(229, 367);
             labelDate.Name = "labelDate";
             labelDate.Size = new Size(368, 32);
             labelDate.TabIndex = 4;

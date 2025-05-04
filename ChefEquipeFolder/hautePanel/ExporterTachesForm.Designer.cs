@@ -234,5 +234,71 @@
         private Label label4;
         private CuoreUI.Controls.cuiButton btnExporter;
         private CuoreUI.Controls.cuiButton cuiButton2;
+
+        // Ajoutez ces déclarations
+        private Label lblCommentaire;
+        private TextBox txtCommentaire;
+        private RadioButton radioCSV;
+        private RadioButton radioPDF;
+        private GroupBox groupBoxFormat;
+
+        
+
+        private void InitializeFormatSelection()
+        {
+            groupBoxFormat = new GroupBox();
+            groupBoxFormat.Text = "Format d'export";
+            groupBoxFormat.Location = new Point(24, 550);
+            groupBoxFormat.Size = new Size(565, 80);
+
+            radioCSV = new RadioButton();
+            radioCSV.Text = "CSV (Excel)";
+            radioCSV.Checked = true;
+            radioCSV.Location = new Point(20, 30);
+            radioCSV.CheckedChanged += RadioFormat_CheckedChanged;
+
+            radioPDF = new RadioButton();
+            radioPDF.Text = "PDF (Rapport structuré)";
+            radioPDF.Location = new Point(200, 30);
+            radioPDF.CheckedChanged += RadioFormat_CheckedChanged;
+
+            groupBoxFormat.Controls.Add(radioCSV);
+            groupBoxFormat.Controls.Add(radioPDF);
+
+            // Ajout du champ commentaire (initialement caché)
+            lblCommentaire = new Label();
+            lblCommentaire.Text = "Commentaire :";
+            lblCommentaire.Location = new Point(24, 640);
+            lblCommentaire.Size = new Size(150, 25);
+            lblCommentaire.Visible = false;
+
+            txtCommentaire = new TextBox();
+            txtCommentaire.Multiline = true;
+            txtCommentaire.ScrollBars = ScrollBars.Vertical;
+            txtCommentaire.Location = new Point(180, 640);
+            txtCommentaire.Size = new Size(400, 100);
+            txtCommentaire.Visible = false;
+
+            this.Controls.Add(groupBoxFormat);
+            this.Controls.Add(lblCommentaire);
+            this.Controls.Add(txtCommentaire);
+
+            // Ajustez la position des boutons et la taille du formulaire
+            btnExporter.Location = new Point(383, 750);
+            cuiButton2.Location = new Point(130, 750);
+            this.ClientSize = new Size(621, 850);
+        }
+
+        private void RadioFormat_CheckedChanged(object sender, EventArgs e)
+        {
+            bool isPDFSelected = radioPDF.Checked;
+            lblCommentaire.Visible = isPDFSelected;
+            txtCommentaire.Visible = isPDFSelected;
+
+            // Ajustez la taille du formulaire selon le choix
+            this.ClientSize = new Size(621, isPDFSelected ? 850 : 750);
+        }
+
+        // ... [Le reste de vos méthodes existantes]
     }
 }

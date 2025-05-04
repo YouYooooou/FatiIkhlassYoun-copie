@@ -18,8 +18,136 @@ namespace FatiIkhlassYoun
         public MenuDeChefEquipe()
         {
             InitializeComponent();
+            this.Load += MenuDeChefEquipe_Load;
             LoadContent(new DashboardControl()); // Charger le contenu par défaut
             RemplirInfosUtilisateur(); // Remplir les infos de l'utilisateur après le chargement du formulaire
+
+        }
+        private TreeView treeViewMenu;
+        private void MenuDeChefEquipe_Load(object sender, EventArgs e)
+        {
+            treeViewMenu = new TreeView();
+            treeViewMenu.Dock = DockStyle.Fill;
+            panelGauche.Controls.Add(treeViewMenu);
+            RemplirTreeViewProjetEtEquipes();
+        }
+        private void RemplirTreeViewProjetEtEquipes()
+        {
+            int userId = SessionUtilisateur.UserID;
+            string connectionString = @"Data Source=YOUNES\SQLEXPRESS;Initial Catalog=ProjectManagementSystem;Integrated Security=True;";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // 1. Récupérer d'abord tous les projets dans une liste
+                List<(int ProjectId, string ProjectTitle)> projets = new List<(int, string)>();
+                string queryProjet = "SELECT ProjectID, Title FROM Projects WHERE ManagerID = @UserID";
+
+                using (SqlCommand cmdProjet = new SqlCommand(queryProjet, conn))
+                {
+                    cmdProjet.Parameters.AddWithValue("@UserID", userId);
+
+                    using (SqlDataReader readerProjet = cmdProjet.ExecuteReader())
+                    {
+                        while (readerProjet.Read())
+                        {
+                            projets.Add((readerProjet.GetInt32(0), readerProjet.GetString(1)));
+                        }
+                    } // Le reader est fermé ici
+                }
+
+                if (projets.Count == 0)
+                {
+                    treeViewMenu.Nodes.Add("Aucun projet assigné");
+                    return;
+                }
+
+                // 2. Pour chaque projet, récupérer les membres et les tâches
+                foreach (var projet in projets)
+                {
+                    TreeNode projectNode = new TreeNode(projet.ProjectTitle);
+
+                    // --- Membres de l'équipe ---
+                    TreeNode membresNode = new TreeNode("Membres d'équipe");
+                    List<string> membres = new List<string>();
+
+                    string queryMembres = @"SELECT U.Username
+                                  FROM Users U
+                                  INNER JOIN TeamMembers TM ON U.UserID = TM.UserID
+                                  INNER JOIN Teams T ON T.TeamID = TM.TeamID
+                                  WHERE T.LeaderID = @UserID";
+
+                    using (SqlCommand cmdMembres = new SqlCommand(queryMembres, conn))
+                    {
+                        cmdMembres.Parameters.AddWithValue("@UserID", userId);
+
+                        using (SqlDataReader readerMembres = cmdMembres.ExecuteReader())
+                        {
+                            while (readerMembres.Read())
+                            {
+                                membres.Add(readerMembres.GetString(0));
+                            }
+                        } // Le reader est fermé ici
+                    }
+
+                    if (membres.Count > 0)
+                    {
+                        foreach (var membre in membres)
+                        {
+                            membresNode.Nodes.Add(membre);
+                        }
+                    }
+                    else
+                    {
+                        membresNode.Nodes.Add("Vide");
+                    }
+
+                    // --- Tâches du projet ---
+                    TreeNode tachesNode = new TreeNode("Tâches");
+                    List<string> taches = new List<string>();
+
+                    string queryTaches = "SELECT Title FROM Tasks WHERE ProjectID = @ProjectID";
+
+                    using (SqlCommand cmdTaches = new SqlCommand(queryTaches, conn))
+                    {
+                        cmdTaches.Parameters.AddWithValue("@ProjectID", projet.ProjectId);
+
+                        using (SqlDataReader readerTaches = cmdTaches.ExecuteReader())
+                        {
+                            while (readerTaches.Read())
+                            {
+                                taches.Add(readerTaches.GetString(0));
+                            }
+                        } // Le reader est fermé ici
+                    }
+
+                    if (taches.Count > 0)
+                    {
+                        foreach (var tache in taches)
+                        {
+                            tachesNode.Nodes.Add(tache);
+                        }
+                    }
+                    else
+                    {
+                        tachesNode.Nodes.Add("Vide");
+                    }
+
+                    // Ajouter les sous-noeuds au projet
+                    projectNode.Nodes.Add(membresNode);
+                    projectNode.Nodes.Add(tachesNode);
+
+                    // Ajouter le projet au TreeView
+                    treeViewMenu.Nodes.Add(projectNode);
+                }
+            }
+        }
+
+        public void RefreshTreeView()
+        {
+            treeViewMenu.Nodes.Clear(); // Vider le TreeView actuel
+            RemplirTreeViewProjetEtEquipes(); // Le recharger
         }
 
         private void RemplirInfosUtilisateur()
@@ -85,6 +213,7 @@ namespace FatiIkhlassYoun
         private void cuiButton1_Click(object sender, EventArgs e)
         {
             AjouterTache form = new AjouterTache(SessionUtilisateur.UserID);
+            form.TaskAdded += (s, args) => RefreshTreeView();
             form.ShowDialog();
 
         }
@@ -114,11 +243,7 @@ namespace FatiIkhlassYoun
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadContent(new MembresEquipeControl());
 
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -151,6 +276,49 @@ namespace FatiIkhlassYoun
         {
             ExporterTachesForm form = new ExporterTachesForm();
             form.ShowDialog();
+        }
+
+
+        private void panelGauche_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            LoadContent(new MembresEquipeControl());
+        }
+
+        private void cuiButton2_Click(object sender, EventArgs e)
+        {
+            LoadContent(new CalendrierControl());
+        }
+
+        private void btnWhatsapp_Click(object sender, EventArgs e)
+        {
+            WhatsAppMessageForm form = new WhatsAppMessageForm(SessionUtilisateur.UserID);
+            form.ShowDialog();
+        }
+
+        private void btnAlert_Click(object sender, EventArgs e)
+        {
+            var alertControl = new AlertControl();
+
+            // Abonnement à l'événement
+            alertControl.OnTaskSelected += (taskId) =>
+            {
+                // Charger le dashboard
+                var dashboard = new DashboardControl();
+                LoadContent(dashboard);
+
+                // Sélectionner la tâche après un petit délai pour laisser le temps au contrôle de se charger
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    dashboard.SelectTaskInGrid(taskId);
+                });
+            };
+
+            LoadContent(alertControl);
         }
     }
 }

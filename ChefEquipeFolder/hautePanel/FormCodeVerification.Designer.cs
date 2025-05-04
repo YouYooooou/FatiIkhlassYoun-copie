@@ -2,15 +2,8 @@
 {
     partial class FormCodeVerification
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,37 +15,70 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
+            lblTitle = new Label();
+            panelHeader = new Panel();
             lblInstruction = new Label();
             txtCode = new TextBox();
             btnAnnuler = new CuoreUI.Controls.cuiButton();
             btnVerifier = new CuoreUI.Controls.cuiButton();
+            panelForm = new Panel();
+            lblEmailInfo = new Label();
+            lblTentatives = new Label();
+            panelHeader.SuspendLayout();
+            panelForm.SuspendLayout();
             SuspendLayout();
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 15);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(271, 38);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Vérification du code";
+            // 
+            // panelHeader
+            // 
+            panelHeader.BackColor = Color.FromArgb(51, 51, 76);
+            panelHeader.Controls.Add(lblTitle);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(500, 60);
+            panelHeader.TabIndex = 0;
             // 
             // lblInstruction
             // 
             lblInstruction.AutoSize = true;
-            lblInstruction.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblInstruction.Location = new Point(12, 46);
+            lblInstruction.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblInstruction.ForeColor = Color.FromArgb(64, 64, 64);
+            lblInstruction.Location = new Point(35, 93);
             lblInstruction.Name = "lblInstruction";
-            lblInstruction.Size = new Size(286, 28);
+            lblInstruction.Size = new Size(205, 28);
             lblInstruction.TabIndex = 0;
-            lblInstruction.Text = "Entrez le code reçu par email :\n";
+            lblInstruction.Text = "Code de vérification :";
             // 
             // txtCode
             // 
-            txtCode.Location = new Point(362, 46);
+            txtCode.BackColor = Color.WhiteSmoke;
+            txtCode.BorderStyle = BorderStyle.None;
+            txtCode.Font = new Font("Segoe UI", 12F);
+            txtCode.Location = new Point(246, 93);
+            txtCode.MaxLength = 6;
             txtCode.Name = "txtCode";
-            txtCode.Size = new Size(212, 31);
+            txtCode.Size = new Size(200, 32);
             txtCode.TabIndex = 1;
+            txtCode.TextAlign = HorizontalAlignment.Center;
+            txtCode.Enter += txtCode_Enter;
+            txtCode.Leave += txtCode_Leave;
             // 
             // btnAnnuler
             // 
+            btnAnnuler.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAnnuler.CheckButton = false;
             btnAnnuler.Checked = false;
             btnAnnuler.CheckedBackground = Color.FromArgb(200, 35, 51);
@@ -60,8 +86,9 @@
             btnAnnuler.CheckedImageTint = Color.White;
             btnAnnuler.CheckedOutline = Color.FromArgb(200, 35, 51);
             btnAnnuler.Content = "Annuler";
+            btnAnnuler.Cursor = Cursors.Hand;
             btnAnnuler.DialogResult = DialogResult.None;
-            btnAnnuler.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAnnuler.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnAnnuler.ForeColor = Color.White;
             btnAnnuler.HoverBackground = Color.FromArgb(200, 35, 51);
             btnAnnuler.HoveredImageTint = Color.White;
@@ -71,33 +98,36 @@
             btnAnnuler.ImageAutoCenter = true;
             btnAnnuler.ImageExpand = new Point(0, 0);
             btnAnnuler.ImageOffset = new Point(0, 0);
-            btnAnnuler.NormalImageTint = Color.White;
-            btnAnnuler.Location = new Point(93, 166);
+            btnAnnuler.Location = new Point(103, 162);
             btnAnnuler.Name = "btnAnnuler";
             btnAnnuler.NormalBackground = Color.FromArgb(223, 53, 69);
+            btnAnnuler.NormalForeColor = Color.White;
+            btnAnnuler.NormalImageTint = Color.White;
             btnAnnuler.NormalOutline = Color.Empty;
             btnAnnuler.OutlineThickness = 1.6F;
-            btnAnnuler.PressedBackground = Color.FromArgb(210, 35, 51);
+            btnAnnuler.PressedBackground = Color.FromArgb(255, 106, 0);
             btnAnnuler.PressedForeColor = Color.White;
             btnAnnuler.PressedImageTint = Color.White;
             btnAnnuler.PressedOutline = Color.Empty;
             btnAnnuler.Rounding = new Padding(8);
-            btnAnnuler.Size = new Size(206, 73);
+            btnAnnuler.Size = new Size(120, 48);
             btnAnnuler.TabIndex = 20;
             btnAnnuler.TextOffset = new Point(0, 0);
             btnAnnuler.Click += btnAnnuler_Click;
             // 
             // btnVerifier
             // 
+            btnVerifier.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnVerifier.CheckButton = false;
             btnVerifier.Checked = false;
-            btnVerifier.CheckedBackground = Color.FromArgb(255, 106, 0);
+            btnVerifier.CheckedBackground = Color.FromArgb(40, 167, 69);
             btnVerifier.CheckedForeColor = Color.White;
             btnVerifier.CheckedImageTint = Color.White;
             btnVerifier.CheckedOutline = Color.FromArgb(255, 106, 0);
-            btnVerifier.Content = "Verifier";
+            btnVerifier.Content = "Vérifier";
+            btnVerifier.Cursor = Cursors.Hand;
             btnVerifier.DialogResult = DialogResult.None;
-            btnVerifier.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVerifier.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnVerifier.ForeColor = Color.White;
             btnVerifier.HoverBackground = Color.FromArgb(33, 136, 56);
             btnVerifier.HoveredImageTint = Color.White;
@@ -107,43 +137,92 @@
             btnVerifier.ImageAutoCenter = true;
             btnVerifier.ImageExpand = new Point(0, 0);
             btnVerifier.ImageOffset = new Point(0, 0);
-            btnVerifier.NormalImageTint = Color.White;
-            btnVerifier.Location = new Point(350, 166);
+            btnVerifier.Location = new Point(283, 162);
             btnVerifier.Name = "btnVerifier";
             btnVerifier.NormalBackground = Color.FromArgb(40, 167, 69);
+            btnVerifier.NormalForeColor = Color.White;
+            btnVerifier.NormalImageTint = Color.White;
             btnVerifier.NormalOutline = Color.Empty;
             btnVerifier.OutlineThickness = 1.6F;
-            btnVerifier.PressedBackground = Color.FromArgb(43, 168, 75);
+            btnVerifier.PressedBackground = Color.FromArgb(255, 106, 0);
             btnVerifier.PressedForeColor = Color.White;
             btnVerifier.PressedImageTint = Color.White;
             btnVerifier.PressedOutline = Color.Empty;
             btnVerifier.Rounding = new Padding(8);
-            btnVerifier.Size = new Size(206, 73);
+            btnVerifier.Size = new Size(120, 48);
             btnVerifier.TabIndex = 19;
             btnVerifier.TextOffset = new Point(0, 0);
             btnVerifier.Click += btnVerifier_Click;
+            // 
+            // panelForm
+            // 
+            panelForm.BackColor = Color.White;
+            panelForm.Controls.Add(lblEmailInfo);
+            panelForm.Controls.Add(lblInstruction);
+            panelForm.Controls.Add(txtCode);
+            panelForm.Controls.Add(btnVerifier);
+            panelForm.Controls.Add(btnAnnuler);
+            panelForm.Controls.Add(lblTentatives);
+            panelForm.Dock = DockStyle.Fill;
+            panelForm.Location = new Point(0, 60);
+            panelForm.Name = "panelForm";
+            panelForm.Size = new Size(500, 240);
+            panelForm.TabIndex = 1;
+            // 
+            // lblEmailInfo
+            // 
+            lblEmailInfo.AutoSize = true;
+            lblEmailInfo.Font = new Font("Segoe UI", 9F);
+            lblEmailInfo.ForeColor = Color.FromArgb(64, 64, 64);
+            lblEmailInfo.Location = new Point(100, 32);
+            lblEmailInfo.Name = "lblEmailInfo";
+            lblEmailInfo.Size = new Size(290, 25);
+            lblEmailInfo.TabIndex = 4;
+            lblEmailInfo.Text = "Un code a été envoyé à votre email";
+            lblEmailInfo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTentatives
+            // 
+            lblTentatives.AutoSize = true;
+            lblTentatives.Font = new Font("Segoe UI", 8F, FontStyle.Italic);
+            lblTentatives.ForeColor = Color.FromArgb(64, 64, 64);
+            lblTentatives.Location = new Point(283, 128);
+            lblTentatives.Name = "lblTentatives";
+            lblTentatives.Size = new Size(166, 21);
+            lblTentatives.TabIndex = 6;
+            lblTentatives.Text = "Tentatives restantes : 3";
             // 
             // FormCodeVerification
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(652, 311);
-            Controls.Add(btnAnnuler);
-            Controls.Add(btnVerifier);
-            Controls.Add(txtCode);
-            Controls.Add(lblInstruction);
+            BackColor = Color.White;
+            ClientSize = new Size(500, 300);
+            Controls.Add(panelForm);
+            Controls.Add(panelHeader);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormCodeVerification";
-            Text = "FormCodeVerification";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Vérification du code";
+            panelHeader.ResumeLayout(false);
+            panelHeader.PerformLayout();
+            panelForm.ResumeLayout(false);
+            panelForm.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
+
         }
 
         #endregion
 
+        private Panel panelHeader;
+        private Label lblTitle;
+        private Panel panelForm;
         private Label lblInstruction;
         private TextBox txtCode;
-        private CuoreUI.Controls.cuiButton btnAnnuler;
         private CuoreUI.Controls.cuiButton btnVerifier;
+        private CuoreUI.Controls.cuiButton btnAnnuler;
+        private Label lblEmailInfo;
+        private Label lblTentatives;
+
     }
 }

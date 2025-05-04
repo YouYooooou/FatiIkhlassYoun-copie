@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.SqlClient;
+using System.Text;
+using System.Diagnostics;
+
+// Alias pour iTextSharp
+using iText = iTextSharp.text;
+using iTextPdf = iTextSharp.text.pdf;
 
 namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
 {
@@ -20,6 +26,7 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
         public ExporterTachesForm()
         {
             InitializeComponent();
+            InitializeFormatSelection();
             this.Load += ExporterTachesForm_Load;
             btnExporter.Click += btnExporter_Click;
         }
@@ -150,13 +157,21 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
                     return;
                 }
 
-                SaveToCsvFile(data);
+                if (radioCSV.Checked)
+                {
+                    SaveToCsvFile(data);
+                }
+                else
+                {
+                    SaveToPdfFile(data);
+                }
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de l'export : {ex.Message}",
+                MessageBox.Show($"Erreur lors de l'export : {ex.Message}\nStack Trace: {ex.StackTrace}",
                               "Erreur",
                               MessageBoxButtons.OK,
                               MessageBoxIcon.Error);
@@ -169,12 +184,185 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
             }
         }
 
+        private void SaveToPdfFile(DataTable data)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Fichiers PDF (*.pdf)|*.pdf";
+                saveDialog.FileName = $"RapportTaches_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+                saveDialog.OverwritePrompt = true;
+                saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // Définir le dossier par défaut
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string fullPath = saveDialog.FileName;
+
+                        // Afficher le chemin complet dans la console de débogage
+                        Debug.WriteLine($"Chemin d'export PDF: {fullPath}");
+
+                        // Vérifier si le répertoire existe
+                        string directory = Path.GetDirectoryName(fullPath);
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
+
+                        GeneratePdfReport(data, fullPath);
+
+                       
+
+                        MessageBox.Show($"Export PDF réussi!\nFichier enregistré sous :\n{fullPath}",
+                                      "Succès",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Échec de l'export PDF :\n{ex.Message}\nStack Trace: {ex.StackTrace}",
+                                      "Erreur",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void GeneratePdfReport(DataTable data, string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath))
+                throw new ArgumentException("Le chemin du fichier ne peut pas être vide");
+
+            filePath = Path.GetFullPath(filePath);
+
+            iText.Document document = new iText.Document(iText.PageSize.A4);
+            FileStream fs = null;
+
+            try
+            {
+                fs = new FileStream(filePath, FileMode.Create);
+                iTextPdf.PdfWriter writer = iTextPdf.PdfWriter.GetInstance(document, fs);
+
+                document.AddTitle("Rapport des Tâches");
+                document.AddAuthor(SessionUtilisateur.UserID.ToString());
+                document.AddCreator("Project Management System");
+
+                document.Open();
+
+                // Titre avec style
+                iText.Font titleFont = iText.FontFactory.GetFont(iText.FontFactory.HELVETICA_BOLD, 18, iText.BaseColor.DARK_GRAY);
+                iText.Paragraph title = new iText.Paragraph("RAPPORT DÉTAILLÉ DES TÂCHES", titleFont);
+                title.Alignment = iText.Element.ALIGN_CENTER;
+                title.SpacingAfter = 20f;
+                document.Add(title);
+
+                // Bloc d'informations
+                iTextPdf.PdfPTable infoTable = new iTextPdf.PdfPTable(2);
+                infoTable.WidthPercentage = 95;
+                infoTable.SetWidths(new float[] { 1, 3 });
+
+                // Modification ici: Utilisation de Name au lieu de FullName
+                string chefEquipeNom = data.Rows.Count > 0 ? data.Rows[0]["ChefEquipeNom"].ToString() : "Inconnu";
+                AddInfoCell(infoTable, "Date de génération:", DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+                AddInfoCell(infoTable, "Chef d'équipe:", chefEquipeNom);
+                AddInfoCell(infoTable, "Période couverte:", $"{dateDebutPicker.Value:dd/MM/yyyy} au {dateFinPicker.Value:dd/MM/yyyy}");
+                AddInfoCell(infoTable, "Projets sélectionnés:", string.Join(", ", checkedListBoxProjets.CheckedItems.Cast<ProjetItem>().Select(p => p.Text)));
+                AddInfoCell(infoTable, "Statuts sélectionnés:", string.Join(", ", checkedListBoxStatuts.CheckedItems.Cast<string>()));
+
+                document.Add(infoTable);
+                document.Add(iText.Chunk.NEWLINE);
+
+                // Tableau des tâches
+                iTextPdf.PdfPTable table = new iTextPdf.PdfPTable(5);
+                table.WidthPercentage = 100;
+                table.SetWidths(new float[] { 2.5f, 1.5f, 1.5f, 1.5f, 2.5f });
+
+                string[] headers = { "TÂCHE", "DATE DÉBUT", "DATE FIN", "STATUT", "PROJET" };
+                iText.Font headerFont = iText.FontFactory.GetFont(iText.FontFactory.HELVETICA_BOLD, 10, iText.BaseColor.BLACK);
+
+                foreach (string header in headers)
+                {
+                    iTextPdf.PdfPCell cell = new iTextPdf.PdfPCell(new iText.Phrase(header, headerFont));
+                    cell.BackgroundColor = new iText.BaseColor(79, 129, 189);
+                    cell.HorizontalAlignment = iText.Element.ALIGN_CENTER;
+                    cell.Padding = 5;
+                    table.AddCell(cell);
+                }
+
+                iText.Font contentFont = iText.FontFactory.GetFont(iText.FontFactory.HELVETICA, 9, iText.BaseColor.BLACK);
+                bool alternate = false;
+
+                foreach (DataRow row in data.Rows)
+                {
+                    iText.BaseColor bgColor = alternate ? new iText.BaseColor(221, 235, 247) : iText.BaseColor.WHITE;
+
+                    AddTableRow(table, row["Title"]?.ToString() ?? "", contentFont, bgColor);
+                    AddTableRow(table, FormatDateForCsv(row["StartDate"]), contentFont, bgColor);
+                    AddTableRow(table, FormatDateForCsv(row["DueDate"]), contentFont, bgColor);
+
+                    string status = row["Status"]?.ToString() ?? "";
+                    iText.BaseColor statusColor = GetStatusColor(status);
+                    AddTableRow(table, status, contentFont, bgColor, statusColor);
+
+                    AddTableRow(table, row["NomProjet"]?.ToString() ?? "", contentFont, bgColor);
+
+                    alternate = !alternate;
+                }
+
+                document.Add(table);
+                document.Add(iText.Chunk.NEWLINE);
+
+                // Statistiques
+                iText.Font statsFont = iText.FontFactory.GetFont(iText.FontFactory.HELVETICA_BOLD, 11);
+                document.Add(new iText.Paragraph($"TOTAL DES TÂCHES: {data.Rows.Count}", statsFont));
+
+                if (!string.IsNullOrWhiteSpace(txtCommentaire.Text))
+                {
+                    document.Add(iText.Chunk.NEWLINE);
+                    document.Add(new iText.Paragraph("COMMENTAIRE:", statsFont));
+
+                    iText.Font commentFont = iText.FontFactory.GetFont(iText.FontFactory.HELVETICA_OBLIQUE, 10);
+                    iText.Paragraph comment = new iText.Paragraph(txtCommentaire.Text, commentFont);
+                    comment.IndentationLeft = 20;
+                    document.Add(comment);
+                }
+
+                document.Close();
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    fs?.Close();
+                    if (File.Exists(filePath))
+                        File.Delete(filePath);
+                }
+                catch { }
+
+                throw new Exception($"Échec de la génération du PDF : {ex.Message}", ex);
+            }
+            finally
+            {
+                document.Close();
+                fs?.Dispose();
+            }
+        }
+
         private DataTable GetTasksData(List<string> projetsIds, List<string> statuts)
         {
+            // Modification ici: Utilisation de Name au lieu de FullName
             string query = $@"
-                SELECT DISTINCT t.Title, t.StartDate, t.DueDate, t.Status, p.Title AS NomProjet
+                SELECT DISTINCT 
+                    t.Title, 
+                    t.StartDate, 
+                    t.DueDate, 
+                    t.Status, 
+                    p.Title AS NomProjet,
+                    u.Username AS ChefEquipeNom  
                 FROM Tasks t
                 JOIN Projects p ON t.ProjectID = p.ProjectID
+                JOIN Users u ON t.TeamLeadID = u.UserID
                 WHERE t.TeamLeadID = @TeamLeadID
                 AND t.ProjectID IN ({string.Join(",", projetsIds.Select((_, i) => $"@proj{i}"))})
                 AND t.Status IN ({string.Join(",", statuts.Select((_, i) => $"@stat{i}"))})
@@ -210,14 +398,40 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
                 saveDialog.Filter = "Fichiers CSV (*.csv)|*.csv";
                 saveDialog.FileName = $"ExportTaches_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
                 saveDialog.OverwritePrompt = true;
+                saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // Définir le dossier par défaut
 
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    File.WriteAllText(saveDialog.FileName, GenerateCsvContent(data), Encoding.UTF8);
-                    MessageBox.Show($"Export terminé avec succès!\nFichier : {saveDialog.FileName}",
-                                  "Export réussi",
-                                  MessageBoxButtons.OK,
-                                  MessageBoxIcon.Information);
+                    try
+                    {
+                        string fullPath = saveDialog.FileName;
+
+                        // Afficher le chemin complet dans la console de débogage
+                        Debug.WriteLine($"Chemin d'export CSV: {fullPath}");
+
+                        // Vérifier si le répertoire existe
+                        string directory = Path.GetDirectoryName(fullPath);
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
+
+                        File.WriteAllText(fullPath, GenerateCsvContent(data), new UTF8Encoding(true));
+
+                        
+
+                        MessageBox.Show($"Export CSV réussi!\nFichier enregistré sous :\n{fullPath}",
+                                      "Succès",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de l'export CSV :\n{ex.Message}\nStack Trace: {ex.StackTrace}",
+                                      "Erreur",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -225,9 +439,11 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
         private string GenerateCsvContent(DataTable data)
         {
             StringBuilder sb = new StringBuilder();
+            string chefEquipeNom = data.Rows.Count > 0 ? data.Rows[0]["ChefEquipeNom"].ToString() : "Inconnu";
+
             sb.AppendLine("Rapport des Tâches");
             sb.AppendLine($"Généré le : {DateTime.Now:dd/MM/yyyy HH:mm}");
-            sb.AppendLine($"Chef d'équipe : {SessionUtilisateur.UserID}");
+            sb.AppendLine($"Chef d'équipe : {chefEquipeNom}");
             sb.AppendLine();
             sb.AppendLine("Titre;Date Début;Date Fin;Statut;Projet");
 
@@ -247,6 +463,39 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
         private void cuiButton2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // Méthodes utilitaires pour le PDF
+        private void AddInfoCell(iTextPdf.PdfPTable table, string label, string value)
+        {
+            iText.Font labelFont = iText.FontFactory.GetFont(iText.FontFactory.HELVETICA_BOLD, 10);
+            iText.Font valueFont = iText.FontFactory.GetFont(iText.FontFactory.HELVETICA, 10);
+
+            table.AddCell(new iText.Phrase(label, labelFont));
+            table.AddCell(new iText.Phrase(value, valueFont));
+        }
+
+        private void AddTableRow(iTextPdf.PdfPTable table, string text, iText.Font font, iText.BaseColor bgColor, iText.BaseColor textColor = null)
+        {
+            iTextPdf.PdfPCell cell = new iTextPdf.PdfPCell(new iText.Phrase(text, font));
+            cell.BackgroundColor = bgColor;
+            cell.Padding = 5;
+
+            if (textColor != null)
+                cell.Phrase.Font.Color = textColor;
+
+            table.AddCell(cell);
+        }
+
+        private iText.BaseColor GetStatusColor(string status)
+        {
+            switch (status.ToUpper())
+            {
+                case "EN ATTENTE": return new iText.BaseColor(255, 192, 0);
+                case "EN COURS": return new iText.BaseColor(0, 176, 80);
+                case "TERMINÉE": return new iText.BaseColor(0, 112, 192);
+                default: return iText.BaseColor.BLACK;
+            }
         }
     }
 }

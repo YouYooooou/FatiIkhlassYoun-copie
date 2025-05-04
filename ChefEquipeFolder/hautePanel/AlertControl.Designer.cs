@@ -1,6 +1,6 @@
-﻿namespace FatiIkhlassYoun
+﻿namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
 {
-    partial class MembresEquipeControl
+    partial class AlertControl
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,31 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-
-            this.dataGridViewMembres = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMembres)).BeginInit();
             this.SuspendLayout();
-
-            // dataGridViewMembres
-            this.dataGridViewMembres.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewMembres.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewMembres.Name = "dataGridViewMembres";
-            this.dataGridViewMembres.Size = new System.Drawing.Size(800, 450);
-            this.dataGridViewMembres.TabIndex = 0;
-
-            // MembresEquipeControl
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            // 
+            // AlertControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridViewMembres);
-            this.Name = "MembresEquipeControl";
-            this.Size = new System.Drawing.Size(800, 450);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMembres)).EndInit();
+            this.BackColor = System.Drawing.Color.White;
+            this.Name = "AlertControl";
+            this.Size = new System.Drawing.Size(766, 633); // Taille modifiée ici
             this.ResumeLayout(false);
         }
 
-
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridViewMembres;
     }
 }
