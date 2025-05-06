@@ -46,163 +46,192 @@ namespace FatiIkhlassYoun
             numTemps = new NumericUpDown();
             btnAjouter = new CuoreUI.Controls.cuiButton();
             cuiButton2 = new CuoreUI.Controls.cuiButton();
-            textBox1 = new TextBox();
-            text_box1 = new Label();
+            label2 = new Label();
+            panelHeader = new Panel();
+            lblTitle = new Label();
+            panelForm = new Panel();
+            checkedListBoxMembres = new CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)numTemps).BeginInit();
+            panelHeader.SuspendLayout();
+            panelForm.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(213, 9);
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(263, 30);
             label1.Name = "label1";
-            label1.Size = new Size(293, 45);
+            label1.Size = new Size(298, 32);
             label1.TabIndex = 0;
-            label1.Text = "Create a New Task";
+            label1.Text = "Créer une nouvelle tâche";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(41, 147);
+            label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
+            label3.Location = new Point(40, 90);
             label3.Name = "label3";
-            label3.Size = new Size(86, 28);
+            label3.Size = new Size(72, 25);
             label3.TabIndex = 3;
-            label3.Text = "Projet : ";
+            label3.Text = "Projet :";
             // 
             // comboProjet
             // 
+            comboProjet.BackColor = Color.WhiteSmoke;
             comboProjet.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboProjet.FlatStyle = FlatStyle.Flat;
             comboProjet.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboProjet.FormattingEnabled = true;
-            comboProjet.Location = new Point(315, 147);
+            comboProjet.Location = new Point(40, 120);
             comboProjet.Name = "comboProjet";
-            comboProjet.Size = new Size(372, 36);
+            comboProjet.Size = new Size(400, 36);
             comboProjet.TabIndex = 4;
-            comboProjet.SelectedIndexChanged += cmbProjet_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(41, 210);
+            label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(40, 180);
             label4.Name = "label4";
-            label4.Size = new Size(184, 28);
+            label4.Size = new Size(135, 25);
             label4.TabIndex = 5;
-            label4.Text = "Titre de la tache : ";
+            label4.Text = "Titre de tâche :";
             // 
             // txtTitre
             // 
+            txtTitre.BackColor = Color.WhiteSmoke;
+            txtTitre.BorderStyle = BorderStyle.None;
             txtTitre.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTitre.Location = new Point(315, 210);
+            txtTitre.Location = new Point(40, 210);
             txtTitre.MaxLength = 20;
             txtTitre.Name = "txtTitre";
-            txtTitre.Size = new Size(372, 34);
+            txtTitre.Size = new Size(400, 27);
             txtTitre.TabIndex = 6;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(41, 272);
+            label5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(64, 64, 64);
+            label5.Location = new Point(40, 250);
             label5.Name = "label5";
-            label5.Size = new Size(138, 28);
+            label5.Size = new Size(117, 25);
             label5.TabIndex = 7;
-            label5.Text = "Description : ";
+            label5.Text = "Description :";
             // 
             // txtDescription
             // 
+            txtDescription.BackColor = Color.WhiteSmoke;
+            txtDescription.BorderStyle = BorderStyle.None;
             txtDescription.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDescription.Location = new Point(315, 269);
+            txtDescription.Location = new Point(40, 280);
             txtDescription.MaxLength = 200;
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
             txtDescription.ScrollBars = ScrollBars.Vertical;
-            txtDescription.Size = new Size(372, 158);
+            txtDescription.Size = new Size(400, 198);
             txtDescription.TabIndex = 8;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(41, 463);
+            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.FromArgb(64, 64, 64);
+            label6.Location = new Point(467, 271);
             label6.Name = "label6";
-            label6.Size = new Size(164, 28);
+            label6.Size = new Size(141, 25);
             label6.TabIndex = 9;
-            label6.Text = "Date de début : ";
+            label6.Text = "Date de début :";
             // 
             // dtpDebut
             // 
-            dtpDebut.Location = new Point(315, 461);
+            dtpDebut.CalendarMonthBackground = Color.WhiteSmoke;
+            dtpDebut.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDebut.Location = new Point(467, 301);
             dtpDebut.Name = "dtpDebut";
-            dtpDebut.Size = new Size(372, 31);
+            dtpDebut.Size = new Size(300, 34);
             dtpDebut.TabIndex = 10;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(41, 518);
+            label7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.FromArgb(64, 64, 64);
+            label7.Location = new Point(467, 348);
             label7.Name = "label7";
-            label7.Size = new Size(135, 28);
+            label7.Size = new Size(113, 25);
             label7.TabIndex = 11;
-            label7.Text = "Date limite : ";
+            label7.Text = "Date limite :";
             // 
             // dtpFin
             // 
-            dtpFin.Location = new Point(315, 516);
+            dtpFin.CalendarMonthBackground = Color.WhiteSmoke;
+            dtpFin.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpFin.Location = new Point(467, 378);
             dtpFin.Name = "dtpFin";
-            dtpFin.Size = new Size(372, 31);
+            dtpFin.Size = new Size(300, 34);
             dtpFin.TabIndex = 12;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(44, 575);
+            label8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.FromArgb(64, 64, 64);
+            label8.Location = new Point(467, 191);
             label8.Name = "label8";
-            label8.Size = new Size(90, 28);
+            label8.Size = new Size(71, 25);
             label8.TabIndex = 13;
-            label8.Text = "Statue : ";
+            label8.Text = "Statut :";
             // 
             // comboStatus
             // 
+            comboStatus.BackColor = Color.WhiteSmoke;
+            comboStatus.FlatStyle = FlatStyle.Flat;
             comboStatus.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboStatus.FormattingEnabled = true;
-            comboStatus.Location = new Point(315, 575);
+            comboStatus.Location = new Point(467, 221);
             comboStatus.Name = "comboStatus";
-            comboStatus.Size = new Size(372, 36);
+            comboStatus.Size = new Size(300, 36);
             comboStatus.TabIndex = 14;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(44, 635);
+            label9.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.FromArgb(64, 64, 64);
+            label9.Location = new Point(467, 429);
             label9.Name = "label9";
-            label9.Size = new Size(190, 28);
+            label9.Size = new Size(157, 25);
             label9.TabIndex = 15;
-            label9.Text = "Temps estimé (h) : ";
+            label9.Text = "Temps estimé (h):";
             // 
             // numTemps
             // 
-            numTemps.Location = new Point(315, 636);
+            numTemps.BackColor = Color.WhiteSmoke;
+            numTemps.BorderStyle = BorderStyle.None;
+            numTemps.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            numTemps.Location = new Point(467, 459);
             numTemps.Name = "numTemps";
-            numTemps.Size = new Size(127, 31);
+            numTemps.Size = new Size(150, 30);
             numTemps.TabIndex = 16;
             // 
             // btnAjouter
             // 
+            btnAjouter.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAjouter.CheckButton = false;
             btnAjouter.Checked = false;
-            btnAjouter.CheckedBackground = Color.FromArgb(255, 106, 0);
+            btnAjouter.CheckedBackground = Color.FromArgb(40, 167, 69);
             btnAjouter.CheckedForeColor = Color.White;
             btnAjouter.CheckedImageTint = Color.White;
-            btnAjouter.CheckedOutline = Color.FromArgb(255, 106, 0);
+            btnAjouter.CheckedOutline = Color.FromArgb(40, 167, 69);
             btnAjouter.Content = "Ajouter";
+            btnAjouter.Cursor = Cursors.Hand;
             btnAjouter.DialogResult = DialogResult.None;
-            btnAjouter.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAjouter.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAjouter.ForeColor = Color.White;
             btnAjouter.HoverBackground = Color.FromArgb(33, 136, 56);
             btnAjouter.HoveredImageTint = Color.White;
@@ -212,10 +241,11 @@ namespace FatiIkhlassYoun
             btnAjouter.ImageAutoCenter = true;
             btnAjouter.ImageExpand = new Point(0, 0);
             btnAjouter.ImageOffset = new Point(0, 0);
-            btnAjouter.NormalImageTint = Color.White;
-            btnAjouter.Location = new Point(470, 728);
+            btnAjouter.Location = new Point(583, 524);
             btnAjouter.Name = "btnAjouter";
             btnAjouter.NormalBackground = Color.FromArgb(40, 167, 69);
+            btnAjouter.NormalForeColor = Color.White;
+            btnAjouter.NormalImageTint = Color.White;
             btnAjouter.NormalOutline = Color.Empty;
             btnAjouter.OutlineThickness = 1.6F;
             btnAjouter.PressedBackground = Color.FromArgb(43, 168, 75);
@@ -223,13 +253,14 @@ namespace FatiIkhlassYoun
             btnAjouter.PressedImageTint = Color.White;
             btnAjouter.PressedOutline = Color.Empty;
             btnAjouter.Rounding = new Padding(8);
-            btnAjouter.Size = new Size(206, 73);
+            btnAjouter.Size = new Size(177, 83);
             btnAjouter.TabIndex = 17;
             btnAjouter.TextOffset = new Point(0, 0);
             btnAjouter.Click += btnAjouter_Click;
             // 
             // cuiButton2
             // 
+            cuiButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cuiButton2.CheckButton = false;
             cuiButton2.Checked = false;
             cuiButton2.CheckedBackground = Color.FromArgb(200, 35, 51);
@@ -237,8 +268,9 @@ namespace FatiIkhlassYoun
             cuiButton2.CheckedImageTint = Color.White;
             cuiButton2.CheckedOutline = Color.FromArgb(200, 35, 51);
             cuiButton2.Content = "Annuler";
+            cuiButton2.Cursor = Cursors.Hand;
             cuiButton2.DialogResult = DialogResult.None;
-            cuiButton2.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cuiButton2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cuiButton2.ForeColor = Color.White;
             cuiButton2.HoverBackground = Color.FromArgb(200, 35, 51);
             cuiButton2.HoveredImageTint = Color.White;
@@ -248,10 +280,11 @@ namespace FatiIkhlassYoun
             cuiButton2.ImageAutoCenter = true;
             cuiButton2.ImageExpand = new Point(0, 0);
             cuiButton2.ImageOffset = new Point(0, 0);
-            cuiButton2.NormalImageTint = Color.White;
-            cuiButton2.Location = new Point(213, 728);
+            cuiButton2.Location = new Point(366, 524);
             cuiButton2.Name = "cuiButton2";
             cuiButton2.NormalBackground = Color.FromArgb(223, 53, 69);
+            cuiButton2.NormalForeColor = Color.White;
+            cuiButton2.NormalImageTint = Color.White;
             cuiButton2.NormalOutline = Color.Empty;
             cuiButton2.OutlineThickness = 1.6F;
             cuiButton2.PressedBackground = Color.FromArgb(210, 35, 51);
@@ -259,75 +292,104 @@ namespace FatiIkhlassYoun
             cuiButton2.PressedImageTint = Color.White;
             cuiButton2.PressedOutline = Color.Empty;
             cuiButton2.Rounding = new Padding(8);
-            cuiButton2.Size = new Size(206, 73);
+            cuiButton2.Size = new Size(172, 83);
             cuiButton2.TabIndex = 18;
             cuiButton2.TextOffset = new Point(0, 0);
             cuiButton2.Click += cuiButton2_Click;
             // 
-            // textBox1
+            // label2
             // 
-            textBox1.Enabled = false;
-            textBox1.Location = new Point(315, 90);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(372, 31);
-            textBox1.TabIndex = 19;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(467, 90);
+            label2.Name = "label2";
+            label2.Size = new Size(226, 25);
+            label2.TabIndex = 21;
+            label2.Text = "Membre affecté à la tâche";
             // 
-            // text_box1
+            // panelHeader
             // 
-            text_box1.AutoSize = true;
-            text_box1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            text_box1.Location = new Point(41, 90);
-            text_box1.Name = "text_box1";
-            text_box1.Size = new Size(160, 28);
-            text_box1.TabIndex = 20;
-            text_box1.Text = "ID de la tache : ";
+            panelHeader.BackColor = Color.FromArgb(51, 51, 76);
+            panelHeader.Controls.Add(lblTitle);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(800, 60);
+            panelHeader.TabIndex = 36;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 15);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(243, 38);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Ajouter une tâche";
+            // 
+            // panelForm
+            // 
+            panelForm.BackColor = Color.White;
+            panelForm.Controls.Add(label1);
+            panelForm.Controls.Add(label3);
+            panelForm.Controls.Add(comboProjet);
+            panelForm.Controls.Add(label4);
+            panelForm.Controls.Add(txtTitre);
+            panelForm.Controls.Add(label5);
+            panelForm.Controls.Add(txtDescription);
+            panelForm.Controls.Add(label6);
+            panelForm.Controls.Add(dtpDebut);
+            panelForm.Controls.Add(label7);
+            panelForm.Controls.Add(dtpFin);
+            panelForm.Controls.Add(label8);
+            panelForm.Controls.Add(comboStatus);
+            panelForm.Controls.Add(label9);
+            panelForm.Controls.Add(numTemps);
+            panelForm.Controls.Add(btnAjouter);
+            panelForm.Controls.Add(cuiButton2);
+            panelForm.Controls.Add(label2);
+            panelForm.Dock = DockStyle.Fill;
+            panelForm.Location = new Point(0, 60);
+            panelForm.Name = "panelForm";
+            panelForm.Padding = new Padding(30);
+            panelForm.Size = new Size(800, 640);
+            panelForm.TabIndex = 37;
+            // 
+            // checkedListBoxMembres
+            // 
+            checkedListBoxMembres.BackColor = Color.WhiteSmoke;
+            checkedListBoxMembres.Font = new Font("Segoe UI", 10F);
+            checkedListBoxMembres.FormattingEnabled = true;
+            checkedListBoxMembres.Location = new Point(467, 120);
+            checkedListBoxMembres.Name = "checkedListBoxMembres";
+            checkedListBoxMembres.Size = new Size(300, 150);
+            checkedListBoxMembres.TabIndex = 22;
+            panelForm.Controls.Add(checkedListBoxMembres); // Ajout au panelForm et non au formulaire
             // 
             // AjouterTache
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(732, 847);
-            Controls.Add(text_box1);
-            Controls.Add(textBox1);
-            Controls.Add(cuiButton2);
-            Controls.Add(btnAjouter);
-            Controls.Add(numTemps);
-            Controls.Add(label9);
-            Controls.Add(comboStatus);
-            Controls.Add(label8);
-            Controls.Add(dtpFin);
-            Controls.Add(label7);
-            Controls.Add(dtpDebut);
-            Controls.Add(label6);
-            Controls.Add(txtDescription);
-            Controls.Add(label5);
-            Controls.Add(txtTitre);
-            Controls.Add(label4);
-            Controls.Add(comboProjet);
-            Controls.Add(label3);
-            Controls.Add(label1);
+            ClientSize = new Size(800, 700);
+            Controls.Add(checkedListBoxMembres);
+            Controls.Add(panelForm);
+            Controls.Add(panelHeader);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AjouterTache";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ajouter une tache";
-            Load += AjouterTache_Load;
             ((System.ComponentModel.ISupportInitialize)numTemps).EndInit();
+            panelHeader.ResumeLayout(false);
+            panelHeader.PerformLayout();
+            panelForm.ResumeLayout(false);
+            panelForm.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
-        private void AjouterTache_Load(object sender, EventArgs e)
-        {
-            ChargerProjets();
-            ChargerStatus();
-        }
 
         #endregion
 
@@ -348,7 +410,9 @@ namespace FatiIkhlassYoun
         private NumericUpDown numTemps;
         private CuoreUI.Controls.cuiButton btnAjouter;
         private CuoreUI.Controls.cuiButton cuiButton2;
-        private TextBox textBox1;
-        private Label text_box1;
+        private Label label2;
+        private Panel panelHeader;
+        private Label lblTitle;
+        private Panel panelForm;
     }
 }

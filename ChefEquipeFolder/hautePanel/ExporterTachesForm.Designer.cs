@@ -39,64 +39,88 @@
             label4 = new Label();
             btnExporter = new CuoreUI.Controls.cuiButton();
             cuiButton2 = new CuoreUI.Controls.cuiButton();
+            panelHeader = new Panel();
+            lblTitle = new Label();
+            panelForm = new Panel();
+            groupBoxFormat = new GroupBox();
+            radioPDF = new RadioButton();
+            radioCSV = new RadioButton();
+            lblCommentaire = new Label();
+            txtCommentaire = new TextBox();
+            panelHeader.SuspendLayout();
+            panelForm.SuspendLayout();
+            groupBoxFormat.SuspendLayout();
             SuspendLayout();
             // 
             // labelProjets
             // 
             labelProjets.AutoSize = true;
-            labelProjets.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            labelProjets.Location = new Point(24, 91);
+            labelProjets.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelProjets.ForeColor = Color.FromArgb(64, 64, 64);
+            labelProjets.Location = new Point(40, 70);
             labelProjets.Name = "labelProjets";
-            labelProjets.Size = new Size(102, 32);
+            labelProjets.Size = new Size(80, 25);
             labelProjets.TabIndex = 0;
             labelProjets.Text = "Projets :";
             // 
             // checkedListBoxProjets
             // 
+            checkedListBoxProjets.BackColor = Color.WhiteSmoke;
+            checkedListBoxProjets.BorderStyle = BorderStyle.None;
+            checkedListBoxProjets.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             checkedListBoxProjets.FormattingEnabled = true;
-            checkedListBoxProjets.Location = new Point(253, 91);
+            checkedListBoxProjets.Location = new Point(40, 100);
             checkedListBoxProjets.Name = "checkedListBoxProjets";
-            checkedListBoxProjets.Size = new Size(300, 116);
+            checkedListBoxProjets.Size = new Size(300, 112);
             checkedListBoxProjets.TabIndex = 1;
             // 
             // checkedListBoxStatuts
             // 
+            checkedListBoxStatuts.BackColor = Color.WhiteSmoke;
+            checkedListBoxStatuts.BorderStyle = BorderStyle.None;
+            checkedListBoxStatuts.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             checkedListBoxStatuts.FormattingEnabled = true;
-            checkedListBoxStatuts.Location = new Point(253, 259);
+            checkedListBoxStatuts.Location = new Point(40, 245);
             checkedListBoxStatuts.Name = "checkedListBoxStatuts";
-            checkedListBoxStatuts.Size = new Size(300, 116);
+            checkedListBoxStatuts.Size = new Size(300, 112);
             checkedListBoxStatuts.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Symbol", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(130, 24);
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(230, 20);
             label1.Name = "label1";
-            label1.Size = new Size(337, 48);
+            label1.Size = new Size(230, 32);
             label1.TabIndex = 3;
             label1.Text = "Exporter les tâches";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label2.Location = new Point(24, 259);
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(40, 215);
             label2.Name = "label2";
-            label2.Size = new Size(94, 32);
+            label2.Size = new Size(79, 25);
             label2.TabIndex = 4;
-            label2.Text = "Status :";
+            label2.Text = "Statuts :";
             // 
             // dateDebutPicker
             // 
-            dateDebutPicker.Location = new Point(253, 416);
+            dateDebutPicker.CalendarMonthBackground = Color.WhiteSmoke;
+            dateDebutPicker.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateDebutPicker.Location = new Point(40, 399);
             dateDebutPicker.Name = "dateDebutPicker";
             dateDebutPicker.Size = new Size(300, 31);
             dateDebutPicker.TabIndex = 5;
             // 
             // dateFinPicker
             // 
-            dateFinPicker.Location = new Point(253, 489);
+            dateFinPicker.CalendarMonthBackground = Color.WhiteSmoke;
+            dateFinPicker.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateFinPicker.Location = new Point(40, 469);
             dateFinPicker.Name = "dateFinPicker";
             dateFinPicker.Size = new Size(300, 31);
             dateFinPicker.TabIndex = 6;
@@ -104,35 +128,38 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label3.Location = new Point(24, 416);
+            label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
+            label3.Location = new Point(40, 369);
             label3.Name = "label3";
-            label3.Size = new Size(184, 32);
+            label3.Size = new Size(141, 25);
             label3.TabIndex = 7;
             label3.Text = "Date de début :";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label4.Location = new Point(24, 494);
+            label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(40, 439);
             label4.Name = "label4";
-            label4.Size = new Size(148, 32);
+            label4.Size = new Size(113, 25);
             label4.TabIndex = 8;
             label4.Text = "Date de fin :";
             // 
             // btnExporter
             // 
+            btnExporter.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnExporter.CheckButton = false;
             btnExporter.Checked = false;
-            btnExporter.CheckedBackground = Color.FromArgb(255, 106, 0);
+            btnExporter.CheckedBackground = Color.FromArgb(40, 167, 69);
             btnExporter.CheckedForeColor = Color.White;
             btnExporter.CheckedImageTint = Color.White;
-            btnExporter.CheckedOutline = Color.FromArgb(255, 106, 0);
+            btnExporter.CheckedOutline = Color.FromArgb(40, 167, 69);
             btnExporter.Content = "Exporter";
             btnExporter.Cursor = Cursors.Hand;
             btnExporter.DialogResult = DialogResult.None;
-            btnExporter.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExporter.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExporter.ForeColor = Color.White;
             btnExporter.HoverBackground = Color.FromArgb(33, 136, 56);
             btnExporter.HoveredImageTint = Color.White;
@@ -142,7 +169,7 @@
             btnExporter.ImageAutoCenter = true;
             btnExporter.ImageExpand = new Point(0, 0);
             btnExporter.ImageOffset = new Point(0, 0);
-            btnExporter.Location = new Point(383, 578);
+            btnExporter.Location = new Point(496, 538);
             btnExporter.Name = "btnExporter";
             btnExporter.NormalBackground = Color.FromArgb(40, 167, 69);
             btnExporter.NormalForeColor = Color.White;
@@ -154,13 +181,14 @@
             btnExporter.PressedImageTint = Color.White;
             btnExporter.PressedOutline = Color.Empty;
             btnExporter.Rounding = new Padding(8);
-            btnExporter.Size = new Size(206, 73);
+            btnExporter.Size = new Size(155, 70);
             btnExporter.TabIndex = 20;
             btnExporter.TextOffset = new Point(0, 0);
             btnExporter.Click += btnExporter_Click;
             // 
             // cuiButton2
             // 
+            cuiButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cuiButton2.CheckButton = false;
             cuiButton2.Checked = false;
             cuiButton2.CheckedBackground = Color.FromArgb(200, 35, 51);
@@ -170,7 +198,7 @@
             cuiButton2.Content = "Annuler";
             cuiButton2.Cursor = Cursors.Hand;
             cuiButton2.DialogResult = DialogResult.None;
-            cuiButton2.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cuiButton2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cuiButton2.ForeColor = Color.White;
             cuiButton2.HoverBackground = Color.FromArgb(200, 35, 51);
             cuiButton2.HoveredImageTint = Color.White;
@@ -180,7 +208,7 @@
             cuiButton2.ImageAutoCenter = true;
             cuiButton2.ImageExpand = new Point(0, 0);
             cuiButton2.ImageOffset = new Point(0, 0);
-            cuiButton2.Location = new Point(130, 578);
+            cuiButton2.Location = new Point(305, 538);
             cuiButton2.Name = "cuiButton2";
             cuiButton2.NormalBackground = Color.FromArgb(223, 53, 69);
             cuiButton2.NormalForeColor = Color.White;
@@ -192,33 +220,140 @@
             cuiButton2.PressedImageTint = Color.White;
             cuiButton2.PressedOutline = Color.Empty;
             cuiButton2.Rounding = new Padding(8);
-            cuiButton2.Size = new Size(206, 73);
+            cuiButton2.Size = new Size(155, 70);
             cuiButton2.TabIndex = 21;
             cuiButton2.TextOffset = new Point(0, 0);
             cuiButton2.Click += cuiButton2_Click;
+            // 
+            // panelHeader
+            // 
+            panelHeader.BackColor = Color.FromArgb(51, 51, 76);
+            panelHeader.Controls.Add(lblTitle);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(700, 60);
+            panelHeader.TabIndex = 0;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 15);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(217, 38);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Exporter Tâches";
+            // 
+            // panelForm
+            // 
+            panelForm.BackColor = Color.White;
+            panelForm.Controls.Add(label1);
+            panelForm.Controls.Add(labelProjets);
+            panelForm.Controls.Add(checkedListBoxProjets);
+            panelForm.Controls.Add(checkedListBoxStatuts);
+            panelForm.Controls.Add(label2);
+            panelForm.Controls.Add(dateDebutPicker);
+            panelForm.Controls.Add(dateFinPicker);
+            panelForm.Controls.Add(label3);
+            panelForm.Controls.Add(label4);
+            panelForm.Controls.Add(groupBoxFormat);
+            panelForm.Controls.Add(lblCommentaire);
+            panelForm.Controls.Add(txtCommentaire);
+            panelForm.Controls.Add(btnExporter);
+            panelForm.Controls.Add(cuiButton2);
+            panelForm.Dock = DockStyle.Fill;
+            panelForm.Location = new Point(0, 60);
+            panelForm.Name = "panelForm";
+            panelForm.Padding = new Padding(20);
+            panelForm.Size = new Size(700, 640);
+            panelForm.TabIndex = 1;
+            // 
+            // groupBoxFormat
+            // 
+            groupBoxFormat.Controls.Add(radioPDF);
+            groupBoxFormat.Controls.Add(radioCSV);
+            groupBoxFormat.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBoxFormat.ForeColor = Color.FromArgb(64, 64, 64);
+            groupBoxFormat.Location = new Point(371, 70);
+            groupBoxFormat.Name = "groupBoxFormat";
+            groupBoxFormat.Size = new Size(280, 142);
+            groupBoxFormat.TabIndex = 22;
+            groupBoxFormat.TabStop = false;
+            groupBoxFormat.Text = "Format d'export";
+            // 
+            // radioPDF
+            // 
+            radioPDF.AutoSize = true;
+            radioPDF.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioPDF.Location = new Point(20, 81);
+            radioPDF.Name = "radioPDF";
+            radioPDF.Size = new Size(223, 29);
+            radioPDF.TabIndex = 1;
+            radioPDF.Text = "PDF (Rapport structuré)";
+            radioPDF.UseVisualStyleBackColor = true;
+            radioPDF.CheckedChanged += RadioFormat_CheckedChanged;
+            // 
+            // radioCSV
+            // 
+            radioCSV.AutoSize = true;
+            radioCSV.Checked = true;
+            radioCSV.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioCSV.Location = new Point(20, 30);
+            radioCSV.Name = "radioCSV";
+            radioCSV.Size = new Size(122, 29);
+            radioCSV.TabIndex = 0;
+            radioCSV.TabStop = true;
+            radioCSV.Text = "CSV (Excel)";
+            radioCSV.UseVisualStyleBackColor = true;
+            radioCSV.CheckedChanged += RadioFormat_CheckedChanged;
+            // 
+            // lblCommentaire
+            // 
+            lblCommentaire.AutoSize = true;
+            lblCommentaire.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCommentaire.ForeColor = Color.FromArgb(64, 64, 64);
+            lblCommentaire.Location = new Point(371, 215);
+            lblCommentaire.Name = "lblCommentaire";
+            lblCommentaire.Size = new Size(134, 25);
+            lblCommentaire.TabIndex = 23;
+            lblCommentaire.Text = "Commentaire :";
+            lblCommentaire.Visible = false;
+            // 
+            // txtCommentaire
+            // 
+            txtCommentaire.BackColor = Color.WhiteSmoke;
+            txtCommentaire.BorderStyle = BorderStyle.None;
+            txtCommentaire.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCommentaire.Location = new Point(371, 245);
+            txtCommentaire.Multiline = true;
+            txtCommentaire.Name = "txtCommentaire";
+            txtCommentaire.ScrollBars = ScrollBars.Vertical;
+            txtCommentaire.Size = new Size(280, 219);
+            txtCommentaire.TabIndex = 24;
+            txtCommentaire.Visible = false;
             // 
             // ExporterTachesForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(621, 683);
-            Controls.Add(cuiButton2);
-            Controls.Add(btnExporter);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(dateFinPicker);
-            Controls.Add(dateDebutPicker);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(checkedListBoxStatuts);
-            Controls.Add(checkedListBoxProjets);
-            Controls.Add(labelProjets);
+            BackColor = Color.White;
+            ClientSize = new Size(700, 700);
+            Controls.Add(panelForm);
+            Controls.Add(panelHeader);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "ExporterTachesForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ExporterTachesForm";
             Load += ExporterTachesForm_Load;
+            panelHeader.ResumeLayout(false);
+            panelHeader.PerformLayout();
+            panelForm.ResumeLayout(false);
+            panelForm.PerformLayout();
+            groupBoxFormat.ResumeLayout(false);
+            groupBoxFormat.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -234,60 +369,14 @@
         private Label label4;
         private CuoreUI.Controls.cuiButton btnExporter;
         private CuoreUI.Controls.cuiButton cuiButton2;
-
-        // Ajoutez ces déclarations
+        private Panel panelHeader;
+        private Label lblTitle;
+        private Panel panelForm;
+        private GroupBox groupBoxFormat;
+        private RadioButton radioPDF;
+        private RadioButton radioCSV;
         private Label lblCommentaire;
         private TextBox txtCommentaire;
-        private RadioButton radioCSV;
-        private RadioButton radioPDF;
-        private GroupBox groupBoxFormat;
-
-        
-
-        private void InitializeFormatSelection()
-        {
-            groupBoxFormat = new GroupBox();
-            groupBoxFormat.Text = "Format d'export";
-            groupBoxFormat.Location = new Point(24, 550);
-            groupBoxFormat.Size = new Size(565, 80);
-
-            radioCSV = new RadioButton();
-            radioCSV.Text = "CSV (Excel)";
-            radioCSV.Checked = true;
-            radioCSV.Location = new Point(20, 30);
-            radioCSV.CheckedChanged += RadioFormat_CheckedChanged;
-
-            radioPDF = new RadioButton();
-            radioPDF.Text = "PDF (Rapport structuré)";
-            radioPDF.Location = new Point(200, 30);
-            radioPDF.CheckedChanged += RadioFormat_CheckedChanged;
-
-            groupBoxFormat.Controls.Add(radioCSV);
-            groupBoxFormat.Controls.Add(radioPDF);
-
-            // Ajout du champ commentaire (initialement caché)
-            lblCommentaire = new Label();
-            lblCommentaire.Text = "Commentaire :";
-            lblCommentaire.Location = new Point(24, 640);
-            lblCommentaire.Size = new Size(150, 25);
-            lblCommentaire.Visible = false;
-
-            txtCommentaire = new TextBox();
-            txtCommentaire.Multiline = true;
-            txtCommentaire.ScrollBars = ScrollBars.Vertical;
-            txtCommentaire.Location = new Point(180, 640);
-            txtCommentaire.Size = new Size(400, 100);
-            txtCommentaire.Visible = false;
-
-            this.Controls.Add(groupBoxFormat);
-            this.Controls.Add(lblCommentaire);
-            this.Controls.Add(txtCommentaire);
-
-            // Ajustez la position des boutons et la taille du formulaire
-            btnExporter.Location = new Point(383, 750);
-            cuiButton2.Location = new Point(130, 750);
-            this.ClientSize = new Size(621, 850);
-        }
 
         private void RadioFormat_CheckedChanged(object sender, EventArgs e)
         {
@@ -295,10 +384,9 @@
             lblCommentaire.Visible = isPDFSelected;
             txtCommentaire.Visible = isPDFSelected;
 
-            // Ajustez la taille du formulaire selon le choix
-            this.ClientSize = new Size(621, isPDFSelected ? 850 : 750);
+            // Ajustez la taille du formulaire si nécessaire
+            this.ClientSize = new Size(700, isPDFSelected ? 750 : 700);
+            panelForm.Height = isPDFSelected ? 690 : 640;
         }
-
-        // ... [Le reste de vos méthodes existantes]
     }
 }

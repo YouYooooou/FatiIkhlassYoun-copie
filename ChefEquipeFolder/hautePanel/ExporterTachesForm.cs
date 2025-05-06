@@ -26,7 +26,6 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
         public ExporterTachesForm()
         {
             InitializeComponent();
-            InitializeFormatSelection();
             this.Load += ExporterTachesForm_Load;
             btnExporter.Click += btnExporter_Click;
         }
@@ -274,11 +273,11 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
                 document.Add(iText.Chunk.NEWLINE);
 
                 // Tableau des tâches
-                iTextPdf.PdfPTable table = new iTextPdf.PdfPTable(5);
+                iTextPdf.PdfPTable table = new iTextPdf.PdfPTable(6);
                 table.WidthPercentage = 100;
-                table.SetWidths(new float[] { 2.5f, 1.5f, 1.5f, 1.5f, 2.5f });
+                table.SetWidths(new float[] { 2.5f, 1.5f, 1.5f, 1.5f, 2.5f, 3.5f }); // nouvelle colonne plus large pour les membres
 
-                string[] headers = { "TÂCHE", "DATE DÉBUT", "DATE FIN", "STATUT", "PROJET" };
+                string[] headers = { "TÂCHE", "DATE DÉBUT", "DATE FIN", "STATUT", "PROJET", "MEMBRES AFFECTÉS" };
                 iText.Font headerFont = iText.FontFactory.GetFont(iText.FontFactory.HELVETICA_BOLD, 10, iText.BaseColor.BLACK);
 
                 foreach (string header in headers)
@@ -307,9 +306,11 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
 
                     AddTableRow(table, row["NomProjet"]?.ToString() ?? "", contentFont, bgColor);
 
+                    // ✅ Membres affectés
+                    AddTableRow(table, row["MembresAffectes"]?.ToString() ?? "Aucun", contentFont, bgColor);
+
                     alternate = !alternate;
                 }
-
                 document.Add(table);
                 document.Add(iText.Chunk.NEWLINE);
 
@@ -349,47 +350,53 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
             }
         }
 
-        private DataTable GetTasksData(List<string> projetsIds, List<string> statuts)
+        private DataTable GetTasksData(List<string> projetsSelectionnes, List<string> statutsSelectionnes)
         {
-            // Modification ici: Utilisation de Name au lieu de FullName
-            string query = $@"
-                SELECT DISTINCT 
-                    t.Title, 
-                    t.StartDate, 
-                    t.DueDate, 
-                    t.Status, 
-                    p.Title AS NomProjet,
-                    u.Username AS ChefEquipeNom  
-                FROM Tasks t
-                JOIN Projects p ON t.ProjectID = p.ProjectID
-                JOIN Users u ON t.TeamLeadID = u.UserID
-                WHERE t.TeamLeadID = @TeamLeadID
-                AND t.ProjectID IN ({string.Join(",", projetsIds.Select((_, i) => $"@proj{i}"))})
-                AND t.Status IN ({string.Join(",", statuts.Select((_, i) => $"@stat{i}"))})
-                AND t.StartDate >= @DateDebut 
-                AND t.DueDate <= @DateFin";
-
-            DataTable dt = new DataTable();
+            DataTable dataTable = new DataTable();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
+                string query = @"
+            SELECT 
+                t.Title,
+                t.StartDate,
+                t.DueDate,
+                t.Status,
+                p.Title AS NomProjet,
+                u.Username AS ChefEquipeNom,
+                STRING_AGG(u2.Username, ', ') AS MembresAffectes
+            FROM Tasks t
+            INNER JOIN Projects p ON t.ProjectID = p.ProjectID
+            INNER JOIN Users u ON t.TeamLeadID = u.UserID
+            LEFT JOIN Task_Assignments ta ON ta.TaskID = t.TaskID
+            LEFT JOIN Users u2 ON ta.UserID = u2.UserID
+            WHERE 
+                t.TeamLeadID = @TeamLeadID
+                AND t.ProjectID IN (" + string.Join(",", projetsSelectionnes.Select((s, i) => "@proj" + i)) + @")
+                AND t.Status IN (" + string.Join(",", statutsSelectionnes.Select((s, i) => "@stat" + i)) + @")
+                AND t.StartDate >= @DateDebut AND t.DueDate <= @DateFin
+            GROUP BY 
+                t.Title, t.StartDate, t.DueDate, t.Status, p.Title, u.Username
+            ORDER BY t.StartDate";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@TeamLeadID", SessionUtilisateur.UserID);
                 cmd.Parameters.AddWithValue("@DateDebut", dateDebutPicker.Value.Date);
                 cmd.Parameters.AddWithValue("@DateFin", dateFinPicker.Value.Date);
 
-                for (int i = 0; i < projetsIds.Count; i++)
-                    cmd.Parameters.AddWithValue($"@proj{i}", projetsIds[i]);
+                for (int i = 0; i < projetsSelectionnes.Count; i++)
+                    cmd.Parameters.AddWithValue("@proj" + i, projetsSelectionnes[i]);
 
-                for (int i = 0; i < statuts.Count; i++)
-                    cmd.Parameters.AddWithValue($"@stat{i}", statuts[i]);
+                for (int i = 0; i < statutsSelectionnes.Count; i++)
+                    cmd.Parameters.AddWithValue("@stat" + i, statutsSelectionnes[i]);
 
-                conn.Open();
-                new SqlDataAdapter(cmd).Fill(dt);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dataTable);
             }
 
-            return dt;
+            return dataTable;
         }
+
 
         private void SaveToCsvFile(DataTable data)
         {
@@ -445,7 +452,8 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
             sb.AppendLine($"Généré le : {DateTime.Now:dd/MM/yyyy HH:mm}");
             sb.AppendLine($"Chef d'équipe : {chefEquipeNom}");
             sb.AppendLine();
-            sb.AppendLine("Titre;Date Début;Date Fin;Statut;Projet");
+            // Ajout de la colonne "Membres affectés" dans l'en-tête
+            sb.AppendLine("Titre;Date Début;Date Fin;Statut;Projet;Membres affectés");
 
             foreach (DataRow row in data.Rows)
             {
@@ -454,12 +462,13 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
                     FormatDateForCsv(row["StartDate"]),
                     FormatDateForCsv(row["DueDate"]),
                     CleanCsvField(row["Status"]?.ToString()),
-                    CleanCsvField(row["NomProjet"]?.ToString())));
+                    CleanCsvField(row["NomProjet"]?.ToString()),
+                    CleanCsvField(row["MembresAffectes"]?.ToString() ?? "Aucun") // Ajout des membres affectés
+                ));
             }
 
             return sb.ToString();
         }
-
         private void cuiButton2_Click(object sender, EventArgs e)
         {
             this.Close();

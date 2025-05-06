@@ -50,15 +50,56 @@ namespace FatiIkhlassYoun.NewFolder
         }
 
 
-      
+        private void SupprimerTacheDeLaBase(int taskId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // 1. D'abord supprimer les assignations de tâche
+                    string deleteAssignmentsQuery = "DELETE FROM Task_Assignments WHERE TaskID = @TaskID";
+                    SqlCommand deleteAssignmentsCmd = new SqlCommand(deleteAssignmentsQuery, conn, transaction);
+                    deleteAssignmentsCmd.Parameters.AddWithValue("@TaskID", taskId);
+                    deleteAssignmentsCmd.ExecuteNonQuery();
+
+                    // 2. Ensuite supprimer la tâche elle-même
+                    string deleteTaskQuery = "DELETE FROM Tasks WHERE TaskID = @TaskID";
+                    SqlCommand deleteTaskCmd = new SqlCommand(deleteTaskQuery, conn, transaction);
+                    deleteTaskCmd.Parameters.AddWithValue("@TaskID", taskId);
+                    int rowsAffected = deleteTaskCmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        transaction.Commit();
+                        MessageBox.Show("Tâche supprimée avec succès.");
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Aucune tâche trouvée avec cet ID.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Erreur lors de la suppression de la tâche: {ex.Message}");
+                }
+            }
+        }
 
 
 
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            // Ouvre le formulaire d'authentification pour confirmer l'identité
             FormAuthConfirmation authForm = new FormAuthConfirmation(userIdChefEquipe, "delete", taskId);
-            authForm.ShowDialog();
+            if (authForm.ShowDialog() == DialogResult.OK)
+            {
+                // Si authentification réussie, supprimer la tâche
+                SupprimerTacheDeLaBase(taskId);
+            }
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)

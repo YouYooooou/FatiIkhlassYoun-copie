@@ -212,12 +212,34 @@ namespace FatiIkhlassYoun
 
         private void cuiButton1_Click(object sender, EventArgs e)
         {
-            AjouterTache form = new AjouterTache(SessionUtilisateur.UserID);
-            form.TaskAdded += (s, args) => RefreshTreeView();
-            form.ShowDialog();
+            try
+            {
+                using (AjouterTache form = new AjouterTache(SessionUtilisateur.UserID))
+                {
+                    // Abonnement à l'événement avant d'afficher le formulaire
+                    form.TaskAdded += (s, args) =>
+                    {
+                        // Rafraîchir le TreeView sur le thread UI
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            RefreshTreeView();
+                        });
+                    };
 
+                    var result = form.ShowDialog();
+
+                    // Vous pouvez vérifier le résultat si nécessaire
+                    if (result == DialogResult.OK)
+                    {
+                        // Action supplémentaire si besoin
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
-
 
 
 
@@ -319,6 +341,42 @@ namespace FatiIkhlassYoun
             };
 
             LoadContent(alertControl);
+        }
+
+        private void cuiButtonADD_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (AjouterTache form = new AjouterTache(SessionUtilisateur.UserID))
+                {
+                    // Abonnement à l'événement avant d'afficher le formulaire
+                    form.TaskAdded += (s, args) =>
+                    {
+                        // Rafraîchir le TreeView sur le thread UI
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            RefreshTreeView();
+                        });
+                    };
+
+                    var result = form.ShowDialog();
+
+                    // Vous pouvez vérifier le résultat si nécessaire
+                    if (result == DialogResult.OK)
+                    {
+                        // Action supplémentaire si besoin
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnModifierTache_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

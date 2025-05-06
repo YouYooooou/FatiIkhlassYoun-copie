@@ -126,7 +126,7 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
             {
                 BackColor = alert.IsOverdue ? Color.FromArgb(255, 230, 230) : Color.FromArgb(255, 255, 200),
                 BorderStyle = BorderStyle.FixedSingle,
-                Width = 730,
+                Width = 900,
                 Height = 120,
                 Padding = new Padding(10)
             };

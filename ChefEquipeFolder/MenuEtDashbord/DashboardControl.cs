@@ -28,6 +28,7 @@ namespace FatiIkhlassYoun
             this.Load += UserControlDashboard_Load;
             idChefEquipe = SessionUtilisateur.UserID;
 
+
             btnModifier = new Button
             {
                 Text = "Modifier",
@@ -176,15 +177,21 @@ namespace FatiIkhlassYoun
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT 
-                                t.TaskID,
-                                t.Title AS TitreTache,
-                                t.Status,
-                                t.DueDate,
-                                p.Title AS NomProjet
-                             FROM Tasks t
-                             JOIN Projects p ON t.ProjectID = p.ProjectID
-                             WHERE t.TeamLeadID = @idChefEquipe";
+                // Nouvelle requête qui regroupe les membres par tâche
+                string query = @"
+        SELECT 
+            t.TaskID,
+            t.Title AS TitreTache,
+            t.Status,
+            t.DueDate,
+            p.Title AS NomProjet,
+            STRING_AGG(u.Username, ', ') AS MembresAffectes
+        FROM Tasks t
+        JOIN Projects p ON t.ProjectID = p.ProjectID
+        LEFT JOIN Task_Assignments ta ON t.TaskID = ta.TaskID
+        LEFT JOIN Users u ON ta.UserID = u.UserID
+        WHERE t.TeamLeadID = @idChefEquipe
+        GROUP BY t.TaskID, t.Title, t.Status, t.DueDate, p.Title";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -194,8 +201,32 @@ namespace FatiIkhlassYoun
                     da.Fill(dt);
                     dataGridViewTaches.DataSource = dt;
 
+                    // Configurer les colonnes
+                    ConfigurerColonnesDataGridView();
                     ColorerTachesRetardées();
                 }
+            }
+        }
+        private void ConfigurerColonnesDataGridView()
+        {
+            if (dataGridViewTaches.Columns.Count > 0)
+            {
+                // Masquer la colonne TaskID (optionnel)
+                dataGridViewTaches.Columns["TaskID"].Visible = false;
+
+                // Configurer les en-têtes
+                dataGridViewTaches.Columns["TitreTache"].HeaderText = "Tâche";
+                dataGridViewTaches.Columns["Status"].HeaderText = "Statut";
+                dataGridViewTaches.Columns["DueDate"].HeaderText = "Date limite";
+                dataGridViewTaches.Columns["NomProjet"].HeaderText = "Projet";
+                dataGridViewTaches.Columns["MembresAffectes"].HeaderText = "Membres affectés";
+
+                // Formater la date
+                dataGridViewTaches.Columns["DueDate"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
+                // Configurer la colonne des membres pour afficher les noms sur plusieurs lignes
+                dataGridViewTaches.Columns["MembresAffectes"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                dataGridViewTaches.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             }
         }
         private void ColorerTachesRetardées()
@@ -272,24 +303,43 @@ namespace FatiIkhlassYoun
         public void SelectTaskInGrid(int taskId)
         {
             // Attendre que la DataGridView soit remplie si nécessaire
-            if (dataGridViewTaches.DataSource == null)
+            if (dataGridViewTaches.DataSource == null || dataGridViewTaches.Rows.Count == 0)
             {
                 ChargerTachesChefEquipe(idChefEquipe);
             }
 
             foreach (DataGridViewRow row in dataGridViewTaches.Rows)
             {
-                if (row.Cells["TaskID"].Value != null &&
+                // Vérifier si la ligne n'est pas une nouvelle ligne (ligne vide pour l'ajout)
+                if (!row.IsNewRow && row.Cells["TaskID"].Value != null &&
                     Convert.ToInt32(row.Cells["TaskID"].Value) == taskId)
                 {
-                    // Sélectionner la ligne
-                    row.Selected = true;
-                    dataGridViewTaches.CurrentCell = row.Cells[0];
-                    dataGridViewTaches.FirstDisplayedScrollingRowIndex = row.Index;
+                    try
+                    {
+                        // Désélectionner toutes les lignes d'abord
+                        dataGridViewTaches.ClearSelection();
 
-                    // Simuler un clic sur la cellule pour afficher les boutons
-                    dataGridViewTaches_CellClick(null, new DataGridViewCellEventArgs(0, row.Index));
-                    break;
+                        // Sélectionner la ligne
+                        row.Selected = true;
+
+                        // Définir la cellule courante (utilisez une colonne visible)
+                        dataGridViewTaches.CurrentCell = row.Cells[1]; // Choisissez l'index d'une colonne visible
+
+                        // Faire défiler jusqu'à la ligne
+                        dataGridViewTaches.FirstDisplayedScrollingRowIndex = row.Index;
+
+                        // Simuler un clic sur la ligne pour afficher les boutons
+                        if (dataGridViewTaches_CellClick != null)
+                        {
+                            dataGridViewTaches_CellClick(null, new DataGridViewCellEventArgs(1, row.Index));
+                        }
+
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de la sélection de la tâche: {ex.Message}");
+                    }
                 }
             }
         }

@@ -46,7 +46,7 @@
             // 
             labelTitre.AutoSize = true;
             labelTitre.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTitre.Location = new Point(249, 18);
+            labelTitre.Location = new Point(316, 11);
             labelTitre.Name = "labelTitre";
             labelTitre.Size = new Size(290, 48);
             labelTitre.TabIndex = 0;
@@ -62,7 +62,7 @@
             groupBoxStats.Controls.Add(labelTachesTerminees);
             groupBoxStats.Enabled = false;
             groupBoxStats.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBoxStats.Location = new Point(86, 69);
+            groupBoxStats.Location = new Point(153, 73);
             groupBoxStats.Name = "groupBoxStats";
             groupBoxStats.Size = new Size(578, 143);
             groupBoxStats.TabIndex = 1;
@@ -114,7 +114,7 @@
             // progressBarTaches
             // 
             progressBarTaches.ForeColor = Color.FromArgb(0, 192, 0);
-            progressBarTaches.Location = new Point(68, 558);
+            progressBarTaches.Location = new Point(135, 551);
             progressBarTaches.Name = "progressBarTaches";
             progressBarTaches.Size = new Size(578, 23);
             progressBarTaches.Style = ProgressBarStyle.Continuous;
@@ -124,7 +124,7 @@
             // 
             labelProgression.AutoSize = true;
             labelProgression.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            labelProgression.Location = new Point(652, 558);
+            labelProgression.Location = new Point(719, 546);
             labelProgression.Name = "labelProgression";
             labelProgression.Size = new Size(41, 28);
             labelProgression.TabIndex = 4;
@@ -134,7 +134,7 @@
             // 
             labelTitreProgression.AutoSize = true;
             labelTitreProgression.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            labelTitreProgression.Location = new Point(68, 528);
+            labelTitreProgression.Location = new Point(135, 520);
             labelTitreProgression.Name = "labelTitreProgression";
             labelTitreProgression.Size = new Size(315, 28);
             labelTitreProgression.TabIndex = 5;
@@ -144,11 +144,11 @@
             // 
             dataGridViewTaches.AllowUserToAddRows = false;
             dataGridViewTaches.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewTaches.Location = new Point(39, 260);
+            dataGridViewTaches.Location = new Point(74, 255);
             dataGridViewTaches.Name = "dataGridViewTaches";
             dataGridViewTaches.ReadOnly = true;
             dataGridViewTaches.RowHeadersWidth = 62;
-            dataGridViewTaches.Size = new Size(693, 231);
+            dataGridViewTaches.Size = new Size(756, 231);
             dataGridViewTaches.TabIndex = 2;
             dataGridViewTaches.CellContentClick += dataGridViewTaches_CellContentClick;
             // 
@@ -163,7 +163,7 @@
             Controls.Add(groupBoxStats);
             Controls.Add(labelTitre);
             Name = "DashboardControl";
-            Size = new Size(766, 673);
+            Size = new Size(927, 616);
             Load += DashboardControl_Load;
             groupBoxStats.ResumeLayout(false);
             groupBoxStats.PerformLayout();

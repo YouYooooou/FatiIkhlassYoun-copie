@@ -91,48 +91,51 @@ namespace FatiIkhlassYoun.NewFolder
 
                         // 5. Ouvrir le formulaire de vérification du code
                         FormCodeVerification codeForm = new FormCodeVerification(codeVerification, action, taskId);
-                        codeForm.ShowDialog();
+                        var result = codeForm.ShowDialog();
 
-                        if (codeForm.IsCodeValid)
+                        if (result == DialogResult.OK && codeForm.IsCodeValid)
                         {
-                            if (action == "delete")
-                            {
-                                SupprimerTacheDeLaBase(taskId);
-                            }
-                            // Tu peux ajouter ici d'autres actions si besoin ("add", "update", etc.)
-                            else if (action == "add")
-                            {
-                                // ✅ Retourne au formulaire parent avec succès
-                                this.DialogResult = DialogResult.OK;
-                            }
-                            else if (action == "update")
-                            {
-                                this.DialogResult = DialogResult.OK;
-                            }
+                            // Indiquer que l'authentification a réussi
+                            this.DialogResult = DialogResult.OK;
+
+                            // Fermer ce formulaire
                             this.Close();
+
+                            // Trouver et fermer le formulaire parent (AjouterTache/ModifierTache)
+                            foreach (Form form in Application.OpenForms)
+                            {
+                                if (form is AjouterTache || form is ModifierTache)
+                                {
+                                    form.DialogResult = DialogResult.OK;
+                                    form.Close();
+                                    break;
+                                }
+                            }
+
+                            // Retourner au dashboard principal
+                            RetourAuDashboard();
                         }
                         else
                         {
-                            MessageBox.Show("Action annulée : code incorrect.");
                             this.DialogResult = DialogResult.Cancel;
                         }
-
-                        this.Close(); // Ferme le formulaire d'authentification
-                                      // Procède à l'action (ajouter, modifier, supprimer)
-                                      // Par exemple, appeler la méthode de suppression ici
                     }
-                    else
-                    {
-                        MessageBox.Show("L'utilisateur ou le mot de passe est incorrect.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("L'utilisateur ou le mot de passe est incorrect.");
                 }
             }
         }
-
+        private void RetourAuDashboard()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is MenuDeChefEquipe)
+                {
+                    form.Show();
+                    form.BringToFront();
+                    ((MenuDeChefEquipe)form).LoadContent(new DashboardControl());
+                    break;
+                }
+            }
+        }
         private void EnvoyerEmailVerification(string email, string code)
         {
             try
@@ -156,26 +159,7 @@ namespace FatiIkhlassYoun.NewFolder
         }
 
 
-        private void SupprimerTacheDeLaBase(int taskId)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string query = "DELETE FROM Tasks WHERE TaskID = @TaskID";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@TaskID", taskId);
-
-                conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Tâche supprimée avec succès.");
-                }
-                else
-                {
-                    MessageBox.Show("Erreur lors de la suppression de la tâche.");
-                }
-            }
-        }
+        
         private void txtUsername_Enter(object sender, EventArgs e)
         {
             txtUsername.BackColor = Color.White;

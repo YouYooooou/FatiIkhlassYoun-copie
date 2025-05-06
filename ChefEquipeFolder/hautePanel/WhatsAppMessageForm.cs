@@ -130,6 +130,21 @@ namespace FatiIkhlassYoun.ChefEquipeFolder.hautePanel
             txtCustomMessage.Visible = rbCustom.Checked;
             txtSubject.Visible = !rbCustom.Checked;
         }
+
+        private void txtSubject_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelForm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cuiButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
     public class User

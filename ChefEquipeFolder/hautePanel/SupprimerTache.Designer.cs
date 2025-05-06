@@ -20,8 +20,6 @@
             base.Dispose(disposing);
         }
 
-
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -30,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panelHeader = new Panel();
+            lblTitle = new Label();
             label1 = new Label();
             txtDescription = new TextBox();
             txtTitre = new TextBox();
@@ -37,60 +37,92 @@
             label3 = new Label();
             btnAnnuler = new CuoreUI.Controls.cuiButton();
             btnSupprimer = new CuoreUI.Controls.cuiButton();
+            panelHeader.SuspendLayout();
             SuspendLayout();
+            // 
+            // panelHeader
+            // 
+            panelHeader.BackColor = Color.FromArgb(51, 51, 76);
+            panelHeader.Controls.Add(lblTitle);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(624, 60);
+            panelHeader.TabIndex = 32;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 15);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(228, 38);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Supprimer Tâche";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(252, 22);
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(192, 86);
             label1.Name = "label1";
-            label1.Size = new Size(216, 45);
-            label1.TabIndex = 4;
-            label1.Text = "Deleat a Task";
+            label1.Size = new Size(252, 32);
+            label1.TabIndex = 33;
+            label1.Text = "Supprimer une tâche";
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(343, 253);
+            txtDescription.BackColor = Color.WhiteSmoke;
+            txtDescription.BorderStyle = BorderStyle.None;
+            txtDescription.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescription.Location = new Point(52, 246);
             txtDescription.MaxLength = 200;
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
             txtDescription.ReadOnly = true;
             txtDescription.ScrollBars = ScrollBars.Vertical;
-            txtDescription.Size = new Size(352, 141);
-            txtDescription.TabIndex = 29;
+            txtDescription.Size = new Size(520, 100);
+            txtDescription.TabIndex = 37;
             // 
             // txtTitre
             // 
-            txtTitre.Location = new Point(343, 176);
+            txtTitre.BackColor = Color.WhiteSmoke;
+            txtTitre.BorderStyle = BorderStyle.None;
+            txtTitre.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTitre.Location = new Point(52, 166);
             txtTitre.MaxLength = 20;
             txtTitre.Name = "txtTitre";
             txtTitre.ReadOnly = true;
-            txtTitre.Size = new Size(352, 31);
-            txtTitre.TabIndex = 28;
+            txtTitre.Size = new Size(520, 27);
+            txtTitre.TabIndex = 36;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(27, 253);
+            label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(52, 216);
             label4.Name = "label4";
-            label4.Size = new Size(138, 28);
-            label4.TabIndex = 26;
-            label4.Text = "Description : ";
+            label4.Size = new Size(117, 25);
+            label4.TabIndex = 35;
+            label4.Text = "Description :";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(27, 179);
+            label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
+            label3.Location = new Point(52, 136);
             label3.Name = "label3";
-            label3.Size = new Size(167, 28);
-            label3.TabIndex = 25;
-            label3.Text = "Titre de la tâche";
+            label3.Size = new Size(135, 25);
+            label3.TabIndex = 34;
+            label3.Text = "Titre de tâche :";
             // 
             // btnAnnuler
             // 
+            btnAnnuler.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAnnuler.CheckButton = false;
             btnAnnuler.Checked = false;
             btnAnnuler.CheckedBackground = Color.FromArgb(200, 35, 51);
@@ -98,8 +130,9 @@
             btnAnnuler.CheckedImageTint = Color.White;
             btnAnnuler.CheckedOutline = Color.FromArgb(200, 35, 51);
             btnAnnuler.Content = "Annuler";
+            btnAnnuler.Cursor = Cursors.Hand;
             btnAnnuler.DialogResult = DialogResult.None;
-            btnAnnuler.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAnnuler.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAnnuler.ForeColor = Color.White;
             btnAnnuler.HoverBackground = Color.FromArgb(200, 35, 51);
             btnAnnuler.HoveredImageTint = Color.White;
@@ -109,7 +142,7 @@
             btnAnnuler.ImageAutoCenter = true;
             btnAnnuler.ImageExpand = new Point(0, 0);
             btnAnnuler.ImageOffset = new Point(0, 0);
-            btnAnnuler.Location = new Point(232, 450);
+            btnAnnuler.Location = new Point(272, 387);
             btnAnnuler.Name = "btnAnnuler";
             btnAnnuler.NormalBackground = Color.FromArgb(223, 53, 69);
             btnAnnuler.NormalForeColor = Color.White;
@@ -121,24 +154,25 @@
             btnAnnuler.PressedImageTint = Color.White;
             btnAnnuler.PressedOutline = Color.Empty;
             btnAnnuler.Rounding = new Padding(8);
-            btnAnnuler.Size = new Size(206, 73);
-            btnAnnuler.TabIndex = 31;
+            btnAnnuler.Size = new Size(134, 59);
+            btnAnnuler.TabIndex = 39;
             btnAnnuler.TextOffset = new Point(0, 0);
-            btnAnnuler.Click += btnAnnuler_Click;
             // 
             // btnSupprimer
             // 
+            btnSupprimer.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSupprimer.CheckButton = false;
             btnSupprimer.Checked = false;
-            btnSupprimer.CheckedBackground = Color.FromArgb(255, 106, 0);
+            btnSupprimer.CheckedBackground = Color.FromArgb(200, 35, 51);
             btnSupprimer.CheckedForeColor = Color.White;
             btnSupprimer.CheckedImageTint = Color.White;
-            btnSupprimer.CheckedOutline = Color.FromArgb(255, 106, 0);
+            btnSupprimer.CheckedOutline = Color.FromArgb(200, 35, 51);
             btnSupprimer.Content = "Supprimer";
+            btnSupprimer.Cursor = Cursors.Hand;
             btnSupprimer.DialogResult = DialogResult.None;
-            btnSupprimer.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSupprimer.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSupprimer.ForeColor = Color.White;
-            btnSupprimer.HoverBackground = Color.FromArgb(33, 136, 56);
+            btnSupprimer.HoverBackground = Color.FromArgb(200, 35, 51);
             btnSupprimer.HoveredImageTint = Color.White;
             btnSupprimer.HoverForeColor = Color.White;
             btnSupprimer.HoverOutline = Color.Empty;
@@ -146,45 +180,50 @@
             btnSupprimer.ImageAutoCenter = true;
             btnSupprimer.ImageExpand = new Point(0, 0);
             btnSupprimer.ImageOffset = new Point(0, 0);
-            btnSupprimer.Location = new Point(489, 450);
+            btnSupprimer.Location = new Point(438, 387);
             btnSupprimer.Name = "btnSupprimer";
-            btnSupprimer.NormalBackground = Color.FromArgb(40, 167, 69);
+            btnSupprimer.NormalBackground = Color.FromArgb(223, 53, 69);
             btnSupprimer.NormalForeColor = Color.White;
             btnSupprimer.NormalImageTint = Color.White;
             btnSupprimer.NormalOutline = Color.Empty;
             btnSupprimer.OutlineThickness = 1.6F;
-            btnSupprimer.PressedBackground = Color.FromArgb(43, 168, 75);
+            btnSupprimer.PressedBackground = Color.FromArgb(210, 35, 51);
             btnSupprimer.PressedForeColor = Color.White;
             btnSupprimer.PressedImageTint = Color.White;
             btnSupprimer.PressedOutline = Color.Empty;
             btnSupprimer.Rounding = new Padding(8);
-            btnSupprimer.Size = new Size(206, 73);
-            btnSupprimer.TabIndex = 30;
+            btnSupprimer.Size = new Size(134, 59);
+            btnSupprimer.TabIndex = 38;
             btnSupprimer.TextOffset = new Point(0, 0);
-            btnSupprimer.Click += btnSupprimer_Click;
             // 
             // SupprimerTache
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(732, 562);
-            Controls.Add(btnAnnuler);
-            Controls.Add(btnSupprimer);
+            BackColor = Color.White;
+            ClientSize = new Size(624, 487);
+            Controls.Add(label1);
             Controls.Add(txtDescription);
             Controls.Add(txtTitre);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label1);
+            Controls.Add(btnAnnuler);
+            Controls.Add(btnSupprimer);
+            Controls.Add(panelHeader);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SupprimerTache";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SupprimerTache";
             Load += SupprimerTache_Load;
+            panelHeader.ResumeLayout(false);
+            panelHeader.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
+        private Panel panelHeader;
+        private Label lblTitle;
         private Label label1;
         private TextBox txtDescription;
         private TextBox txtTitre;
