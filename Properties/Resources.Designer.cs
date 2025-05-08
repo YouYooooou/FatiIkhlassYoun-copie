@@ -10,8 +10,9 @@
 
 namespace FatiIkhlassYoun.Properties {
     using System;
-    
-    
+    using System.Drawing;
+
+
     /// <summary>
     ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
     /// </summary>
@@ -23,7 +24,10 @@ namespace FatiIkhlassYoun.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+        internal static Image icons8_refresh_321;
+        internal static Image icons8_admin_100;
+        internal static Image icons8_cancel_50;
+        internal static Image icons8_notification_50;
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
