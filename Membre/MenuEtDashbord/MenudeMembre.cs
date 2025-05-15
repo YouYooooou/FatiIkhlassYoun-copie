@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using FatiIkhlassYoun.ChefEquipeFolder.hautePanel;
+using FatiIkhlassYoun.MemberEquipeFolder.hautePanel;
+using FatiIkhlassYoun.Membre.AlertetCalendrier;
 namespace FatiIkhlassYoun.membreFolder
 {
     public partial class MenudeMembre : Form
@@ -250,6 +252,43 @@ namespace FatiIkhlassYoun.membreFolder
             FormMbrExporter formExport = new FormMbrExporter(SessionUtilisateur.UserID);
             formExport.ShowDialog();
 
+        }
+        private void ShowAlertControl()
+        {
+            // Créez une instance du contrôle d'alertes pour membre
+            var alertControl = new AlertControlMember(SessionUtilisateur.UserID);
+
+            // Abonnez-vous à l'événement OnTaskSelected si nécessaire
+            alertControl.OnTaskSelected += (taskId) =>
+            {
+                // Vous pouvez implémenter ici la logique pour afficher les détails de la tâche
+                DisplayTaskDetails(taskId);
+            };
+
+            // Chargez le contrôle dans le panel
+            LoadContent(alertControl);
+        }
+        private void btnAlert_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var alertControl = new AlertControlMember(SessionUtilisateur.UserID))
+                {
+                    alertControl.OnTaskSelected += (taskId) => DisplayTaskDetails(taskId);
+                    LoadContent(alertControl);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors du chargement des alertes: {ex.Message}",
+                              "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cuiButton2_Click(object sender, EventArgs e)
+        {
+            var calendrierControl = new CalendrierControleMbr();
+            LoadContent(calendrierControl);
         }
     }
 }

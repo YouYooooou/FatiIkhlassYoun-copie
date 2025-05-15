@@ -377,16 +377,18 @@
   </data>
   <data name="cuiButtonProgress.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAcVJREFUaEPtlUFKA1EQRHvlFRTvfxJduRJB0NsoX5IwPlOprpkwZmAe9KLS7//p
-        ZqKp2tnZ2dnZAHdV9VlVX826WcYiH2cGVrVJ7qvqfeuLPEze1PSNbYrpmxh/P48zF+HXsltX4dwSgzkP
-        4YDdWoxaYjDnIemZ1D/LpSUGcx6Snkn9P7glBnMekp5J/V90lhjMeUh6JvVP8F/syIrnqnrih4Z0sNT/
-        ofsmlpAOlvqrLDFIB4v8tZYYRIMl/ppLDNqDHWj5ay8xaA02wfr/scTADgYu+kuWOF6cFs93kf6SJQYc
-        sFs830X6b4eG+7FTyIsF9Jkd0n+pqteZSwzkxQL6zI7Ub5NeTJ/Zkfpt0ovpMztSv016MX1mR+q3SS+m
-        z+xI/TbpxfSZHanfJr2YPrMj9dukF9Nndkj/2EiL57vQZ3ZInwN2i+e70Gd2SF82BPSZHfSZHdKXDQF9
-        Zgd9Zof0ZUNAn9lBn9khfdkQ0Gd20Gd2SF82BPSZHfSZHdKXDQF9Zgd9Zof0ZUNAn9lBn9khfdkQ0Gd2
-        0Gd2SF82BPSZHfSZHdKXDQF9Zgd9Zof0ZUNAn9lBn9kh/WMjrVs5f4JCt27i/DfV9BGGymr0SQAAAABJ
-        RU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EAAACxABrSO9dQAAAllJREFUaEPtmbkKFUEQRY+ggRsoguaCnyBuuZGZGomBgeBHCC6gCGJiLvgRbpir
+        gX+g/oCCC4q7oBT0QHO5b7qnZwYGnAOXgTdVXVXz3lQvD1ZWVpbEDuA68Ab4ma7XgO1qOCU3ge/A3w2K
+        RG6okyGSf2H8Q8/nKmIL8MUEVP1QR0M8efXLdVUdpiKebt830KlE/FzUJ9drdZiD/cBLE7ymgD/GJ1fc
+        n5VDhadYQu2dZuMw8DYLFE/r0sDgmqzTLJwEPmdBvgKn0r0hwTVZp8m5APzOArwHTmT3hwTXZJ0mI9pn
+        TDD54PH7j/cgp+tOcS2hyTpNwlbgngwcneeAGqYWG/NEzUSmyTqNZifwQAZ9CuxWwwY0WadR7EtTej7g
+        fWCbGjaiyTo1cxB4JYPdSu/CVGiyTk1s6vFTo8k6DSb6efT1boC8x/cRrfRJeoFDj4HjaiRosk6DuCg9
+        /h1wRI0MZ8WvU3x2Ro0z1N6pitoe79gLfDKBO30E9qhTQm2dqrgjTtHjY5VZw3kTVHVOnRJq51RFvrZ/
+        BOxSgx4um6CqsHGonVMVt4FvwN006w4hdk0aVLVpZ6V2TrOzFlDQ7CyqgJYzmsUU0HpGs5gCWs9oFlNA
+        3+lCaNMZzWIKaD2jWUwB6ujkWAsoqBp1dHKsBRRUjTo6OdYCCqqmtY2O2Q+0xrSUJrI4YnGM2ZG1xrTo
+        nlh1RR0SpT3xh549cWtMSyzW9BSu07OexVwQJw/uVOIXcFqNM8bEtIRDvHCx7onldFzjKdQMdCztp+N/
+        g9BD4KgaGcbEXFn5L/kHJfMYdohNFQcAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="contextMenuAdd.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

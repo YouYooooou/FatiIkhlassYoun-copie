@@ -9,12 +9,12 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Globalization;
 using System.Text;
-using System.Configuration;
+
 namespace FatiIkhlassYoun
 {
     public partial class ReportGeneratorForm : Form
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["ProjectManagementSystem"].ConnectionString;
+        private readonly string connectionString = "Data Source=DESKTOP-78OLGDN;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
 
         public ReportGeneratorForm()
         {
@@ -260,7 +260,7 @@ namespace FatiIkhlassYoun
                 // Demander où sauvegarder les fichiers
                 using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
-                    saveDialog.Filter = "Fichiers PDF (*.pdf)|*.pdf";
+                    saveDialog.Filter = "Fichiers PDF (.pdf)|.pdf";
                     saveDialog.FileName = $"RapportTaches_{DateTime.Now:yyyyMMdd_HHmmss}";
                     saveDialog.DefaultExt = "pdf";
                     saveDialog.AddExtension = true;

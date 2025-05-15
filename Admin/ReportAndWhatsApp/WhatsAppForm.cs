@@ -4,12 +4,12 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using System.Configuration;         
+
 namespace FatiIkhlassYoun
 {
     public partial class WhatsAppForm : Form
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["ProjectManagementSystem"].ConnectionString;
+        private string connectionString = "Server=DESKTOP-78OLGDN;Database=ProjectManagementSystem;Integrated Security=True;";
 
         public WhatsAppForm()
         {
@@ -80,7 +80,7 @@ namespace FatiIkhlassYoun
             cbMessageType.SelectedIndex = 0;
         }
 
-       
+
 
         private void cbMessageType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -175,7 +175,7 @@ namespace FatiIkhlassYoun
             if (cbAlertType.SelectedItem == null) return string.Empty;
 
             string alertType = cbAlertType.SelectedItem.ToString();
-            string message = "🔔 *ALERT* 🔔\n\n";
+            string message = "🔔 ALERT 🔔\n\n";
 
             switch (alertType)
             {
@@ -201,7 +201,7 @@ namespace FatiIkhlassYoun
             if (cbReminderType.SelectedItem == null) return string.Empty;
 
             string reminderType = cbReminderType.SelectedItem.ToString();
-            string message = "⏰ *REMINDER* ⏰\n\n";
+            string message = "⏰ REMINDER ⏰\n\n";
 
             switch (reminderType)
             {
@@ -222,53 +222,7 @@ namespace FatiIkhlassYoun
             return message + "\n\nThank you,\nAdmin Team";
         }
 
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            if (clbRecipients.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("Veuillez sélectionner au moins un destinataire.",
-                              "Avertissement",
-                              MessageBoxButtons.OK,
-                              MessageBoxIcon.Warning);
-                return;
-            }
 
-            if (string.IsNullOrWhiteSpace(txtGeneratedMessage.Text))
-            {
-                MessageBox.Show("Le message ne peut pas être vide.",
-                              "Avertissement",
-                              MessageBoxButtons.OK,
-                              MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                var recipients = GetSelectedRecipients();
-                int successCount = 0;
-
-                foreach (var recipient in recipients)
-                {
-                    if (OpenWhatsAppChat(recipient.PhoneNumber, txtGeneratedMessage.Text))
-                    {
-                        successCount++;
-                        System.Threading.Thread.Sleep(1000); // Pause entre chaque ouverture
-                    }
-                }
-
-                LogMessages(recipients, txtGeneratedMessage.Text);
-
-                MessageBox.Show($"{successCount} conversation(s) WhatsApp ouverte(s) avec le message pré-rempli.\n" +
-                               "Veuillez vérifier et envoyer manuellement chaque message.",
-                              "Prêt à envoyer",
-                              MessageBoxButtons.OK,
-                              MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erreur: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private bool OpenWhatsAppChat(string phoneNumber, string message)
         {
             try
@@ -353,10 +307,10 @@ namespace FatiIkhlassYoun
 
             }
         }
-      
-        
-       
-       
+
+
+
+
 
         private int GetCurrentUserID()
         {
@@ -369,15 +323,64 @@ namespace FatiIkhlassYoun
             public string PhoneNumber { get; set; }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
+        
         private void clbRecipients_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            if (clbRecipients.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Veuillez sélectionner au moins un destinataire.",
+                              "Avertissement",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtGeneratedMessage.Text))
+            {
+                MessageBox.Show("Le message ne peut pas être vide.",
+                              "Avertissement",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var recipients = GetSelectedRecipients();
+                int successCount = 0;
+
+                foreach (var recipient in recipients)
+                {
+                    if (OpenWhatsAppChat(recipient.PhoneNumber, txtGeneratedMessage.Text))
+                    {
+                        successCount++;
+                        System.Threading.Thread.Sleep(1000); // Pause entre chaque ouverture
+                    }
+                }
+
+                LogMessages(recipients, txtGeneratedMessage.Text);
+
+                MessageBox.Show($"{successCount} conversation(s) WhatsApp ouverte(s) avec le message pré-rempli.\n" +
+                               "Veuillez vérifier et envoyer manuellement chaque message.",
+                              "Prêt à envoyer",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

@@ -168,9 +168,17 @@ namespace FatiIkhlassYoun
 
         private void addEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAddEmployee form = new FormAddEmployee();
-            form.Show();
-            form.FormClosed += (s, args) => RefreshCurrentView();
+            // Récupérez l'ID de l'admin connecté depuis la session
+            int adminId = SessionUtilisateur.UserID;
+
+            // Créez et affichez le formulaire modalement
+            using (FormAddEmployee form = new FormAddEmployee(adminId))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshCurrentView();
+                }
+            }
         }
 
         private void addTeamToolStripMenuItem_Click(object sender, EventArgs e)
@@ -764,52 +772,82 @@ namespace FatiIkhlassYoun
         }
         private void RemplirInfosUtilisateur()
         {
-            int userID = SessionUtilisateur.UserID;
-            string query = "SELECT Username, Role FROM Users WHERE UserID = @UserID";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                int userID = SessionUtilisateur.UserID;
+                string query = @"
+            SELECT 
+                u.Username, 
+                u.Email, 
+                u.PhoneNumber, 
+                u.Role,
+                u.IsActive,
+                COUNT(DISTINCT ta.TaskID) AS ActiveTaskCount,
+                COUNT(DISTINCT CASE WHEN p.ManagerID = u.UserID THEN p.ProjectID END) AS ManagedProjectCount,
+                COUNT(DISTINCT CASE WHEN t.LeaderID = u.UserID THEN t.TeamID END) AS TeamCount,
+                CONVERT(VARCHAR, u.LastLogin, 103) AS LastLoginFormatted
+            FROM Users u
+            LEFT JOIN Task_Assignments ta ON u.UserID = ta.UserID
+                AND EXISTS (SELECT 1 FROM Tasks t WHERE t.TaskID = ta.TaskID AND t.Status != 'Terminée')
+            LEFT JOIN Projects p ON u.UserID = p.ManagerID
+            LEFT JOIN Teams t ON u.UserID = t.LeaderID
+            WHERE u.UserID = @UserID
+            GROUP BY u.Username, u.Email, u.PhoneNumber, u.Role, u.IsActive, u.LastLogin";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@UserID", userID);
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@UserID", userID);
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
-                            {
-                                // Traitement des données
-                                string username = reader.GetString(0);
-                                string role = reader.GetString(1);
+                            // Traitement du nom complet
+                            string fullName = reader["Username"].ToString();
+                            string[] nameParts = fullName.Split(' ');
 
-                                if (username.Contains(" "))
-                                {
-                                    string[] usernameParts = username.Split(' ');
-                                    labelNom.Text = usernameParts[0].ToUpper();
-                                    labelPrenom.Text = usernameParts[1];
-                                }
-                                else
-                                {
-                                    labelNom.Text = username.ToUpper();
-                                    labelPrenom.Text = "";
-                                }
+                            labelNom.Text = nameParts.Length > 0 ? nameParts[0].ToUpper() : "";
+                            labelPrenom.Text = nameParts.Length > 1 ? nameParts[1] : "";
 
-                                labelRole.Text = "(" + role.Replace('_', ' ') + ")";
-                            }
-                            else
-                            {
-                                MessageBox.Show("Utilisateur non trouvé");
-                            }
+                            // Formatage des informations étendues
+                            string status = Convert.ToBoolean(reader["IsActive"]) ? "🟢 Actif" : "🔴 Inactif";
+
+                            labelRole.Text = $@"{status}
+                                      📱 {reader["PhoneNumber"]?.ToString() ?? "Non renseigné"}
+                                      ✉ {reader["Email"]}
+                                      🔧 Tâches actives: {reader["ActiveTaskCount"]}
+                                      🏗 Projets gérés: {reader["ManagedProjectCount"]}
+                                      👥 Équipes dirigées: {reader["TeamCount"]}
+                                      ⏳ Dernière connexion: {reader["LastLoginFormatted"]}
+                                      🔑 Rôle: {reader["Role"]?.ToString().Replace("_", " ")}";
+                        }
+                        else
+                        {
+                            SetDefaultUserInfo("Utilisateur non trouvé");
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur lors de la récupération des informations utilisateur: " + ex.Message);
-                }
             }
+            catch (SqlException sqlEx)
+            {
+                SetDefaultUserInfo("Erreur base de données");
+                LogError($"Erreur SQL (n°{sqlEx.Number}): {sqlEx.Message}", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                SetDefaultUserInfo("Erreur système");
+                LogError($"Erreur: {ex.Message}", ex);
+            }
+        }
+
+        private void SetDefaultUserInfo(string message)
+        {
+            labelNom.Text = "Erreur";
+            labelPrenom.Text = "";
+            labelRole.Text = message;
+            labelRole.ForeColor = Color.Red;
         }
         private void editUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1530,6 +1568,11 @@ namespace FatiIkhlassYoun
             {
                 // Ne rien faire, l'utilisateur reste sur la page actuelle
             }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

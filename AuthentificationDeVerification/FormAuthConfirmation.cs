@@ -68,18 +68,14 @@ namespace FatiIkhlassYoun.NewFolder
 
                 if (reader.Read())
                 {
-                    // Vérification supplémentaire du rôle si nécessaire
                     string dbRole = reader["Role"].ToString();
-                    if ((userRole == "chef_equipe" && dbRole != "chef_equipe") ||
-                        (userRole == "membre" && dbRole != "membre"))
+                    if (dbRole != userRole) // Vérification générique du rôle
                     {
                         MessageBox.Show("Vous n'avez pas les permissions nécessaires.");
                         return;
                     }
 
-                    MessageBox.Show("Identité vérifiée avec succès !");
-
-                    // Générer et envoyer le code de vérification
+                    // Génération et envoi du code
                     Random rnd = new Random();
                     int codeVerification = rnd.Next(100000, 999999);
                     CodeVerificationManager.Code = codeVerification;
@@ -87,22 +83,14 @@ namespace FatiIkhlassYoun.NewFolder
 
                     EnvoyerEmailVerification(email, codeVerification.ToString());
 
-                    // Ouvrir le formulaire de vérification
-                    FormCodeVerification codeForm = new FormCodeVerification(codeVerification, action, taskId);
-                    var result = codeForm.ShowDialog();
-
-                    if (result == DialogResult.OK && codeForm.IsCodeValid)
+                    // Formulaire de vérification du code
+                    using (FormCodeVerification codeForm = new FormCodeVerification(codeVerification, action, taskId))
                     {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-
-                        // Fermer le formulaire parent selon le rôle
-                        FermerFormulaireParent();
-                        RetourAuDashboard();
-                    }
-                    else
-                    {
-                        this.DialogResult = DialogResult.Cancel;
+                        if (codeForm.ShowDialog() == DialogResult.OK && codeForm.IsCodeValid)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
                     }
                 }
                 else

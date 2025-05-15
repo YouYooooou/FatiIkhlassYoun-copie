@@ -5,7 +5,7 @@ namespace FatiIkhlassYoun
 {
     public partial class FormAddTask : Form
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["ProjectManagementSystem"].ConnectionString;
+        private string connectionString = ConfigurationManager.ConnectionStrings["cnx"].ConnectionString;
 
         public int TaskId { get; internal set; }
 
@@ -83,86 +83,7 @@ namespace FatiIkhlassYoun
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            // Vérification des champs obligatoires
-            if (cmbProject.SelectedItem == null || string.IsNullOrWhiteSpace(txtTitle.Text))
-            {
-                MessageBox.Show("Veuillez remplir les champs obligatoires.");
-                return;
-            }
-
-            var selectedProject = cmbProject.SelectedItem as ComboboxItem;
-            var selectedTeamLead = cmbTeamLead.SelectedItem as ComboboxItem;
-
-            // Vérifier si un chef d'équipe est sélectionné
-            if (selectedTeamLead == null)
-            {
-                MessageBox.Show("Veuillez sélectionner un chef d'équipe.");
-                return;
-            }
-
-            // Vérifier que des utilisateurs sont assignés
-            if (clbAssignedUsers.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("Veuillez sélectionner au moins un utilisateur à assigner.");
-                return;
-            }
-
-            int taskId = 0;
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand(@"
-                        INSERT INTO Tasks 
-                        (ProjectID, Title, Description, StartDate, DueDate, Status, EstimatedTime, TeamLeadID, Priority) 
-                        VALUES 
-                        (@ProjectID, @Title, @Description, @StartDate, @DueDate, @Status, @EstimatedTime, @TeamLeadID, @Priority);
-                        SELECT SCOPE_IDENTITY();", conn);
-
-                    cmd.Parameters.AddWithValue("@ProjectID", selectedProject?.Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Title", txtTitle.Text.Trim());
-                    cmd.Parameters.AddWithValue("@Description", txtDescription.Text.Trim());
-                    cmd.Parameters.AddWithValue("@StartDate", dtpStartDate.Value);
-                    cmd.Parameters.AddWithValue("@DueDate", dtpDueDate.Value);
-                    cmd.Parameters.AddWithValue("@Status", cmbStatus.SelectedItem.ToString());
-                    cmd.Parameters.AddWithValue("@EstimatedTime", (int)numEstimatedTime.Value);
-                    cmd.Parameters.AddWithValue("@TeamLeadID", selectedTeamLead?.Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Priority", cmbPriority.SelectedItem.ToString());
-
-                    object result = cmd.ExecuteScalar();
-                    if (result != null && int.TryParse(result.ToString(), out taskId))
-                    {
-                        // Assignation des utilisateurs
-                        foreach (var item in clbAssignedUsers.CheckedItems)
-                        {
-                            var user = item as ComboboxItem;
-                            SqlCommand assignCmd = new SqlCommand(
-                                "INSERT INTO Task_Assignments (TaskID, UserID) VALUES (@TaskID, @UserID)", conn);
-                            assignCmd.Parameters.AddWithValue("@TaskID", taskId);
-                            assignCmd.Parameters.AddWithValue("@UserID", user.Value);
-                            assignCmd.ExecuteNonQuery();
-                        }
-
-                        MessageBox.Show("Tâche ajoutée avec succès !");
-                        this.DialogResult = DialogResult.OK; // Permet d’actualiser dans le form principal
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erreur : la tâche n'a pas été enregistrée.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
-            }
-        }
+      
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -172,6 +93,26 @@ namespace FatiIkhlassYoun
         private void buttonCreateTask_Click(object sender, EventArgs e)
         {
 
+
+        }
+
+
+
+
+
+
+        private void clbAssignedUsers_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {
 
             if (cmbProject.SelectedItem == null || string.IsNullOrWhiteSpace(txtTitle.Text))
             {
@@ -245,17 +186,6 @@ namespace FatiIkhlassYoun
             {
                 MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
             }
-        }
-
-        private void buttonAnnuler_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-      
-
-        private void clbAssignedUsers_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
 
         }
     }
@@ -277,4 +207,3 @@ public class ComboboxItem
         return Text;
     }
 }
-

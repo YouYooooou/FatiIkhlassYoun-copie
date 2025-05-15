@@ -94,7 +94,7 @@
             cuiButtonCancel.HoveredImageTint = Color.White;
             cuiButtonCancel.HoverForeColor = Color.White;
             cuiButtonCancel.HoverOutline = Color.Empty;
-            cuiButtonCancel.Image = Properties.Resources.icons8_cancel_50;
+          
             cuiButtonCancel.ImageAutoCenter = true;
             cuiButtonCancel.ImageExpand = new Point(0, 0);
             cuiButtonCancel.ImageOffset = new Point(0, 0);
@@ -262,7 +262,7 @@
             btnRefresh.HoveredImageTint = Color.White;
             btnRefresh.HoverForeColor = Color.White;
             btnRefresh.HoverOutline = Color.Empty;
-            btnRefresh.Image = Properties.Resources.icons8_refresh_321;
+          
             btnRefresh.ImageAutoCenter = true;
             btnRefresh.ImageExpand = new Point(0, 0);
             btnRefresh.ImageOffset = new Point(0, 0);
@@ -501,7 +501,7 @@
             // 
             label7.FlatStyle = FlatStyle.Flat;
             label7.Font = new Font("Times New Roman", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Image = Properties.Resources.icons8_notification_50;
+            
             label7.ImageAlign = ContentAlignment.MiddleLeft;
             label7.Location = new Point(30, 21);
             label7.Name = "label7";

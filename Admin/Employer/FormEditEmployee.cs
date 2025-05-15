@@ -1,13 +1,13 @@
 ﻿using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
-using System.Configuration;
+
 namespace FatiIkhlassYoun
 {
     public partial class FormEditEmployee : Form
     {
         private readonly int _userId;
-        private string connectionString = ConfigurationManager.ConnectionStrings["ProjectManagementSystem"].ConnectionString;
+        private readonly string _connectionString = "Data Source=DESKTOP-78OLGDN;Initial Catalog=ProjectManagementSystem;Integrated Security=True";
 
         public FormEditEmployee(int userId)
         {
@@ -22,7 +22,7 @@ namespace FatiIkhlassYoun
 
         private void LoadUserData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 string query = "SELECT Username, Email, Role, IsActive, PhoneNumber FROM Users WHERE UserID = @UserID";
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -56,76 +56,7 @@ namespace FatiIkhlassYoun
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            string username = txtUsername.Text.Trim();
-            string oldPassword = txtOldPassword.Text.Trim();
-            string newPassword = txtNewPassword.Text.Trim();
-            string confirmPassword = txtConfirmPassword.Text.Trim();
-            string phone = txtPhone.Text.Trim();
-            string role = cbRole.SelectedItem?.ToString();
-            bool isActive = chkActive.Checked;
-
-            if (!ValidateInput(username, oldPassword, newPassword, confirmPassword, role))
-                return;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
-
-                try
-                {
-                    // Vérifier l'ancien mot de passe si on veut le changer
-                    if (!string.IsNullOrEmpty(newPassword))
-                    {
-                        if (!VerifyOldPassword(conn, transaction, oldPassword))
-                        {
-                            MessageBox.Show("Ancien mot de passe incorrect");
-                            return;
-                        }
-                    }
-
-                    // Mettre à jour les informations de base
-                    string updateQuery = @"UPDATE Users SET 
-                                        Username = @Username,
-                                        Role = @Role,
-                                        IsActive = @IsActive,
-                                        PhoneNumber = @PhoneNumber
-                                        WHERE UserID = @UserID";
-
-                    SqlCommand updateCmd = new SqlCommand(updateQuery, conn, transaction);
-                    updateCmd.Parameters.AddWithValue("@Username", username);
-                    updateCmd.Parameters.AddWithValue("@Role", role);
-                    updateCmd.Parameters.AddWithValue("@IsActive", isActive);
-                    updateCmd.Parameters.AddWithValue("@PhoneNumber", phone);
-                    updateCmd.Parameters.AddWithValue("@UserID", _userId);
-                    updateCmd.ExecuteNonQuery();
-
-                    // Mettre à jour le mot de passe si nécessaire
-                    if (!string.IsNullOrEmpty(newPassword))
-                    {
-                        string newHash = ComputeSha256Hash(newPassword);
-                        string pwdQuery = "UPDATE Users SET PasswordHash = @PasswordHash WHERE UserID = @UserID";
-                        SqlCommand pwdCmd = new SqlCommand(pwdQuery, conn, transaction);
-                        pwdCmd.Parameters.AddWithValue("@PasswordHash", newHash);
-                        pwdCmd.Parameters.AddWithValue("@UserID", _userId);
-                        pwdCmd.ExecuteNonQuery();
-                    }
-
-                    transaction.Commit();
-                    MessageBox.Show("Modifications enregistrées avec succès");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    MessageBox.Show($"Erreur lors de la mise à jour: {ex.Message}");
-                }
-            }
-        }
-
+     
         private bool VerifyOldPassword(SqlConnection conn, SqlTransaction transaction, string oldPassword)
         {
             string query = "SELECT PasswordHash FROM Users WHERE UserID = @UserID";
@@ -193,10 +124,82 @@ namespace FatiIkhlassYoun
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+      
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            string username = txtUsername.Text.Trim();
+            string oldPassword = txtOldPassword.Text.Trim();
+            string newPassword = txtNewPassword.Text.Trim();
+            string confirmPassword = txtConfirmPassword.Text.Trim();
+            string phone = txtPhone.Text.Trim();
+            string role = cbRole.SelectedItem?.ToString();
+            bool isActive = chkActive.Checked;
+
+            if (!ValidateInput(username, oldPassword, newPassword, confirmPassword, role))
+                return;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // Vérifier l'ancien mot de passe si on veut le changer
+                    if (!string.IsNullOrEmpty(newPassword))
+                    {
+                        if (!VerifyOldPassword(conn, transaction, oldPassword))
+                        {
+                            MessageBox.Show("Ancien mot de passe incorrect");
+                            return;
+                        }
+                    }
+
+                    // Mettre à jour les informations de base
+                    string updateQuery = @"UPDATE Users SET 
+                                        Username = @Username,
+                                        Role = @Role,
+                                        IsActive = @IsActive,
+                                        PhoneNumber = @PhoneNumber
+                                        WHERE UserID = @UserID";
+
+                    SqlCommand updateCmd = new SqlCommand(updateQuery, conn, transaction);
+                    updateCmd.Parameters.AddWithValue("@Username", username);
+                    updateCmd.Parameters.AddWithValue("@Role", role);
+                    updateCmd.Parameters.AddWithValue("@IsActive", isActive);
+                    updateCmd.Parameters.AddWithValue("@PhoneNumber", phone);
+                    updateCmd.Parameters.AddWithValue("@UserID", _userId);
+                    updateCmd.ExecuteNonQuery();
+
+                    // Mettre à jour le mot de passe si nécessaire
+                    if (!string.IsNullOrEmpty(newPassword))
+                    {
+                        string newHash = ComputeSha256Hash(newPassword);
+                        string pwdQuery = "UPDATE Users SET PasswordHash = @PasswordHash WHERE UserID = @UserID";
+                        SqlCommand pwdCmd = new SqlCommand(pwdQuery, conn, transaction);
+                        pwdCmd.Parameters.AddWithValue("@PasswordHash", newHash);
+                        pwdCmd.Parameters.AddWithValue("@UserID", _userId);
+                        pwdCmd.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                    MessageBox.Show("Modifications enregistrées avec succès");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Erreur lors de la mise à jour: {ex.Message}");
+                }
+            }
         }
     }
 }

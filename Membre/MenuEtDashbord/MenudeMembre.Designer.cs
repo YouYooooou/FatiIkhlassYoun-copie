@@ -65,8 +65,9 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1735, 41);
+            panel1.Size = new Size(3470, 79);
             panel1.TabIndex = 10;
             // 
             // btnLower
@@ -74,9 +75,10 @@
             btnLower.AutoSize = true;
             btnLower.Cursor = Cursors.Hand;
             btnLower.Font = new Font("Segoe UI Black", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLower.Location = new Point(1660, -20);
+            btnLower.Location = new Point(3320, -38);
+            btnLower.Margin = new Padding(6, 0, 6, 0);
             btnLower.Name = "btnLower";
-            btnLower.Size = new Size(33, 45);
+            btnLower.Size = new Size(64, 86);
             btnLower.TabIndex = 2;
             btnLower.Text = "_";
             // 
@@ -85,19 +87,21 @@
             lblLogOut.AutoSize = true;
             lblLogOut.Cursor = Cursors.Hand;
             lblLogOut.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLogOut.Location = new Point(1700, -6);
+            lblLogOut.Location = new Point(3400, -12);
+            lblLogOut.Margin = new Padding(6, 0, 6, 0);
             lblLogOut.Name = "lblLogOut";
-            lblLogOut.Size = new Size(32, 38);
+            lblLogOut.Size = new Size(63, 74);
             lblLogOut.TabIndex = 1;
             lblLogOut.Text = "x";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(11, 2);
+            label1.Font = new Font("Times New Roman", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(22, 4);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(297, 28);
+            label1.Size = new Size(571, 51);
             label1.TabIndex = 0;
             label1.Text = "Système de gestion de projets";
             // 
@@ -112,9 +116,10 @@
             panel3.Controls.Add(btnModifierTache);
             panel3.Controls.Add(cuiButton5);
             panel3.Dock = DockStyle.Top;
-            panel3.Location = new Point(0, 41);
+            panel3.Location = new Point(0, 79);
+            panel3.Margin = new Padding(6);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1735, 143);
+            panel3.Size = new Size(3470, 275);
             panel3.TabIndex = 15;
             // 
             // btnLogOut
@@ -140,8 +145,8 @@
             btnLogOut.ImageAutoCenter = true;
             btnLogOut.ImageExpand = new Point(15, 15);
             btnLogOut.ImageOffset = new Point(37, -15);
-            btnLogOut.Location = new Point(1219, 0);
-            btnLogOut.Margin = new Padding(2);
+            btnLogOut.Location = new Point(2438, 0);
+            btnLogOut.Margin = new Padding(4);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.NormalBackground = Color.WhiteSmoke;
             btnLogOut.NormalForeColor = Color.Black;
@@ -153,7 +158,7 @@
             btnLogOut.PressedImageTint = Color.White;
             btnLogOut.PressedOutline = Color.Empty;
             btnLogOut.Rounding = new Padding(8);
-            btnLogOut.Size = new Size(171, 143);
+            btnLogOut.Size = new Size(342, 275);
             btnLogOut.TabIndex = 14;
             btnLogOut.TextOffset = new Point(-25, 30);
             // 
@@ -180,7 +185,8 @@
             btnAlert.ImageAutoCenter = true;
             btnAlert.ImageExpand = new Point(17, 17);
             btnAlert.ImageOffset = new Point(25, -12);
-            btnAlert.Location = new Point(1048, 0);
+            btnAlert.Location = new Point(2096, 0);
+            btnAlert.Margin = new Padding(6);
             btnAlert.Name = "btnAlert";
             btnAlert.NormalBackground = Color.WhiteSmoke;
             btnAlert.NormalForeColor = Color.Black;
@@ -192,9 +198,10 @@
             btnAlert.PressedImageTint = Color.White;
             btnAlert.PressedOutline = Color.Empty;
             btnAlert.Rounding = new Padding(0);
-            btnAlert.Size = new Size(171, 143);
+            btnAlert.Size = new Size(342, 275);
             btnAlert.TabIndex = 11;
             btnAlert.TextOffset = new Point(-26, 30);
+            btnAlert.Click += btnAlert_Click;
             // 
             // cuiButton2
             // 
@@ -219,8 +226,8 @@
             cuiButton2.ImageAutoCenter = true;
             cuiButton2.ImageExpand = new Point(20, 20);
             cuiButton2.ImageOffset = new Point(55, -15);
-            cuiButton2.Location = new Point(877, 0);
-            cuiButton2.Margin = new Padding(2);
+            cuiButton2.Location = new Point(1754, 0);
+            cuiButton2.Margin = new Padding(4);
             cuiButton2.Name = "cuiButton2";
             cuiButton2.NormalBackground = Color.WhiteSmoke;
             cuiButton2.NormalForeColor = Color.Black;
@@ -232,9 +239,10 @@
             cuiButton2.PressedImageTint = Color.White;
             cuiButton2.PressedOutline = Color.Empty;
             cuiButton2.Rounding = new Padding(0);
-            cuiButton2.Size = new Size(171, 143);
+            cuiButton2.Size = new Size(342, 275);
             cuiButton2.TabIndex = 10;
             cuiButton2.TextOffset = new Point(-25, 30);
+            cuiButton2.Click += cuiButton2_Click;
             // 
             // btnWhatsapp
             // 
@@ -259,7 +267,8 @@
             btnWhatsapp.ImageAutoCenter = true;
             btnWhatsapp.ImageExpand = new Point(15, 15);
             btnWhatsapp.ImageOffset = new Point(55, -15);
-            btnWhatsapp.Location = new Point(706, 0);
+            btnWhatsapp.Location = new Point(1412, 0);
+            btnWhatsapp.Margin = new Padding(6);
             btnWhatsapp.Name = "btnWhatsapp";
             btnWhatsapp.NormalBackground = Color.WhiteSmoke;
             btnWhatsapp.NormalForeColor = Color.Black;
@@ -271,7 +280,7 @@
             btnWhatsapp.PressedImageTint = Color.White;
             btnWhatsapp.PressedOutline = Color.Empty;
             btnWhatsapp.Rounding = new Padding(8);
-            btnWhatsapp.Size = new Size(171, 143);
+            btnWhatsapp.Size = new Size(342, 275);
             btnWhatsapp.TabIndex = 6;
             btnWhatsapp.TextOffset = new Point(-25, 30);
             // 
@@ -298,7 +307,8 @@
             btnExporterTaches.ImageAutoCenter = true;
             btnExporterTaches.ImageExpand = new Point(15, 15);
             btnExporterTaches.ImageOffset = new Point(80, -15);
-            btnExporterTaches.Location = new Point(535, 0);
+            btnExporterTaches.Location = new Point(1070, 0);
+            btnExporterTaches.Margin = new Padding(6);
             btnExporterTaches.Name = "btnExporterTaches";
             btnExporterTaches.NormalBackground = Color.WhiteSmoke;
             btnExporterTaches.NormalForeColor = Color.Black;
@@ -310,7 +320,7 @@
             btnExporterTaches.PressedImageTint = Color.White;
             btnExporterTaches.PressedOutline = Color.Empty;
             btnExporterTaches.Rounding = new Padding(8);
-            btnExporterTaches.Size = new Size(171, 143);
+            btnExporterTaches.Size = new Size(342, 275);
             btnExporterTaches.TabIndex = 6;
             btnExporterTaches.TextOffset = new Point(-25, 30);
             btnExporterTaches.Click += btnExporterTaches_Click;
@@ -338,8 +348,8 @@
             button1.ImageAutoCenter = true;
             button1.ImageExpand = new Point(27, 27);
             button1.ImageOffset = new Point(85, -15);
-            button1.Location = new Point(342, 0);
-            button1.Margin = new Padding(2);
+            button1.Location = new Point(684, 0);
+            button1.Margin = new Padding(4);
             button1.Name = "button1";
             button1.NormalBackground = Color.WhiteSmoke;
             button1.NormalForeColor = Color.Black;
@@ -351,7 +361,7 @@
             button1.PressedImageTint = Color.White;
             button1.PressedOutline = Color.Empty;
             button1.Rounding = new Padding(0);
-            button1.Size = new Size(193, 143);
+            button1.Size = new Size(386, 275);
             button1.TabIndex = 6;
             button1.TextOffset = new Point(-37, 30);
             button1.Click += button1_Click;
@@ -379,8 +389,8 @@
             btnModifierTache.ImageAutoCenter = true;
             btnModifierTache.ImageExpand = new Point(15, 15);
             btnModifierTache.ImageOffset = new Point(70, -15);
-            btnModifierTache.Location = new Point(171, 0);
-            btnModifierTache.Margin = new Padding(2);
+            btnModifierTache.Location = new Point(342, 0);
+            btnModifierTache.Margin = new Padding(4);
             btnModifierTache.Name = "btnModifierTache";
             btnModifierTache.NormalBackground = Color.WhiteSmoke;
             btnModifierTache.NormalForeColor = Color.Black;
@@ -392,7 +402,7 @@
             btnModifierTache.PressedImageTint = Color.White;
             btnModifierTache.PressedOutline = Color.Empty;
             btnModifierTache.Rounding = new Padding(8);
-            btnModifierTache.Size = new Size(171, 143);
+            btnModifierTache.Size = new Size(342, 275);
             btnModifierTache.TabIndex = 12;
             btnModifierTache.TextOffset = new Point(-20, 30);
             btnModifierTache.Click += btnModifierTache_Click;
@@ -421,6 +431,7 @@
             cuiButton5.ImageExpand = new Point(15, 15);
             cuiButton5.ImageOffset = new Point(80, -15);
             cuiButton5.Location = new Point(0, 0);
+            cuiButton5.Margin = new Padding(6);
             cuiButton5.Name = "cuiButton5";
             cuiButton5.NormalBackground = Color.WhiteSmoke;
             cuiButton5.NormalForeColor = Color.Black;
@@ -432,9 +443,9 @@
             cuiButton5.PressedImageTint = Color.White;
             cuiButton5.PressedOutline = Color.Empty;
             cuiButton5.Rounding = new Padding(8);
-            cuiButton5.Size = new Size(171, 143);
+            cuiButton5.Size = new Size(342, 275);
             cuiButton5.TabIndex = 6;
-            cuiButton5.TextOffset = new Point(-25, 30);
+            cuiButton5.TextOffset = new Point(-20, 30);
             cuiButton5.Click += cuiButton5_Click;
             // 
             // panelDernieresTaches
@@ -442,9 +453,10 @@
             panelDernieresTaches.BackColor = Color.WhiteSmoke;
             panelDernieresTaches.Controls.Add(panel2);
             panelDernieresTaches.Dock = DockStyle.Right;
-            panelDernieresTaches.Location = new Point(1468, 184);
+            panelDernieresTaches.Location = new Point(2936, 354);
+            panelDernieresTaches.Margin = new Padding(6);
             panelDernieresTaches.Name = "panelDernieresTaches";
-            panelDernieresTaches.Size = new Size(267, 608);
+            panelDernieresTaches.Size = new Size(534, 1167);
             panelDernieresTaches.TabIndex = 16;
             // 
             // panel2
@@ -455,17 +467,19 @@
             panel2.Controls.Add(labelNom);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(6);
             panel2.Name = "panel2";
-            panel2.Size = new Size(267, 189);
+            panel2.Size = new Size(534, 363);
             panel2.TabIndex = 0;
             // 
             // labelRole
             // 
             labelRole.AutoSize = true;
             labelRole.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            labelRole.Location = new Point(98, 124);
+            labelRole.Location = new Point(196, 238);
+            labelRole.Margin = new Padding(6, 0, 6, 0);
             labelRole.Name = "labelRole";
-            labelRole.Size = new Size(92, 25);
+            labelRole.Size = new Size(187, 46);
             labelRole.TabIndex = 2;
             labelRole.Text = "labelRole";
             // 
@@ -473,9 +487,10 @@
             // 
             labelPrenom.AutoSize = true;
             labelPrenom.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelPrenom.Location = new Point(28, 82);
+            labelPrenom.Location = new Point(56, 157);
+            labelPrenom.Margin = new Padding(6, 0, 6, 0);
             labelPrenom.Name = "labelPrenom";
-            labelPrenom.Size = new Size(162, 29);
+            labelPrenom.Size = new Size(305, 55);
             labelPrenom.TabIndex = 1;
             labelPrenom.Text = "labelPrenom";
             // 
@@ -483,9 +498,10 @@
             // 
             labelNom.AutoSize = true;
             labelNom.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelNom.Location = new Point(6, 36);
+            labelNom.Location = new Point(12, 69);
+            labelNom.Margin = new Padding(6, 0, 6, 0);
             labelNom.Name = "labelNom";
-            labelNom.Size = new Size(161, 37);
+            labelNom.Size = new Size(311, 73);
             labelNom.TabIndex = 0;
             labelNom.Text = "labelNom";
             labelNom.TextAlign = ContentAlignment.MiddleCenter;
@@ -496,9 +512,10 @@
             panelGauche.BackColor = SystemColors.Window;
             panelGauche.Controls.Add(treeViewMenu);
             panelGauche.Dock = DockStyle.Left;
-            panelGauche.Location = new Point(0, 184);
+            panelGauche.Location = new Point(0, 354);
+            panelGauche.Margin = new Padding(6);
             panelGauche.Name = "panelGauche";
-            panelGauche.Size = new Size(267, 608);
+            panelGauche.Size = new Size(534, 1167);
             panelGauche.TabIndex = 17;
             panelGauche.Paint += panelGauche_Paint;
             // 
@@ -506,30 +523,33 @@
             // 
             treeViewMenu.Dock = DockStyle.Fill;
             treeViewMenu.Location = new Point(0, 0);
+            treeViewMenu.Margin = new Padding(6);
             treeViewMenu.Name = "treeViewMenu";
-            treeViewMenu.Size = new Size(267, 608);
+            treeViewMenu.Size = new Size(534, 1167);
             treeViewMenu.TabIndex = 0;
             // 
             // panelContenu
             // 
             panelContenu.BackColor = Color.WhiteSmoke;
             panelContenu.Dock = DockStyle.Fill;
-            panelContenu.Location = new Point(267, 184);
+            panelContenu.Location = new Point(534, 354);
+            panelContenu.Margin = new Padding(6);
             panelContenu.Name = "panelContenu";
-            panelContenu.Size = new Size(1201, 608);
+            panelContenu.Size = new Size(2402, 1167);
             panelContenu.TabIndex = 18;
             // 
             // MenudeMembre
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(20F, 48F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1735, 792);
+            ClientSize = new Size(3470, 1521);
             Controls.Add(panelContenu);
             Controls.Add(panelGauche);
             Controls.Add(panelDernieresTaches);
             Controls.Add(panel3);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(6);
             Name = "MenudeMembre";
             Text = "MenudeMembre";
             panel1.ResumeLayout(false);

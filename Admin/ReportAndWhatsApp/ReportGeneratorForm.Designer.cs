@@ -17,464 +17,355 @@
 
         private void InitializeComponent()
         {
-            panelHeader = new Panel();
-            lblTitle = new Label();
-            panelMain = new Panel();
-            gbPerformance = new GroupBox();
-            numTopTeams = new NumericUpDown();
-            chkIncludeTopTeam = new CheckBox();
-            gbReportType = new GroupBox();
-            rbDetailed = new RadioButton();
-            rbSummary = new RadioButton();
-            gbDateRange = new GroupBox();
-            dtpEndDate = new DateTimePicker();
-            dtpStartDate = new DateTimePicker();
-            label2 = new Label();
-            label1 = new Label();
-            gbStatus = new GroupBox();
-            chkSelectAllStatus = new CheckBox();
-            clbStatus = new CheckedListBox();
-            gbTeams = new GroupBox();
-            chkSelectAllTeams = new CheckBox();
-            clbTeams = new CheckedListBox();
-            gbProjects = new GroupBox();
-            chkSelectAllProjects = new CheckBox();
-            clbProjects = new CheckedListBox();
-            panelButtons = new Panel();
-            btnCancel = new CuoreUI.Controls.cuiButton();
-            btnGenerate = new CuoreUI.Controls.cuiButton();
-            panelHeader.SuspendLayout();
-            panelMain.SuspendLayout();
-            gbPerformance.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numTopTeams).BeginInit();
-            gbReportType.SuspendLayout();
-            gbDateRange.SuspendLayout();
-            gbStatus.SuspendLayout();
-            gbTeams.SuspendLayout();
-            gbProjects.SuspendLayout();
-            panelButtons.SuspendLayout();
-            SuspendLayout();
-            // 
-            // panelHeader
-            // 
-            panelHeader.BackColor = Color.FromArgb(51, 51, 76);
-            panelHeader.Controls.Add(lblTitle);
-            panelHeader.Dock = DockStyle.Top;
-            panelHeader.Location = new Point(0, 0);
-            panelHeader.Name = "panelHeader";
-            panelHeader.Size = new Size(1200, 80);
-            panelHeader.TabIndex = 0;
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.gbProjects = new System.Windows.Forms.GroupBox();
+            this.chkSelectAllProjects = new System.Windows.Forms.CheckBox();
+            this.clbProjects = new System.Windows.Forms.CheckedListBox();
+            this.gbTeams = new System.Windows.Forms.GroupBox();
+            this.chkSelectAllTeams = new System.Windows.Forms.CheckBox();
+            this.clbTeams = new System.Windows.Forms.CheckedListBox();
+            this.gbStatus = new System.Windows.Forms.GroupBox();
+            this.chkSelectAllStatus = new System.Windows.Forms.CheckBox();
+            this.clbStatus = new System.Windows.Forms.CheckedListBox();
+            this.gbDateRange = new System.Windows.Forms.GroupBox();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.gbReportType = new System.Windows.Forms.GroupBox();
+            this.rbDetailed = new System.Windows.Forms.RadioButton();
+            this.rbSummary = new System.Windows.Forms.RadioButton();
+            this.gbPerformance = new System.Windows.Forms.GroupBox();
+            this.numTopTeams = new System.Windows.Forms.NumericUpDown();
+            this.chkIncludeTopTeam = new System.Windows.Forms.CheckBox();
+            this.gbProjects.SuspendLayout();
+            this.gbTeams.SuspendLayout();
+            this.gbStatus.SuspendLayout();
+            this.gbDateRange.SuspendLayout();
+            this.gbReportType.SuspendLayout();
+            this.gbPerformance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTopTeams)).BeginInit();
+            this.SuspendLayout();
             // 
             // lblTitle
             // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(20, 20);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(306, 38);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Générer un Rapport";
-            // 
-            // panelMain
-            // 
-            panelMain.BackColor = Color.White;
-            panelMain.Controls.Add(gbPerformance);
-            panelMain.Controls.Add(gbReportType);
-            panelMain.Controls.Add(gbDateRange);
-            panelMain.Controls.Add(gbStatus);
-            panelMain.Controls.Add(gbTeams);
-            panelMain.Controls.Add(gbProjects);
-            panelMain.Controls.Add(panelButtons);
-            panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(0, 80);
-            panelMain.Name = "panelMain";
-            panelMain.Padding = new Padding(20);
-            panelMain.Size = new Size(1200, 920);
-            panelMain.TabIndex = 1;
-            // 
-            // gbPerformance
-            // 
-            gbPerformance.Controls.Add(numTopTeams);
-            gbPerformance.Controls.Add(chkIncludeTopTeam);
-            gbPerformance.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbPerformance.ForeColor = Color.FromArgb(64, 64, 64);
-            gbPerformance.Location = new Point(800, 600);
-            gbPerformance.Name = "gbPerformance";
-            gbPerformance.Size = new Size(380, 200);
-            gbPerformance.TabIndex = 9;
-            gbPerformance.TabStop = false;
-            gbPerformance.Text = "6. Performance des Équipes";
-            // 
-            // numTopTeams
-            // 
-            numTopTeams.BackColor = Color.WhiteSmoke;
-            numTopTeams.BorderStyle = BorderStyle.None;
-            numTopTeams.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            numTopTeams.Location = new Point(30, 120);
-            numTopTeams.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numTopTeams.Name = "numTopTeams";
-            numTopTeams.Size = new Size(100, 30);
-            numTopTeams.TabIndex = 1;
-            numTopTeams.Value = new decimal(new int[] { 3, 0, 0, 0 });
-            // 
-            // chkIncludeTopTeam
-            // 
-            chkIncludeTopTeam.AutoSize = true;
-            chkIncludeTopTeam.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkIncludeTopTeam.Location = new Point(30, 60);
-            chkIncludeTopTeam.Name = "chkIncludeTopTeam";
-            chkIncludeTopTeam.Size = new Size(300, 29);
-            chkIncludeTopTeam.TabIndex = 0;
-            chkIncludeTopTeam.Text = "Inclure les équipes performantes";
-            chkIncludeTopTeam.UseVisualStyleBackColor = true;
-            // 
-            // gbReportType
-            // 
-            gbReportType.Controls.Add(rbDetailed);
-            gbReportType.Controls.Add(rbSummary);
-            gbReportType.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbReportType.ForeColor = Color.FromArgb(64, 64, 64);
-            gbReportType.Location = new Point(800, 380);
-            gbReportType.Name = "gbReportType";
-            gbReportType.Size = new Size(380, 200);
-            gbReportType.TabIndex = 7;
-            gbReportType.TabStop = false;
-            gbReportType.Text = "5. Type de Rapport";
-            // 
-            // rbDetailed
-            // 
-            rbDetailed.AutoSize = true;
-            rbDetailed.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            rbDetailed.Location = new Point(30, 120);
-            rbDetailed.Name = "rbDetailed";
-            rbDetailed.Size = new Size(180, 29);
-            rbDetailed.TabIndex = 1;
-            rbDetailed.Text = "Détaillé (PDF)";
-            rbDetailed.UseVisualStyleBackColor = true;
-            // 
-            // rbSummary
-            // 
-            rbSummary.AutoSize = true;
-            rbSummary.Checked = true;
-            rbSummary.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            rbSummary.Location = new Point(30, 60);
-            rbSummary.Name = "rbSummary";
-            rbSummary.Size = new Size(200, 29);
-            rbSummary.TabIndex = 0;
-            rbSummary.TabStop = true;
-            rbSummary.Text = "Synthèse (Excel)";
-            rbSummary.UseVisualStyleBackColor = true;
-            // 
-            // gbDateRange
-            // 
-            gbDateRange.Controls.Add(dtpEndDate);
-            gbDateRange.Controls.Add(dtpStartDate);
-            gbDateRange.Controls.Add(label2);
-            gbDateRange.Controls.Add(label1);
-            gbDateRange.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbDateRange.ForeColor = Color.FromArgb(64, 64, 64);
-            gbDateRange.Location = new Point(20, 600);
-            gbDateRange.Name = "gbDateRange";
-            gbDateRange.Size = new Size(760, 200);
-            gbDateRange.TabIndex = 4;
-            gbDateRange.TabStop = false;
-            gbDateRange.Text = "4. Période du Rapport";
-            // 
-            // dtpEndDate
-            // 
-            dtpEndDate.CalendarMonthBackground = Color.WhiteSmoke;
-            dtpEndDate.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpEndDate.Location = new Point(200, 120);
-            dtpEndDate.Name = "dtpEndDate";
-            dtpEndDate.Size = new Size(300, 34);
-            dtpEndDate.TabIndex = 3;
-            // 
-            // dtpStartDate
-            // 
-            dtpStartDate.CalendarMonthBackground = Color.WhiteSmoke;
-            dtpStartDate.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpStartDate.Location = new Point(200, 60);
-            dtpStartDate.Name = "dtpStartDate";
-            dtpStartDate.Size = new Size(300, 34);
-            dtpStartDate.TabIndex = 2;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(30, 125);
-            label2.Name = "label2";
-            label2.Size = new Size(100, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Date Fin :";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(30, 65);
-            label1.Name = "label1";
-            label1.Size = new Size(130, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Date Début :";
-            // 
-            // gbStatus
-            // 
-            gbStatus.Controls.Add(chkSelectAllStatus);
-            gbStatus.Controls.Add(clbStatus);
-            gbStatus.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbStatus.ForeColor = Color.FromArgb(64, 64, 64);
-            gbStatus.Location = new Point(800, 20);
-            gbStatus.Name = "gbStatus";
-            gbStatus.Size = new Size(380, 340);
-            gbStatus.TabIndex = 3;
-            gbStatus.TabStop = false;
-            gbStatus.Text = "3. Statut des Tâches";
-            // 
-            // chkSelectAllStatus
-            // 
-            chkSelectAllStatus.AutoSize = true;
-            chkSelectAllStatus.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkSelectAllStatus.Location = new Point(30, 40);
-            chkSelectAllStatus.Name = "chkSelectAllStatus";
-            chkSelectAllStatus.Size = new Size(180, 29);
-            chkSelectAllStatus.TabIndex = 1;
-            chkSelectAllStatus.Text = "Sélectionner tous";
-            chkSelectAllStatus.UseVisualStyleBackColor = true;
-            chkSelectAllStatus.CheckedChanged += chkSelectAllStatus_CheckedChanged;
-            // 
-            // clbStatus
-            // 
-            clbStatus.BackColor = Color.WhiteSmoke;
-            clbStatus.BorderStyle = BorderStyle.None;
-            clbStatus.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            clbStatus.FormattingEnabled = true;
-            clbStatus.Items.AddRange(new object[] { "En attente", "En cours", "Terminée" });
-            clbStatus.Location = new Point(30, 80);
-            clbStatus.Name = "clbStatus";
-            clbStatus.Size = new Size(320, 240);
-            clbStatus.TabIndex = 0;
-            // 
-            // gbTeams
-            // 
-            gbTeams.Controls.Add(chkSelectAllTeams);
-            gbTeams.Controls.Add(clbTeams);
-            gbTeams.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbTeams.ForeColor = Color.FromArgb(64, 64, 64);
-            gbTeams.Location = new Point(410, 20);
-            gbTeams.Name = "gbTeams";
-            gbTeams.Size = new Size(370, 560);
-            gbTeams.TabIndex = 2;
-            gbTeams.TabStop = false;
-            gbTeams.Text = "2. Sélection des Équipes";
-            // 
-            // chkSelectAllTeams
-            // 
-            chkSelectAllTeams.AutoSize = true;
-            chkSelectAllTeams.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkSelectAllTeams.Location = new Point(30, 40);
-            chkSelectAllTeams.Name = "chkSelectAllTeams";
-            chkSelectAllTeams.Size = new Size(180, 29);
-            chkSelectAllTeams.TabIndex = 1;
-            chkSelectAllTeams.Text = "Sélectionner tous";
-            chkSelectAllTeams.UseVisualStyleBackColor = true;
-            chkSelectAllTeams.CheckedChanged += chkSelectAllTeams_CheckedChanged;
-            // 
-            // clbTeams
-            // 
-            clbTeams.BackColor = Color.WhiteSmoke;
-            clbTeams.BorderStyle = BorderStyle.None;
-            clbTeams.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            clbTeams.FormattingEnabled = true;
-            clbTeams.Location = new Point(30, 80);
-            clbTeams.Name = "clbTeams";
-            clbTeams.Size = new Size(320, 460);
-            clbTeams.TabIndex = 0;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(12, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(209, 24);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Générer un Rapport";
             // 
             // gbProjects
             // 
-            gbProjects.Controls.Add(chkSelectAllProjects);
-            gbProjects.Controls.Add(clbProjects);
-            gbProjects.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbProjects.ForeColor = Color.FromArgb(64, 64, 64);
-            gbProjects.Location = new Point(20, 20);
-            gbProjects.Name = "gbProjects";
-            gbProjects.Size = new Size(370, 560);
-            gbProjects.TabIndex = 1;
-            gbProjects.TabStop = false;
-            gbProjects.Text = "1. Sélection des Projets";
+            this.gbProjects.Controls.Add(this.chkSelectAllProjects);
+            this.gbProjects.Controls.Add(this.clbProjects);
+            this.gbProjects.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbProjects.Location = new System.Drawing.Point(12, 50);
+            this.gbProjects.Name = "gbProjects";
+            this.gbProjects.Size = new System.Drawing.Size(300, 300);
+            this.gbProjects.TabIndex = 1;
+            this.gbProjects.TabStop = false;
+            this.gbProjects.Text = "1. Sélection des Projets";
             // 
             // chkSelectAllProjects
             // 
-            chkSelectAllProjects.AutoSize = true;
-            chkSelectAllProjects.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkSelectAllProjects.Location = new Point(30, 40);
-            chkSelectAllProjects.Name = "chkSelectAllProjects";
-            chkSelectAllProjects.Size = new Size(180, 29);
-            chkSelectAllProjects.TabIndex = 1;
-            chkSelectAllProjects.Text = "Sélectionner tous";
-            chkSelectAllProjects.UseVisualStyleBackColor = true;
-            chkSelectAllProjects.CheckedChanged += chkSelectAllProjects_CheckedChanged;
+            this.chkSelectAllProjects.AutoSize = true;
+            this.chkSelectAllProjects.Location = new System.Drawing.Point(15, 25);
+            this.chkSelectAllProjects.Name = "chkSelectAllProjects";
+            this.chkSelectAllProjects.Size = new System.Drawing.Size(118, 19);
+            this.chkSelectAllProjects.TabIndex = 1;
+            this.chkSelectAllProjects.Text = "Sélectionner tous";
+            this.chkSelectAllProjects.UseVisualStyleBackColor = true;
+            this.chkSelectAllProjects.CheckedChanged += new System.EventHandler(this.chkSelectAllProjects_CheckedChanged);
             // 
             // clbProjects
             // 
-            clbProjects.BackColor = Color.WhiteSmoke;
-            clbProjects.BorderStyle = BorderStyle.None;
-            clbProjects.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            clbProjects.FormattingEnabled = true;
-            clbProjects.Location = new Point(30, 80);
-            clbProjects.Name = "clbProjects";
-            clbProjects.Size = new Size(320, 460);
-            clbProjects.TabIndex = 0;
-            clbProjects.ItemCheck += clbProjects_ItemCheck;
+            this.clbProjects.FormattingEnabled = true;
+            this.clbProjects.Location = new System.Drawing.Point(15, 50);
+            this.clbProjects.Name = "clbProjects";
+            this.clbProjects.Size = new System.Drawing.Size(270, 229);
+            this.clbProjects.TabIndex = 0;
+            this.clbProjects.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbProjects_ItemCheck);
             // 
-            // panelButtons
+            // gbTeams
             // 
-            panelButtons.Controls.Add(btnCancel);
-            panelButtons.Controls.Add(btnGenerate);
-            panelButtons.Dock = DockStyle.Bottom;
-            panelButtons.Location = new Point(20, 820);
-            panelButtons.Name = "panelButtons";
-            panelButtons.Size = new Size(1160, 80);
-            panelButtons.TabIndex = 10;
+            this.gbTeams.Controls.Add(this.chkSelectAllTeams);
+            this.gbTeams.Controls.Add(this.clbTeams);
+            this.gbTeams.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbTeams.Location = new System.Drawing.Point(318, 50);
+            this.gbTeams.Name = "gbTeams";
+            this.gbTeams.Size = new System.Drawing.Size(300, 300);
+            this.gbTeams.TabIndex = 2;
+            this.gbTeams.TabStop = false;
+            this.gbTeams.Text = "2. Sélection des Équipes";
             // 
-            // btnCancel
+            // chkSelectAllTeams
             // 
-            btnCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCancel.CheckButton = false;
-            btnCancel.Checked = false;
-            btnCancel.CheckedBackground = Color.FromArgb(200, 35, 51);
-            btnCancel.CheckedForeColor = Color.White;
-            btnCancel.CheckedImageTint = Color.White;
-            btnCancel.CheckedOutline = Color.FromArgb(200, 35, 51);
-            btnCancel.Content = "Annuler";
-            btnCancel.Cursor = Cursors.Hand;
-            btnCancel.DialogResult = DialogResult.None;
-            btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancel.ForeColor = Color.White;
-            btnCancel.HoverBackground = Color.FromArgb(200, 35, 51);
-            btnCancel.HoveredImageTint = Color.White;
-            btnCancel.HoverForeColor = Color.White;
-            btnCancel.HoverOutline = Color.Empty;
-            btnCancel.Image = null;
-            btnCancel.ImageAutoCenter = true;
-            btnCancel.ImageExpand = new Point(0, 0);
-            btnCancel.ImageOffset = new Point(0, 0);
-            btnCancel.Location = new Point(860, 10);
-            btnCancel.Name = "btnCancel";
-            btnCancel.NormalBackground = Color.FromArgb(223, 53, 69);
-            btnCancel.NormalForeColor = Color.White;
-            btnCancel.NormalImageTint = Color.White;
-            btnCancel.NormalOutline = Color.Empty;
-            btnCancel.OutlineThickness = 1.6F;
-            btnCancel.PressedBackground = Color.FromArgb(210, 35, 51);
-            btnCancel.PressedForeColor = Color.White;
-            btnCancel.PressedImageTint = Color.White;
-            btnCancel.PressedOutline = Color.Empty;
-            btnCancel.Rounding = new Padding(8);
-            btnCancel.Size = new Size(150, 60);
-            btnCancel.TabIndex = 1;
-            btnCancel.TextOffset = new Point(0, 0);
-            btnCancel.Click += btnCancel_Click;
+            this.chkSelectAllTeams.AutoSize = true;
+            this.chkSelectAllTeams.Location = new System.Drawing.Point(15, 25);
+            this.chkSelectAllTeams.Name = "chkSelectAllTeams";
+            this.chkSelectAllTeams.Size = new System.Drawing.Size(118, 19);
+            this.chkSelectAllTeams.TabIndex = 1;
+            this.chkSelectAllTeams.Text = "Sélectionner tous";
+            this.chkSelectAllTeams.UseVisualStyleBackColor = true;
+            this.chkSelectAllTeams.CheckedChanged += new System.EventHandler(this.chkSelectAllTeams_CheckedChanged);
+            // 
+            // clbTeams
+            // 
+            this.clbTeams.FormattingEnabled = true;
+            this.clbTeams.Location = new System.Drawing.Point(15, 50);
+            this.clbTeams.Name = "clbTeams";
+            this.clbTeams.Size = new System.Drawing.Size(270, 229);
+            this.clbTeams.TabIndex = 0;
+            // 
+            // gbStatus
+            // 
+            this.gbStatus.Controls.Add(this.chkSelectAllStatus);
+            this.gbStatus.Controls.Add(this.clbStatus);
+            this.gbStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbStatus.Location = new System.Drawing.Point(624, 50);
+            this.gbStatus.Name = "gbStatus";
+            this.gbStatus.Size = new System.Drawing.Size(300, 300);
+            this.gbStatus.TabIndex = 3;
+            this.gbStatus.TabStop = false;
+            this.gbStatus.Text = "3. Statut des Tâches";
+            // 
+            // chkSelectAllStatus
+            // 
+            this.chkSelectAllStatus.AutoSize = true;
+            this.chkSelectAllStatus.Location = new System.Drawing.Point(15, 25);
+            this.chkSelectAllStatus.Name = "chkSelectAllStatus";
+            this.chkSelectAllStatus.Size = new System.Drawing.Size(118, 19);
+            this.chkSelectAllStatus.TabIndex = 1;
+            this.chkSelectAllStatus.Text = "Sélectionner tous";
+            this.chkSelectAllStatus.UseVisualStyleBackColor = true;
+            this.chkSelectAllStatus.CheckedChanged += new System.EventHandler(this.chkSelectAllStatus_CheckedChanged);
+            // 
+            // clbStatus
+            // 
+            this.clbStatus.FormattingEnabled = true;
+            this.clbStatus.Items.AddRange(new object[] {
+            "En attente",
+            "En cours",
+            "Terminée"});
+            this.clbStatus.Location = new System.Drawing.Point(15, 50);
+            this.clbStatus.Name = "clbStatus";
+            this.clbStatus.Size = new System.Drawing.Size(270, 229);
+            this.clbStatus.TabIndex = 0;
+            // 
+            // gbDateRange
+            // 
+            this.gbDateRange.Controls.Add(this.dtpEndDate);
+            this.gbDateRange.Controls.Add(this.dtpStartDate);
+            this.gbDateRange.Controls.Add(this.label2);
+            this.gbDateRange.Controls.Add(this.label1);
+            this.gbDateRange.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbDateRange.Location = new System.Drawing.Point(12, 356);
+            this.gbDateRange.Name = "gbDateRange";
+            this.gbDateRange.Size = new System.Drawing.Size(300, 150);
+            this.gbDateRange.TabIndex = 4;
+            this.gbDateRange.TabStop = false;
+            this.gbDateRange.Text = "4. Période du Rapport";
+            // 
+            // dtpEndDate
+            // 
+            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEndDate.Location = new System.Drawing.Point(100, 90);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(180, 23);
+            this.dtpEndDate.TabIndex = 3;
+            // 
+            // dtpStartDate
+            // 
+            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStartDate.Location = new System.Drawing.Point(100, 40);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(180, 23);
+            this.dtpStartDate.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 95);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Date Fin :";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Date Début :";
             // 
             // btnGenerate
             // 
-            btnGenerate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnGenerate.CheckButton = false;
-            btnGenerate.Checked = false;
-            btnGenerate.CheckedBackground = Color.FromArgb(40, 167, 69);
-            btnGenerate.CheckedForeColor = Color.White;
-            btnGenerate.CheckedImageTint = Color.White;
-            btnGenerate.CheckedOutline = Color.FromArgb(40, 167, 69);
-            btnGenerate.Content = "Générer";
-            btnGenerate.Cursor = Cursors.Hand;
-            btnGenerate.DialogResult = DialogResult.None;
-            btnGenerate.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGenerate.ForeColor = Color.White;
-            btnGenerate.HoverBackground = Color.FromArgb(33, 136, 56);
-            btnGenerate.HoveredImageTint = Color.White;
-            btnGenerate.HoverForeColor = Color.White;
-            btnGenerate.HoverOutline = Color.Empty;
-            btnGenerate.Image = null;
-            btnGenerate.ImageAutoCenter = true;
-            btnGenerate.ImageExpand = new Point(0, 0);
-            btnGenerate.ImageOffset = new Point(0, 0);
-            btnGenerate.Location = new Point(1010, 10);
-            btnGenerate.Name = "btnGenerate";
-            btnGenerate.NormalBackground = Color.FromArgb(40, 167, 69);
-            btnGenerate.NormalForeColor = Color.White;
-            btnGenerate.NormalImageTint = Color.White;
-            btnGenerate.NormalOutline = Color.Empty;
-            btnGenerate.OutlineThickness = 1.6F;
-            btnGenerate.PressedBackground = Color.FromArgb(43, 168, 75);
-            btnGenerate.PressedForeColor = Color.White;
-            btnGenerate.PressedImageTint = Color.White;
-            btnGenerate.PressedOutline = Color.Empty;
-            btnGenerate.Rounding = new Padding(8);
-            btnGenerate.Size = new Size(150, 60);
-            btnGenerate.TabIndex = 0;
-            btnGenerate.TextOffset = new Point(0, 0);
-            btnGenerate.Click += btnGenerate_Click;
+            this.btnGenerate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate.Location = new System.Drawing.Point(624, 456);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(300, 50);
+            this.btnGenerate.TabIndex = 5;
+            this.btnGenerate.Text = "Générer le Rapport";
+            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Red;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Location = new System.Drawing.Point(624, 386);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(300, 50);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Annuler";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // gbReportType
+            // 
+            this.gbReportType.Controls.Add(this.rbDetailed);
+            this.gbReportType.Controls.Add(this.rbSummary);
+            this.gbReportType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbReportType.Location = new System.Drawing.Point(318, 356);
+            this.gbReportType.Name = "gbReportType";
+            this.gbReportType.Size = new System.Drawing.Size(300, 150);
+            this.gbReportType.TabIndex = 7;
+            this.gbReportType.TabStop = false;
+            this.gbReportType.Text = "5. Type de Rapport";
+            // 
+            // rbDetailed
+            // 
+            this.rbDetailed.AutoSize = true;
+            this.rbDetailed.Location = new System.Drawing.Point(15, 70);
+            this.rbDetailed.Name = "rbDetailed";
+            this.rbDetailed.Size = new System.Drawing.Size(110, 19);
+            this.rbDetailed.TabIndex = 1;
+            this.rbDetailed.Text = "Détaillé (PDF)";
+            this.rbDetailed.UseVisualStyleBackColor = true;
+            // 
+            // rbSummary
+            // 
+            this.rbSummary.AutoSize = true;
+            this.rbSummary.Checked = true;
+            this.rbSummary.Location = new System.Drawing.Point(15, 40);
+            this.rbSummary.Name = "rbSummary";
+            this.rbSummary.Size = new System.Drawing.Size(120, 19);
+            this.rbSummary.TabIndex = 0;
+            this.rbSummary.TabStop = true;
+            this.rbSummary.Text = "Synthèse (Excel)";
+            this.rbSummary.UseVisualStyleBackColor = true;
+            // 
+            // gbPerformance
+            // 
+            this.gbPerformance.Controls.Add(this.numTopTeams);
+            this.gbPerformance.Controls.Add(this.chkIncludeTopTeam);
+            this.gbPerformance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPerformance.Location = new System.Drawing.Point(12, 512);
+            this.gbPerformance.Name = "gbPerformance";
+            this.gbPerformance.Size = new System.Drawing.Size(300, 150);
+            this.gbPerformance.TabIndex = 9;
+            this.gbPerformance.TabStop = false;
+            this.gbPerformance.Text = "6. Performance des Équipes";
+            // 
+            // numTopTeams
+            // 
+            this.numTopTeams.Location = new System.Drawing.Point(15, 70);
+            this.numTopTeams.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numTopTeams.Name = "numTopTeams";
+            this.numTopTeams.Size = new System.Drawing.Size(50, 23);
+            this.numTopTeams.TabIndex = 1;
+            this.numTopTeams.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // chkIncludeTopTeam
+            // 
+            this.chkIncludeTopTeam.AutoSize = true;
+            this.chkIncludeTopTeam.Location = new System.Drawing.Point(15, 40);
+            this.chkIncludeTopTeam.Name = "chkIncludeTopTeam";
+            this.chkIncludeTopTeam.Size = new System.Drawing.Size(180, 19);
+            this.chkIncludeTopTeam.TabIndex = 0;
+            this.chkIncludeTopTeam.Text = "Inclure les équipes performantes";
+            this.chkIncludeTopTeam.UseVisualStyleBackColor = true;
             // 
             // ReportGeneratorForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1200, 1000);
-            Controls.Add(panelMain);
-            Controls.Add(panelHeader);
-            FormBorderStyle = FormBorderStyle.None;
-            Name = "ReportGeneratorForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Générateur de Rapports";
-            panelHeader.ResumeLayout(false);
-            panelHeader.PerformLayout();
-            panelMain.ResumeLayout(false);
-            gbPerformance.ResumeLayout(false);
-            gbPerformance.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numTopTeams).EndInit();
-            gbReportType.ResumeLayout(false);
-            gbReportType.PerformLayout();
-            gbDateRange.ResumeLayout(false);
-            gbDateRange.PerformLayout();
-            gbStatus.ResumeLayout(false);
-            gbStatus.PerformLayout();
-            gbTeams.ResumeLayout(false);
-            gbTeams.PerformLayout();
-            gbProjects.ResumeLayout(false);
-            gbProjects.PerformLayout();
-            panelButtons.ResumeLayout(false);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(944, 681);
+            this.Controls.Add(this.gbPerformance);
+            this.Controls.Add(this.gbReportType);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnGenerate);
+            this.Controls.Add(this.gbDateRange);
+            this.Controls.Add(this.gbStatus);
+            this.Controls.Add(this.gbTeams);
+            this.Controls.Add(this.gbProjects);
+            this.Controls.Add(this.lblTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "ReportGeneratorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Générateur de Rapports";
+            this.Load += new System.EventHandler(this.ReportGeneratorForm_Load);
+            this.gbProjects.ResumeLayout(false);
+            this.gbProjects.PerformLayout();
+            this.gbTeams.ResumeLayout(false);
+            this.gbTeams.PerformLayout();
+            this.gbStatus.ResumeLayout(false);
+            this.gbStatus.PerformLayout();
+            this.gbDateRange.ResumeLayout(false);
+            this.gbDateRange.PerformLayout();
+            this.gbReportType.ResumeLayout(false);
+            this.gbReportType.PerformLayout();
+            this.gbPerformance.ResumeLayout(false);
+            this.gbPerformance.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTopTeams)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
-        private Panel panelHeader;
-        private Label lblTitle;
-        private Panel panelMain;
-        private GroupBox gbProjects;
-        private CheckBox chkSelectAllProjects;
-        private CheckedListBox clbProjects;
-        private GroupBox gbTeams;
-        private CheckBox chkSelectAllTeams;
-        private CheckedListBox clbTeams;
-        private GroupBox gbStatus;
-        private CheckBox chkSelectAllStatus;
-        private CheckedListBox clbStatus;
-        private GroupBox gbDateRange;
-        private DateTimePicker dtpEndDate;
-        private DateTimePicker dtpStartDate;
-        private Label label2;
-        private Label label1;
-        private GroupBox gbReportType;
-        private RadioButton rbDetailed;
-        private RadioButton rbSummary;
-        private GroupBox gbPerformance;
-        private NumericUpDown numTopTeams;
-        private CheckBox chkIncludeTopTeam;
-        private Panel panelButtons;
-        private CuoreUI.Controls.cuiButton btnGenerate;
-        private CuoreUI.Controls.cuiButton btnCancel;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.GroupBox gbProjects;
+        private System.Windows.Forms.CheckedListBox clbProjects;
+        private System.Windows.Forms.GroupBox gbTeams;
+        private System.Windows.Forms.CheckedListBox clbTeams;
+        private System.Windows.Forms.GroupBox gbStatus;
+        private System.Windows.Forms.CheckedListBox clbStatus;
+        private System.Windows.Forms.GroupBox gbDateRange;
+        private System.Windows.Forms.DateTimePicker dtpEndDate;
+        private System.Windows.Forms.DateTimePicker dtpStartDate;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.CheckBox chkSelectAllProjects;
+        private System.Windows.Forms.CheckBox chkSelectAllTeams;
+        private System.Windows.Forms.CheckBox chkSelectAllStatus;
+        private System.Windows.Forms.GroupBox gbReportType;
+        private System.Windows.Forms.RadioButton rbDetailed;
+        private System.Windows.Forms.RadioButton rbSummary;
+        private System.Windows.Forms.GroupBox gbPerformance;
+        private System.Windows.Forms.NumericUpDown numTopTeams;
+        private System.Windows.Forms.CheckBox chkIncludeTopTeam;
     }
 }
