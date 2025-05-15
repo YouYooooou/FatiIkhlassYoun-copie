@@ -2,9 +2,9 @@
 using System.Security.Cryptography;
 using System.Text;
 using FatiIkhlassYoun.membreFolder;
-using FatiIkhlassYoun.A_SUPPRIMER;
 using FatiIkhlassYoun.ChefEquipeFolder.hautePanel;
 using System.Configuration;
+using WindowsFormsApp1;
 
 
 namespace FatiIkhlassYoun
@@ -110,7 +110,7 @@ namespace FatiIkhlassYoun
                                 "chef_equipe" => new MenuDeChefEquipe(),
                                 "membre" => new MenudeMembre(),
                                 "admin" => new MenuAdmin(),
-                                "chef_projet" => new MenuChefDeProjet(),
+                                "chef_projet" => new MenuduChefDeProjet(),
                                 _ => null
                             };
 

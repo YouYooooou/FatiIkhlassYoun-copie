@@ -12,30 +12,44 @@ using System.Linq;
 
 namespace WindowsFormsApp1
 {
-    public partial class MenuChefDeProjet : Form
+    public partial class MenuduChefDeProjet : Form
     {
         private TreeView treeViewEquipes;
         private PictureBox pictureBoxChef;
-        private string connectionString = @"Data Source=DESKTOP-I046MTE;Initial Catalog=Project;Integrated Security=True;MultipleActiveResultSets=True";
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["ProjectManagementSystem"].ConnectionString;
 
-        public MenuChefDeProjet()
+        public MenuduChefDeProjet()
         {
-            InitializeComponent();
-            this.WindowState = FormWindowState.Normal;
-            this.Size = new Size(800, 600);
+            InitializeComponent(); // Doit être appelé en premier
+
+            // Ensuite initialiser les composants personnalisés
             InitializeCustomComponents();
 
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            dataGridView1.CellMouseEnter += dataGridView1_CellMouseEnter;
-            dataGridView1.CellMouseLeave += dataGridView1_CellMouseLeave;
+            // Configuration initiale
+            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(800, 600);
 
             // Configurer le DataGridView
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.RowTemplate.Height = 40;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView1.CellMouseLeave += dataGridView1_CellMouseLeave;
+
+            // Charger les données
+            this.Load += (s, args) => {
+                labelRole.Location = new Point((panelMenu.Width - labelRole.Width) / 2,
+                                             (panelMenu.Height - labelRole.Height) / 2);
+                ChargerTreeView();
+                AfficherInfosChefProjet();
+                LoadAllTeams();
+                MettreAJourProgressionGlobale();
+            };
         }
 
         private void InterfaceChefDeProjet_Load(object sender, EventArgs e)
         {
+            Debug.WriteLine("InterfaceChefDeProjet_Load appelée");
             labelRole.Location = new Point((panelMenu.Width - labelRole.Width) / 2, (panelMenu.Height - labelRole.Height) / 2);
             ChargerTreeView();
             AfficherInfosChefProjet();

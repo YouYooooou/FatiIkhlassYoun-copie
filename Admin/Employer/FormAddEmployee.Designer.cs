@@ -321,7 +321,6 @@
             panelForm.Padding = new Padding(60, 58, 60, 58);
             panelForm.Size = new Size(1404, 1229);
             panelForm.TabIndex = 37;
-            panelForm.Paint += panelForm_Paint;
             // 
             // FormAddEmployee
             // 
