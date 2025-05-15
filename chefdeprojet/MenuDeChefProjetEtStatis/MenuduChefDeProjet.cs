@@ -47,9 +47,9 @@ namespace WindowsFormsApp1
             };
         }
 
-        private void InterfaceChefDeProjet_Load(object sender, EventArgs e)
+        private void MenuduChefDeProjet_Load(object sender, EventArgs e)
         {
-            Debug.WriteLine("InterfaceChefDeProjet_Load appelée");
+            Debug.WriteLine("MenuduChefDeProjet_Load appelée");
             labelRole.Location = new Point((panelMenu.Width - labelRole.Width) / 2, (panelMenu.Height - labelRole.Height) / 2);
             ChargerTreeView();
             AfficherInfosChefProjet();

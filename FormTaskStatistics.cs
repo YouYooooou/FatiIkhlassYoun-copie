@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace ProjectManagementSystem
+namespace FatiIkhlassYoun
 {
     public partial class FormTaskStatistics : Form
     {

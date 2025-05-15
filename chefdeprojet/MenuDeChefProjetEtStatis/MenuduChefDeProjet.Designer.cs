@@ -524,10 +524,10 @@
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.panelMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "InterfaceChefDeProjet";
+            this.Name = "MenuduChefDeProjet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.InterfaceChefDeProjet_Load);
+            this.Load += new System.EventHandler(this.MenuduChefDeProjet_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panel1.ResumeLayout(false);

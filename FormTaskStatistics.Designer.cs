@@ -1,4 +1,4 @@
-﻿namespace ProjectManagementSystem
+﻿namespace FatiIkhlassYoun
 {
     partial class FormTaskStatistics
     {
@@ -12,84 +12,114 @@
 
         private void InitializeComponent()
         {
-            this.lblTotalTasks = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblTerminée = new System.Windows.Forms.Label();
-            this.progressTerminée = new System.Windows.Forms.ProgressBar();
-            this.lblEnCours = new System.Windows.Forms.Label();
-            this.progressEnCours = new System.Windows.Forms.ProgressBar();
-            this.lblEnAttente = new System.Windows.Forms.Label();
-            this.progressEnAttente = new System.Windows.Forms.ProgressBar();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
-
+            lblTotalTasks = new Label();
+            groupBox1 = new GroupBox();
+            lblTerminée = new Label();
+            progressTerminée = new ProgressBar();
+            lblEnCours = new Label();
+            progressEnCours = new ProgressBar();
+            lblEnAttente = new Label();
+            progressEnAttente = new ProgressBar();
+            btnRefresh = new Button();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
+            // 
             // lblTotalTasks
-            this.lblTotalTasks.AutoSize = true;
-            this.lblTotalTasks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTotalTasks.Location = new System.Drawing.Point(30, 20);
-            this.lblTotalTasks.Name = "lblTotalTasks";
-            this.lblTotalTasks.Size = new System.Drawing.Size(180, 28);
-            this.lblTotalTasks.Text = "Total des tâches : 0";
-
+            // 
+            lblTotalTasks.AutoSize = true;
+            lblTotalTasks.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTotalTasks.Location = new Point(1, 9);
+            lblTotalTasks.Name = "lblTotalTasks";
+            lblTotalTasks.Size = new Size(454, 65);
+            lblTotalTasks.TabIndex = 1;
+            lblTotalTasks.Text = "Total des tâches : 0";
+            // 
             // groupBox1
-            this.groupBox1.Controls.Add(this.lblTerminée);
-            this.groupBox1.Controls.Add(this.progressTerminée);
-            this.groupBox1.Controls.Add(this.lblEnCours);
-            this.groupBox1.Controls.Add(this.progressEnCours);
-            this.groupBox1.Controls.Add(this.lblEnAttente);
-            this.groupBox1.Controls.Add(this.progressEnAttente);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(30, 60);
-            this.groupBox1.Size = new System.Drawing.Size(500, 200);
-            this.groupBox1.Text = "Statut des tâches";
-
+            // 
+            groupBox1.Controls.Add(lblTerminée);
+            groupBox1.Controls.Add(progressTerminée);
+            groupBox1.Controls.Add(lblEnCours);
+            groupBox1.Controls.Add(progressEnCours);
+            groupBox1.Controls.Add(lblEnAttente);
+            groupBox1.Controls.Add(progressEnAttente);
+            groupBox1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            groupBox1.Location = new Point(30, 70);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(1274, 370);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Statut des tâches";
+            // 
             // lblTerminée
-            this.lblTerminée.AutoSize = true;
-            this.lblTerminée.Location = new System.Drawing.Point(20, 35);
-            this.lblTerminée.Text = "Terminée : 0%";
-
+            // 
+            lblTerminée.AutoSize = true;
+            lblTerminée.Location = new Point(28, 110);
+            lblTerminée.Name = "lblTerminée";
+            lblTerminée.Size = new Size(287, 54);
+            lblTerminée.TabIndex = 0;
+            lblTerminée.Text = "Terminée : 0%";
+            // 
             // progressTerminée
-            this.progressTerminée.Location = new System.Drawing.Point(150, 30);
-            this.progressTerminée.Size = new System.Drawing.Size(300, 25);
-
+            // 
+            progressTerminée.Location = new Point(477, 119);
+            progressTerminée.Name = "progressTerminée";
+            progressTerminée.Size = new Size(528, 45);
+            progressTerminée.TabIndex = 1;
+            // 
             // lblEnCours
-            this.lblEnCours.AutoSize = true;
-            this.lblEnCours.Location = new System.Drawing.Point(20, 85);
-            this.lblEnCours.Text = "En cours : 0%";
-
+            // 
+            lblEnCours.AutoSize = true;
+            lblEnCours.Location = new Point(44, 183);
+            lblEnCours.Name = "lblEnCours";
+            lblEnCours.Size = new Size(271, 54);
+            lblEnCours.TabIndex = 2;
+            lblEnCours.Text = "En cours : 0%";
+            // 
             // progressEnCours
-            this.progressEnCours.Location = new System.Drawing.Point(150, 80);
-            this.progressEnCours.Size = new System.Drawing.Size(300, 25);
-
+            // 
+            progressEnCours.Location = new Point(477, 183);
+            progressEnCours.Name = "progressEnCours";
+            progressEnCours.Size = new Size(528, 54);
+            progressEnCours.TabIndex = 3;
+            // 
             // lblEnAttente
-            this.lblEnAttente.AutoSize = true;
-            this.lblEnAttente.Location = new System.Drawing.Point(20, 135);
-            this.lblEnAttente.Text = "En attente : 0%";
-
+            // 
+            lblEnAttente.AutoSize = true;
+            lblEnAttente.Location = new Point(44, 256);
+            lblEnAttente.Name = "lblEnAttente";
+            lblEnAttente.Size = new Size(308, 54);
+            lblEnAttente.TabIndex = 4;
+            lblEnAttente.Text = "En attente : 0%";
+            // 
             // progressEnAttente
-            this.progressEnAttente.Location = new System.Drawing.Point(150, 130);
-            this.progressEnAttente.Size = new System.Drawing.Size(300, 25);
-
+            // 
+            progressEnAttente.Location = new Point(477, 256);
+            progressEnAttente.Name = "progressEnAttente";
+            progressEnAttente.Size = new Size(528, 60);
+            progressEnAttente.TabIndex = 5;
+            // 
             // btnRefresh
-            this.btnRefresh.Location = new System.Drawing.Point(400, 270);
-            this.btnRefresh.Size = new System.Drawing.Size(130, 35);
-            this.btnRefresh.Text = "Actualiser";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-
-            // FormProgressAdmin
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.ClientSize = new System.Drawing.Size(580, 330);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblTotalTasks);
-            this.Controls.Add(this.btnRefresh);
-            this.Name = "FormProgressAdmin";
-            this.Text = "Progression des Tâches - Admin";
-            this.Load += new System.EventHandler(this.FormProgressAdmin_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            btnRefresh.Location = new Point(1153, 472);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(229, 87);
+            btnRefresh.TabIndex = 2;
+            btnRefresh.Text = "Actualiser";
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // FormTaskStatistics
+            // 
+            ClientSize = new Size(1489, 678);
+            Controls.Add(groupBox1);
+            Controls.Add(lblTotalTasks);
+            Controls.Add(btnRefresh);
+            Name = "FormTaskStatistics";
+            Text = "Progression des Tâches - Admin";
+            Load += FormProgressAdmin_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private System.Windows.Forms.Label lblTotalTasks;
